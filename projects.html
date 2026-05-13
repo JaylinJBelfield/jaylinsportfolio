@@ -18,6 +18,7 @@
             --panel-solid: rgb(31, 38, 50);
             --panel-dark: rgb(24, 30, 40);
             --border: rgba(230, 180, 90, 0.24);
+            --border-strong: rgba(230, 180, 90, 0.38);
             --text-main: #c9ced6;
             --text-soft: #aeb5c0;
             --text-muted: #8f98a6;
@@ -90,49 +91,50 @@
             color: var(--amber);
         }
 
-        .projects-shell {
+        .page-shell {
             display: grid;
-            grid-template-columns: 290px minmax(0, 1fr);
-            gap: 28px;
-            padding: 42px 0 80px;
+            grid-template-columns: 300px minmax(0, 1fr);
+            min-height: calc(100vh - 73px);
+        }
+
+        .sidebar-frame {
+            border-right: 1px solid var(--border-strong);
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(24, 30, 40, 0.88),
+                    rgba(19, 24, 32, 0.92)
+                );
+            min-height: calc(100vh - 73px);
+            position: sticky;
+            top: 73px;
+            align-self: start;
         }
 
         .sidebar {
-            position: sticky;
-            top: 92px;
-            height: calc(100vh - 115px);
+            height: calc(100vh - 73px);
             overflow-y: auto;
-            background: rgba(24, 30, 40, 0.72);
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 22px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+            padding: 34px 24px 34px 34px;
         }
 
         .sidebar-title {
-            margin-bottom: 22px;
+            margin-bottom: 30px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(214, 168, 79, 0.18);
         }
 
         .sidebar-title h1 {
-            font-size: 1.55rem;
+            font-size: 1.75rem;
             color: #d2d6dc;
             line-height: 1.2;
-            margin-bottom: 8px;
         }
 
         .sidebar-title h1 span {
             color: var(--amber);
         }
 
-        .sidebar-title p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
         .toc-section {
-            margin-bottom: 24px;
+            margin-bottom: 30px;
         }
 
         .toc-section h3 {
@@ -140,17 +142,19 @@
             font-size: 0.82rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .project-link {
             width: 100%;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             text-align: left;
             background: transparent;
             color: var(--text-soft);
             border: 1px solid transparent;
-            padding: 10px 12px;
+            padding: 11px 12px;
             border-radius: 12px;
             margin-bottom: 7px;
             cursor: pointer;
@@ -170,8 +174,37 @@
             border-color: var(--amber-border);
         }
 
+        .mini-hex {
+            width: 13px;
+            height: 12px;
+            min-width: 13px;
+            background: rgba(214, 168, 79, 0.28);
+            border: 1px solid rgba(214, 168, 79, 0.48);
+            clip-path: polygon(
+                25% 5%,
+                75% 5%,
+                100% 50%,
+                75% 95%,
+                25% 95%,
+                0% 50%
+            );
+            box-shadow: 0 0 10px rgba(214, 168, 79, 0.12);
+        }
+
+        .project-link.active .mini-hex {
+            background: var(--amber);
+            border-color: var(--amber);
+        }
+
         .main-panel {
             min-width: 0;
+            padding: 42px 0 80px;
+        }
+
+        .main-inner {
+            width: 92%;
+            max-width: 980px;
+            margin: 0 auto;
         }
 
         .workspace-header {
@@ -216,8 +249,8 @@
 
         .project-hero {
             position: relative;
-            min-height: 260px;
-            padding: 34px;
+            min-height: 280px;
+            padding: 36px;
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) 0.9fr;
             gap: 28px;
@@ -238,7 +271,7 @@
         }
 
         .project-hero h2 {
-            font-size: 2.4rem;
+            font-size: 2.45rem;
             color: #d2d6dc;
             line-height: 1.12;
             margin-bottom: 14px;
@@ -250,7 +283,7 @@
         }
 
         .hex-cluster {
-            min-height: 210px;
+            min-height: 230px;
             position: relative;
             display: flex;
             align-items: center;
@@ -477,14 +510,21 @@
         }
 
         @media (max-width: 1050px) {
-            .projects-shell {
+            .page-shell {
                 grid-template-columns: 1fr;
             }
 
-            .sidebar {
+            .sidebar-frame {
                 position: relative;
                 top: 0;
+                min-height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--border-strong);
+            }
+
+            .sidebar {
                 height: auto;
+                padding: 28px;
             }
 
             .project-hero {
@@ -530,6 +570,10 @@
             .project-hero,
             .project-body {
                 padding: 24px;
+            }
+
+            .main-inner {
+                width: 90%;
             }
 
             .hex {
@@ -578,48 +622,68 @@
         </div>
     </header>
 
-    <main class="container">
-        <div class="projects-shell">
+    <main class="page-shell">
 
-            <aside class="sidebar">
+        <aside class="sidebar-frame">
+            <div class="sidebar">
                 <div class="sidebar-title">
-                    <h1>Project <span>Notebook</span></h1>
-                    <p>
-                        A workspace-style view of my academic, business, and featured projects.
-                    </p>
+                    <h1>My <span>Projects</span></h1>
                 </div>
 
                 <div class="toc-section">
                     <h3>Academic</h3>
-                    <button class="project-link active" onclick="loadProject('train', this)">Train System Simulation</button>
-                    <button class="project-link" onclick="loadProject('hospital', this)">Hospital Queue System</button>
-                    <button class="project-link" onclick="loadProject('cyber', this)">Cybersecurity Labs</button>
-                    <button class="project-link" onclick="loadProject('greenhouse', this)">Smart Green House</button>
+
+                    <button class="project-link active" onclick="loadProject('train', this)">
+                        <span class="mini-hex"></span>
+                        <span>Hogwarts Train System</span>
+                    </button>
+
+                    <button class="project-link" onclick="loadProject('greenhouse', this)">
+                        <span class="mini-hex"></span>
+                        <span>Smart Green House</span>
+                    </button>
                 </div>
 
                 <div class="toc-section">
                     <h3>Business</h3>
-                    <button class="project-link" onclick="loadProject('belsade', this)">Belsade Tech Rack</button>
-                    <button class="project-link" onclick="loadProject('ryznai', this)">ryznAi</button>
-                    <button class="project-link" onclick="loadProject('services', this)">Server Hardware Services</button>
+
+                    <button class="project-link" onclick="loadProject('belsade', this)">
+                        <span class="mini-hex"></span>
+                        <span>Belsade Tech</span>
+                    </button>
+
+                    <button class="project-link" onclick="loadProject('ryznai', this)">
+                        <span class="mini-hex"></span>
+                        <span>ryznAi</span>
+                    </button>
+
+                    <button class="project-link" onclick="loadProject('grim', this)">
+                        <span class="mini-hex"></span>
+                        <span>G.R.I.M Studios</span>
+                    </button>
                 </div>
 
                 <div class="toc-section">
                     <h3>Featured</h3>
-                    <button class="project-link" onclick="loadProject('gamedev', this)">Game Dev / Minecraft</button>
-                    <button class="project-link" onclick="loadProject('portfolio', this)">Portfolio Website</button>
-                    <button class="project-link" onclick="loadProject('startup', this)">Startup Journey</button>
-                </div>
-            </aside>
 
-            <section class="main-panel">
+                    <button class="project-link" onclick="loadProject('portfolio', this)">
+                        <span class="mini-hex"></span>
+                        <span>Portfolio Website</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <section class="main-panel">
+            <div class="main-inner">
+
                 <div class="workspace-header">
-                    <div class="workspace-label">Projects Workspace</div>
-                    <h2>Notebook-style project archive</h2>
+                    <div class="workspace-label">Project Archive</div>
+                    <h2>Notebook-style project workspace</h2>
                     <p>
                         Select a project from the left table of contents to view a focused project page.
-                        Each page breaks down what the project is, what I worked on, what tools I used,
-                        and how it connects to my larger computer science journey.
+                        This layout is designed to feel like a personal project vault where each project
+                        has its own notes, tools, development points, and technical identity.
                     </p>
                 </div>
 
@@ -627,11 +691,12 @@
                     <div class="project-hero">
                         <div>
                             <div class="project-kicker" id="projectCategory">Academic Project</div>
-                            <h2 id="projectTitle">Train System Simulation / Cargo Tracker</h2>
+                            <h2 id="projectTitle">Hogwarts Train System</h2>
                             <p id="projectSummary">
-                                A Java-based data structures project designed around a train system simulation.
-                                The project demonstrates object-oriented programming, inheritance, polymorphism,
-                                collections, searching, sorting, trees, maps, and graph algorithms.
+                                A Java-based data structures project designed around a Hogwarts-inspired train
+                                system simulation. The project demonstrates object-oriented programming,
+                                inheritance, polymorphism, collections, searching, sorting, trees, maps,
+                                and graph algorithms.
                             </p>
                         </div>
 
@@ -649,9 +714,11 @@
                             <div class="content-card">
                                 <h3>Overview</h3>
                                 <p id="projectOverview">
-                                    This project was built as a full Java simulation where different train cars,
-                                    passengers, cargo, and routes are modeled using object-oriented design and
-                                    advanced data structures.
+                                    The Hogwarts Train System is a Java simulation that models train cars,
+                                    passengers, cargo, and station routes using object-oriented programming
+                                    and advanced data structures. It was built as a multi-phase academic
+                                    project to show how different programming concepts can work together
+                                    inside one larger system.
                                 </p>
                             </div>
 
@@ -670,8 +737,9 @@
                                 <h3>Why It Matters</h3>
                                 <p id="projectImpact">
                                     This project helped me connect classroom data structures to a more realistic
-                                    software system. Instead of only learning the structures separately, I practiced
-                                    using them together inside one larger simulation.
+                                    software system. Instead of only learning each structure separately, I practiced
+                                    using them together inside one larger simulation with objects, routes, searches,
+                                    sorting, and system behavior.
                                 </p>
                             </div>
                         </div>
@@ -699,9 +767,10 @@
                         </aside>
                     </div>
                 </article>
-            </section>
 
-        </div>
+            </div>
+        </section>
+
     </main>
 
     <footer id="contact">
@@ -750,9 +819,9 @@
         const projects = {
             train: {
                 category: "Academic Project",
-                title: "Train System Simulation / Cargo Tracker",
-                summary: "A Java-based data structures project designed around a train system simulation. The project demonstrates object-oriented programming, inheritance, polymorphism, collections, searching, sorting, trees, maps, and graph algorithms.",
-                overview: "This project was built as a full Java simulation where different train cars, passengers, cargo, and routes are modeled using object-oriented design and advanced data structures.",
+                title: "Hogwarts Train System",
+                summary: "A Java-based data structures project designed around a Hogwarts-inspired train system simulation. The project demonstrates object-oriented programming, inheritance, polymorphism, collections, searching, sorting, trees, maps, and graph algorithms.",
+                overview: "The Hogwarts Train System is a Java simulation that models train cars, passengers, cargo, and station routes using object-oriented programming and advanced data structures. It was built as a multi-phase academic project to show how different programming concepts can work together inside one larger system.",
                 work: [
                     "Created multiple train car classes using inheritance and polymorphism.",
                     "Used collections such as ArrayList, LinkedList, Queue, and HashMap.",
@@ -760,52 +829,17 @@
                     "Used an AVL tree to index train cars by car ID.",
                     "Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm."
                 ],
-                impact: "This project helped me connect classroom data structures to a more realistic software system. Instead of only learning the structures separately, I practiced using them together inside one larger simulation.",
+                impact: "This project helped me connect classroom data structures to a more realistic software system. Instead of only learning each structure separately, I practiced using them together inside one larger simulation with objects, routes, searches, sorting, and system behavior.",
                 tags: ["Java", "OOP", "Data Structures", "AVL Tree", "HashMap", "Dijkstra", "Prim"],
                 hexes: ["Java", "OOP", "AVL Tree", "HashMap", "Graphs"],
                 note: "Notebook note: This is one of my strongest academic projects because it combines multiple data structures into one complete system."
             },
 
-            hospital: {
-                category: "Academic Project",
-                title: "Hospital Patient Queue Management System",
-                summary: "A Java project focused on managing patients based on priority using queues, maps, and linked list concepts.",
-                overview: "This project models a hospital-style patient queue where patients are organized by urgency and can be looked up or managed through supporting data structures.",
-                work: [
-                    "Used a PriorityQueue to organize patients by urgency.",
-                    "Used HashMap for quick patient lookup.",
-                    "Used LinkedList concepts to manage ordered patient data.",
-                    "Practiced writing clean Java classes while following project requirements."
-                ],
-                impact: "This project helped me understand how data structures can support real-world systems where order, priority, and fast lookup matter.",
-                tags: ["Java", "PriorityQueue", "HashMap", "LinkedList", "Data Structures"],
-                hexes: ["Java", "Priority", "HashMap", "LinkedList", "Patients"],
-                note: "Notebook note: This project is a clean example of how different structures solve different parts of one problem."
-            },
-
-            cyber: {
-                category: "Academic Project",
-                title: "Cybersecurity and Networking Labs",
-                summary: "A collection of lab work involving firewall rules, traffic analysis, hashing, VPN concepts, and controlled network security simulations.",
-                overview: "These labs helped me practice the technical side of networking and cybersecurity by working with tools and scenarios that explain how attacks and defenses operate.",
-                work: [
-                    "Configured firewall rules using pfSense.",
-                    "Analyzed network traffic using Wireshark.",
-                    "Studied hashing and file integrity comparison.",
-                    "Worked through VPN, port forwarding, and network topology concepts.",
-                    "Answered technical lab questions explaining how attacks and defenses work."
-                ],
-                impact: "These labs helped me connect networking concepts to security decisions, especially around visibility, traffic flow, firewall placement, and system protection.",
-                tags: ["Cybersecurity", "Wireshark", "pfSense", "Hashing", "VPN", "Firewall Rules"],
-                hexes: ["Security", "Wireshark", "pfSense", "Hashing", "VPN"],
-                note: "Notebook note: These labs support my infrastructure work because security becomes more important as systems become more real."
-            },
-
             greenhouse: {
                 category: "Academic Project",
                 title: "Smart Green House",
-                summary: "An Arduino-based engineering project using automated watering, daylight control, soil readings, pumps, and switches.",
-                overview: "This project focused on using sensors, pumps, switches, and microcontroller logic to create a greenhouse system that could respond to environmental conditions.",
+                summary: "An Arduino-based engineering project using automated watering, daylight control, sensor readings, pumps, and switches.",
+                overview: "The Smart Green House project focused on using sensors, pumps, switches, and microcontroller logic to create a greenhouse system that could respond to environmental conditions.",
                 work: [
                     "Worked with Arduino-based control logic.",
                     "Used C++ style programming for microcontroller behavior.",
@@ -820,20 +854,20 @@
 
             belsade: {
                 category: "Business Project",
-                title: "Belsade Tech Rack Infrastructure",
-                summary: "A long-term private cloud and server rack project built around real enterprise-style infrastructure, virtualization, networking, and internal services.",
-                overview: "Belsade Rack is my hands-on infrastructure project where I work with physical servers, virtualization, firewall routing, managed switching, and segmented networks.",
+                title: "Belsade Tech",
+                summary: "A long-term technology project built around infrastructure, server hardware services, hosting, AI-powered tools, and technology solutions.",
+                overview: "Belsade Tech is my long-term technology project where I connect infrastructure, server hardware, hosting ideas, AI tools, and business planning into one larger direction.",
                 work: [
-                    "Planned a rack-based private cloud environment for Belsade Tech.",
+                    "Planned a rack-based infrastructure environment for Belsade Tech.",
                     "Used Proxmox for virtualization and server management.",
                     "Configured pfSense as a firewall and router.",
                     "Designed VLAN-based network segmentation for internal, management, DMZ, storage, and other zones.",
                     "Worked with enterprise servers, managed switches, and Linux-based systems."
                 ],
-                impact: "This project is important because it connects computer science to real infrastructure. It gives me experience with the systems that software actually runs on.",
-                tags: ["Proxmox", "pfSense", "Linux", "Networking", "VLANs", "Server Hardware"],
-                hexes: ["Proxmox", "pfSense", "VLANs", "Linux", "Servers"],
-                note: "Notebook note: This is one of my biggest long-term projects because it supports my business, hosting, AI, and game development goals."
+                impact: "This project is important because it connects computer science to real infrastructure and business direction. It gives me experience with the systems that software actually runs on.",
+                tags: ["Belsade Tech", "Proxmox", "pfSense", "Linux", "Networking", "VLANs", "Server Hardware"],
+                hexes: ["Belsade", "Servers", "VLANs", "Linux", "Hosting"],
+                note: "Notebook note: Belsade Tech is one of my biggest long-term projects because it connects my business, hosting, AI, and infrastructure goals."
             },
 
             ryznai: {
@@ -853,39 +887,21 @@
                 note: "Notebook note: ryznAi is part of my bigger goal of building AI-powered tools that feel useful instead of generic."
             },
 
-            services: {
+            grim: {
                 category: "Business Project",
-                title: "Server Hardware Services",
-                summary: "A business direction focused on supplying server hardware services, hosting support, and infrastructure solutions through Belsade Tech.",
-                overview: "This project direction focuses on turning my infrastructure experience into services around server hardware, hosting, and technical solutions.",
+                title: "G.R.I.M Studios",
+                summary: "A game development and creative technology direction connected to Minecraft servers, game systems, backend hosting, and content creation.",
+                overview: "G.R.I.M Studios represents my game development side, including Minecraft server work, game mechanics, scripts, creative systems, and the early experience that pushed me deeper into technology.",
                 work: [
-                    "Studied enterprise server hardware and rack planning.",
-                    "Worked with used servers, storage, networking, and virtualization.",
-                    "Connected infrastructure knowledge to possible customer-facing services.",
-                    "Built the foundation for Belsade Tech service offerings."
+                    "Worked on Minecraft-related servers, assets, scripts, and systems.",
+                    "Explored game mechanics, backend logic, and server communities.",
+                    "Used JavaScript, Java, Mythic.Lib, and Denizen Script concepts.",
+                    "Connected creative game development with marketing and server hosting."
                 ],
-                impact: "This project matters because it connects my technical learning with business. It gives my infrastructure work a real-world direction.",
-                tags: ["Server Hardware", "Hosting", "Infrastructure", "Business", "Belsade Tech"],
-                hexes: ["Servers", "Hosting", "Business", "Support", "Hardware"],
-                note: "Notebook note: This is where technical skill starts turning into a service model."
-            },
-
-            gamedev: {
-                category: "Featured Project",
-                title: "Game Dev / Minecraft Projects",
-                summary: "Personal game server and modding-related work connected to Minecraft, anime-inspired ideas, backend hosting, and creative development.",
-                overview: "My game development work started with Minecraft servers, game assets, plugins, scripts, and server communities. It connects creativity with technical systems.",
-                work: [
-                    "Ran and managed game servers.",
-                    "Explored Minecraft modding ideas and anime-inspired systems.",
-                    "Practiced server hosting, configuration, and backend thinking.",
-                    "Worked with JavaScript, Java, Mythic.Lib, and Denizen Script concepts.",
-                    "Connected creative game concepts with technical infrastructure and marketing."
-                ],
-                impact: "This project area matters because it is where my computer science journey started. It gave me early experience with coding, assets, servers, and building for real users.",
-                tags: ["Minecraft", "Game Servers", "Server Hosting", "Modding", "Backend Systems", "Marketing", "JavaScript", "Mythic.Lib", "Denizen Script"],
-                hexes: ["Minecraft", "Servers", "Scripts", "Marketing", "Mods"],
-                note: "Notebook note: Game development is one of the roots of my tech journey."
+                impact: "This project area matters because it is where my computer science journey started. It gave me early experience with coding, assets, servers, marketing, and building for real users.",
+                tags: ["Minecraft", "Game Servers", "Game Dev", "Marketing", "JavaScript", "Mythic.Lib", "Denizen Script"],
+                hexes: ["G.R.I.M", "Minecraft", "Scripts", "Servers", "Marketing"],
+                note: "Notebook note: G.R.I.M Studios is the creative/game-development branch of my long-term technology journey."
             },
 
             portfolio: {
@@ -903,23 +919,6 @@
                 tags: ["HTML", "CSS", "GitHub Pages", "Portfolio", "Web Design"],
                 hexes: ["HTML", "CSS", "Design", "GitHub", "Brand"],
                 note: "Notebook note: This website is both a project and a presentation layer for everything else I build."
-            },
-
-            startup: {
-                category: "Featured Project",
-                title: "Startup Journey",
-                summary: "My long-term path toward building Belsade Tech, GRIM Studios, ryznAi, and technology services around AI, servers, and game development.",
-                overview: "This is the larger journey connecting my computer science degree, business minor, math minor, infrastructure projects, AI ideas, and game development background.",
-                work: [
-                    "Built early ideas around Belsade Tech and related sub-brands.",
-                    "Connected technical projects to possible services and products.",
-                    "Learned through real systems, school projects, and independent builds.",
-                    "Focused on AI tools, server hardware services, and game development."
-                ],
-                impact: "This matters because it gives my projects direction. I am not only building assignments; I am building toward a long-term technology company.",
-                tags: ["Belsade Tech", "GRIM Studios", "ryznAi", "AI Tools", "Servers", "Game Development"],
-                hexes: ["Belsade", "GRIM", "ryznAi", "AI", "Servers"],
-                note: "Notebook note: This is the bigger map that connects the rest of my projects together."
             }
         };
 
