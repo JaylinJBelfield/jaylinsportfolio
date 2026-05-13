@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Jaylin Belfield</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b10;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            background: #11111a;
+            border-bottom: 1px solid #2a2a3d;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #b56cff;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: #d6d6d6;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #b56cff;
+        }
+
+        .page-hero {
+            padding: 80px 0 40px;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .page-hero h1 span {
+            color: #b56cff;
+        }
+
+        .page-hero p {
+            color: #bdbdbd;
+            max-width: 750px;
+            font-size: 1.1rem;
+        }
+
+        .projects {
+            padding: 40px 0 80px;
+        }
+
+        .project-card {
+            background: #151520;
+            border: 1px solid #2a2a3d;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: #b56cff;
+            transform: translateY(-4px);
+        }
+
+        .project-card h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #cfcfcf;
+            margin-bottom: 15px;
+        }
+
+        .project-details {
+            margin: 15px 0;
+        }
+
+        .project-details h3 {
+            color: #b56cff;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .project-details ul {
+            margin-left: 20px;
+            color: #cfcfcf;
+        }
+
+        .project-details li {
+            margin-bottom: 6px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tags span {
+            background: rgba(181, 108, 255, 0.12);
+            color: #c994ff;
+            border: 1px solid rgba(181, 108, 255, 0.3);
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn-primary {
+            background: #b56cff;
+            color: #0b0b10;
+        }
+
+        footer {
+            background: #11111a;
+            border-top: 1px solid #2a2a3d;
+            padding: 35px 0;
+            color: #bdbdbd;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-content h3 {
+            color: #b56cff;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            margin-right: 15px;
+            color: #d6d6d6;
+        }
+
+        .footer-links a:hover {
+            color: #b56cff;
+        }
+
+        @media (max-width: 850px) {
+            .page-hero h1 {
+                font-size: 2.4rem;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Jaylin Belfield</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="index.html#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="page-hero">
+            <div class="container">
+                <h1>My <span>Projects</span></h1>
+                <p>
+                    These projects show my growth as a Computer Science student across software development,
+                    data structures, networking, cybersecurity, and server infrastructure.
+                </p>
+            </div>
+        </section>
+
+        <section class="projects">
+            <div class="container">
+
+                <div class="project-card">
+                    <h2>Belsade Tech Rack Infrastructure</h2>
+                    <p>
+                        A long-term private cloud and server rack project built around real enterprise-style
+                        infrastructure. This project includes physical servers, virtualization, network segmentation,
+                        firewall routing, and internal services.
+                    </p>
+
+                    <div class="project-details">
+                        <h3>What I Worked On</h3>
+                        <ul>
+                            <li>Planned a rack-based private cloud environment for Belsade Tech.</li>
+                            <li>Used Proxmox for virtualization and server management.</li>
+                            <li>Configured pfSense as a firewall and router.</li>
+                            <li>Designed VLAN-based network segmentation for internal, management, DMZ, storage, and other zones.</li>
+                            <li>Worked with enterprise servers, managed switches, and Linux-based systems.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tags">
+                        <span>Proxmox</span>
+                        <span>pfSense</span>
+                        <span>Linux</span>
+                        <span>Networking</span>
+                        <span>VLANs</span>
+                        <span>Server Hardware</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2>Train System Simulation / Cargo Tracker</h2>
+                    <p>
+                        A Java-based data structures project designed around a train system simulation.
+                        The project demonstrates object-oriented programming, inheritance, polymorphism,
+                        collections, searching, sorting, trees, maps, and graph algorithms.
+                    </p>
+
+                    <div class="project-details">
+                        <h3>What I Worked On</h3>
+                        <ul>
+                            <li>Created multiple train car classes using inheritance and polymorphism.</li>
+                            <li>Used collections such as ArrayList, LinkedList, Queue, and HashMap.</li>
+                            <li>Implemented sorting and recursive binary search.</li>
+                            <li>Used an AVL tree to index train cars by car ID.</li>
+                            <li>Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tags">
+                        <span>Java</span>
+                        <span>OOP</span>
+                        <span>Data Structures</span>
+                        <span>AVL Tree</span>
+                        <span>HashMap</span>
+                        <span>Dijkstra</span>
+                        <span>Prim</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2>Hospital Patient Queue Management System</h2>
+                    <p>
+                        A Java project focused on managing patients based on priority. This project helped me
+                        practice how priority queues, maps, and linked lists can be used in a real-world style system.
+                    </p>
+
+                    <div class="project-details">
+                        <h3>What I Worked On</h3>
+                        <ul>
+                            <li>Used a PriorityQueue to organize patients by urgency.</li>
+                            <li>Used HashMap for quick patient lookup.</li>
+                            <li>Used LinkedList concepts to manage ordered patient data.</li>
+                            <li>Practiced writing clean Java classes while following project requirements.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tags">
+                        <span>Java</span>
+                        <span>PriorityQueue</span>
+                        <span>HashMap</span>
+                        <span>LinkedList</span>
+                        <span>Data Structures</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2>Cybersecurity and Networking Labs</h2>
+                    <p>
+                        A collection of lab work involving network security, firewall rules, traffic analysis,
+                        hashing, VPN concepts, and simulated attacks in controlled lab environments.
+                    </p>
+
+                    <div class="project-details">
+                        <h3>What I Worked On</h3>
+                        <ul>
+                            <li>Configured firewall rules using pfSense.</li>
+                            <li>Analyzed network traffic using Wireshark.</li>
+                            <li>Studied hashing and file integrity comparison.</li>
+                            <li>Worked through VPN, port forwarding, and network topology concepts.</li>
+                            <li>Answered technical lab questions explaining how attacks and defenses work.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tags">
+                        <span>Cybersecurity</span>
+                        <span>Wireshark</span>
+                        <span>pfSense</span>
+                        <span>Hashing</span>
+                        <span>VPN</span>
+                        <span>Firewall Rules</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h2>Minecraft and Game Server Projects</h2>
+                    <p>
+                        Personal game server and modding-related work connected to my interest in Minecraft,
+                        anime-inspired ideas, and backend hosting. These projects connect my creative interests
+                        with server administration and software concepts.
+                    </p>
+
+                    <div class="project-details">
+                        <h3>What I Worked On</h3>
+                        <ul>
+                            <li>Ran and managed game servers.</li>
+                            <li>Explored Minecraft modding ideas and anime-inspired systems.</li>
+                            <li>Practiced server hosting, configuration, and backend thinking.</li>
+                            <li>Connected creative game concepts with technical infrastructure.</li>
+                        </ul>
+                    </div>
+
+                    <div class="tags">
+                        <span>Minecraft</span>
+                        <span>Game Servers</span>
+                        <span>Server Hosting</span>
+                        <span>Modding</span>
+                        <span>Backend Systems</span>
+                    </div>
+                </div>
+
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Jaylin Belfield</h3>
+                    <p>Computer Science Student | Infrastructure Builder | Software Developer</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="mailto:your-email@example.com">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
