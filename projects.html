@@ -53,63 +53,18 @@
 
         .page-shell {
             display: grid;
-            grid-template-columns: 72px 300px minmax(0, 1fr);
+            grid-template-columns: 300px 72px minmax(0, 1fr);
             min-height: 100vh;
             transition: 0.25s ease;
         }
 
         .page-shell.sidebar-collapsed {
-            grid-template-columns: 72px 78px minmax(0, 1fr);
-        }
-
-        /* ROTATED HEADER STRIP */
-        .vertical-header {
-            min-height: 100vh;
-            background: rgba(19, 24, 32, 0.96);
-            border-right: 1px solid var(--border-strong);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            align-self: start;
-            z-index: 20;
-        }
-
-        .vertical-header-inner {
-            transform: rotate(90deg);
-            display: flex;
-            align-items: center;
-            gap: 34px;
-            white-space: nowrap;
-        }
-
-        .vertical-logo {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #d2d6dc;
-            letter-spacing: 0.5px;
-        }
-
-        .vertical-nav {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-        }
-
-        .vertical-nav a {
-            color: var(--text-soft);
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-
-        .vertical-nav a:hover {
-            color: var(--purple);
+            grid-template-columns: 78px 72px minmax(0, 1fr);
         }
 
         /* PROJECT SIDEBAR */
         .sidebar-frame {
-            border-right: 1px solid var(--border-strong);
+            border-right: none;
             background:
                 linear-gradient(
                     180deg,
@@ -126,7 +81,7 @@
         .sidebar-toggle {
             position: absolute;
             top: 24px;
-            right: -16px;
+            right: -15px;
             width: 32px;
             height: 42px;
             border-radius: 999px;
@@ -134,7 +89,7 @@
             background: rgba(24, 30, 40, 0.96);
             color: var(--purple);
             cursor: pointer;
-            z-index: 30;
+            z-index: 40;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -274,6 +229,52 @@
 
         .project-text {
             transition: 0.25s ease;
+        }
+
+        /* ROTATED HEADER STRIP */
+        .vertical-header {
+            min-height: 100vh;
+            background: rgba(19, 24, 32, 0.96);
+            border-right: 1px solid var(--border-strong);
+            border-left: 1px solid var(--border-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            align-self: start;
+            z-index: 20;
+        }
+
+        .vertical-header-inner {
+            transform: rotate(90deg);
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            white-space: nowrap;
+        }
+
+        .vertical-logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #d2d6dc;
+            letter-spacing: 0.5px;
+        }
+
+        .vertical-nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .vertical-nav a {
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .vertical-nav a:hover {
+            color: var(--purple);
         }
 
         /* MAIN CONTENT */
@@ -604,28 +605,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .vertical-header {
-                min-height: auto;
-                height: auto;
-                position: relative;
-                border-right: none;
-                border-bottom: 1px solid var(--border-strong);
-                padding: 18px 0;
-            }
-
-            .vertical-header-inner {
-                transform: none;
-                width: 92%;
-                margin: auto;
-                justify-content: space-between;
-                gap: 20px;
-            }
-
-            .vertical-nav {
-                flex-wrap: wrap;
-                justify-content: flex-end;
-            }
-
             .sidebar-frame {
                 position: relative;
                 top: 0;
@@ -655,6 +634,29 @@
             .page-shell.sidebar-collapsed .project-link {
                 justify-content: flex-start;
                 padding: 11px 12px;
+            }
+
+            .vertical-header {
+                min-height: auto;
+                height: auto;
+                position: relative;
+                border-left: none;
+                border-right: none;
+                border-bottom: 1px solid var(--border-strong);
+                padding: 18px 0;
+            }
+
+            .vertical-header-inner {
+                transform: none;
+                width: 92%;
+                margin: auto;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .vertical-nav {
+                flex-wrap: wrap;
+                justify-content: flex-end;
             }
 
             .project-hero {
@@ -739,20 +741,6 @@
 
     <main class="page-shell">
 
-        <header class="vertical-header">
-            <div class="vertical-header-inner">
-                <div class="vertical-logo">Jaylin Belfield</div>
-
-                <nav class="vertical-nav">
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="projects.html">Projects</a>
-                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
-                    <a href="#contact">Contact</a>
-                </nav>
-            </div>
-        </header>
-
         <aside class="sidebar-frame">
             <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle project navigation">
                 <span>‹</span>
@@ -806,6 +794,20 @@
                 </div>
             </div>
         </aside>
+
+        <header class="vertical-header">
+            <div class="vertical-header-inner">
+                <div class="vertical-logo">Jaylin Belfield</div>
+
+                <nav class="vertical-nav">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </header>
 
         <section class="main-panel">
             <div class="main-inner">
