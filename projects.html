@@ -309,6 +309,10 @@
             position: relative;
         }
 
+        .project-banner.hide {
+            display: none;
+        }
+
         .project-banner::after {
             content: "";
             position: absolute;
@@ -435,6 +439,10 @@
             border-radius: 18px;
             padding: 26px;
             margin-bottom: 22px;
+        }
+
+        .content-card.hidden {
+            display: none;
         }
 
         .content-card h3 {
@@ -848,25 +856,19 @@
                                 </ul>
                             </div>
 
-                            <div class="content-card">
+                            <div class="content-card hidden" id="approachCard">
                                 <h3 id="approachTitle">Our Approach</h3>
-                                <p id="projectApproach">
-                                    I structured the project as a themed simulation so data structures could work together inside one larger system.
-                                </p>
+                                <p id="projectApproach"></p>
                             </div>
 
-                            <div class="content-card">
+                            <div class="content-card hidden" id="deepDiveCard">
                                 <h3 id="deepDiveTitle">Technical Deep Dive</h3>
-                                <p id="projectDeepDive">
-                                    The project combines object models, collections, sorting, searching, tree indexing, and graph algorithms.
-                                </p>
+                                <p id="projectDeepDive"></p>
                             </div>
 
-                            <div class="content-card">
+                            <div class="content-card hidden" id="endingCard">
                                 <h3 id="endingTitle">How Did It End</h3>
-                                <p id="projectEnding">
-                                    This project concluded as one of my strongest academic demonstrations of data structures in a complete Java system.
-                                </p>
+                                <p id="projectEnding"></p>
                             </div>
 
                             <div class="content-card">
@@ -995,19 +997,15 @@
                     "Used an AVL tree to index train cars by car ID for balanced lookup.",
                     "Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm."
                 ],
-                approachTitle: "Our Approach",
-                approach: "I structured the project as a themed Java simulation so each data structure had a role inside one larger system instead of existing as a disconnected lab example.",
-                deepDiveTitle: "Technical Deep Dive",
-                deepDive: "The base model uses object-oriented class relationships for train cars, passenger and cargo data stored in collections, recursive search logic, balanced AVL indexing, and weighted graph algorithms for route planning.",
-                endingTitle: "How Did It End",
-                ending: "The project concluded as a strong academic portfolio piece and helped me practice explaining advanced data structures in a more practical system.",
                 impactTitle: "Why It Matters",
                 impact: "This project helped me connect classroom data structures to a more realistic software system. Instead of only learning each structure separately, I practiced using them together inside one larger simulation with objects, routes, searches, sorting, and system behavior.",
                 tags: ["Java", "OOP", "Data Structures", "AVL Tree", "HashMap", "Dijkstra", "Prim"],
                 hexes: ["Java", "OOP", "AVL Tree", "HashMap", "Graphs"],
                 note: "Notebook note: This is one of my strongest academic projects because it combines multiple data structures into one complete system.",
                 banner: "train.jpg",
+                hideBanner: false,
                 vision: "",
+                expanded: false,
                 primaryUrl: "https://github.com/deonharvey0101/Hogwarts-Project",
                 primaryText: "Visit Project on GitHub",
                 primaryIcon: "github",
@@ -1029,19 +1027,15 @@
                     "Planning cleaner goals around AI-powered tools, automation, and practical workflows.",
                     "Keeping the name while changing the purpose, structure, and future direction."
                 ],
-                approachTitle: "Our Approach",
-                approach: "The new direction is intentionally starting simpler. Instead of stacking third-party services too early, the goal is to define the core product idea first, then build the technical foundation around that direction.",
-                deepDiveTitle: "Technical Deep Dive",
-                deepDive: "The technical direction is still early, but the goal is to eventually connect AI tooling, user-aware workflows, backend systems, and Belsade Tech infrastructure into a cleaner product base.",
-                endingTitle: "How Did It End",
-                ending: "This version is still open-ended. It represents a reset: same name, stronger vision, and a cleaner direction.",
                 impactTitle: "Why It Matters",
                 impact: "This version matters because it gives the ryznAI name a second life. It keeps the original energy of the idea but gives it room to grow into something more focused, useful, and aligned with my long-term technology goals.",
                 tags: ["AI Tools", "New Direction", "Product Vision", "Automation", "Belsade Tech"],
                 hexes: ["ryznAI", "New", "Vision", "AI Tools", "Future"],
                 note: "Notebook note: This is the new direction for ryznAI, separate from the older live demo version.",
                 banner: "ai.jpg",
+                hideBanner: false,
                 vision: "A new project with an old name — rebuilt with a different direction, sharper goals, and a bigger vision.",
+                expanded: false,
                 primaryUrl: "",
                 primaryText: "",
                 primaryIcon: "",
@@ -1065,7 +1059,7 @@
                     "Worked toward an AI assistant that could help students learn how to solve problems instead of simply handing them finished answers."
                 ],
                 approachTitle: "Our Approach",
-                approach: "Our approach was to prototype quickly by integrating a stack of third-party services around language models, voice models, and supporting tools rather than building every system from scratch. The goal was to create a tutoring layer that could maintain personal context, understand the user’s coursework, and adapt explanations based on how the student actually learns. We even pushed into tool-based learning by integrating Desmos graphing into math sections so the assistant could support visual reasoning instead of only producing text. The product direction was centered on a feedback loop: the more the student talked to the AI, corrected it, and explained their learning style, the better the system could become at teaching that specific user.",
+                approach: "Our approach was to prototype quickly by integrating a stack of third-party services around language models, voice models, and supporting tools rather than building every system from scratch. The goal was to create a tutoring layer that could maintain personal context, understand the user’s coursework, and adapt explanations based on how the student actually learns. We pushed into tool-based learning by integrating Desmos graphing into math sections so the assistant could support visual reasoning instead of only producing text. The product direction was centered on a feedback loop: the more the student talked to the AI, corrected it, and explained their learning style, the better the system could become at teaching that specific user.",
                 deepDiveTitle: "Technical Deep Dive",
                 deepDive: "The base model workflow relied on orchestration more than training a custom model from scratch. We treated the large language model as the reasoning layer, then wrapped it with user context, course-aware prompts, external tools, and interface logic. The system direction included persistent user learning profiles, structured prompt routing, third-party model calls, voice capability experiments, and math-tool integrations such as Desmos for graphing support. In developer terms, the goal was not just to call an AI model; it was to build a tutoring pipeline around the model so the output could be shaped by course material, previous conversations, user-declared learning preferences, and task-specific tools.",
                 endingTitle: "How Did It End",
@@ -1076,7 +1070,9 @@
                 hexes: ["LLM AI", "Students", "Ethics", "Tools", "Demo"],
                 note: "Notebook note: ryznAI old is the original student-focused AI demo and concept.",
                 banner: "ai.jpg",
+                hideBanner: false,
                 vision: "",
+                expanded: true,
                 primaryUrl: "https://github.com/3d3n-ops/ryznAI",
                 primaryText: "View ryznAI on GitHub",
                 primaryIcon: "github",
@@ -1090,27 +1086,24 @@
                 title: "Portfolio Website",
                 summary: "A personal website project used to present my computer science journey, projects, business direction, and technical identity.",
                 problemTitle: "Problem",
-                problem: "I needed a central place to present my computer science journey, academic projects, infrastructure work, game development background, and business direction.",
+                problem: "I needed a central place to present my computer science journey, academic projects, infrastructure work, game development background, and business direction. A normal resume alone does not fully show the range of what I am building, so this portfolio became a way to organize my identity and projects in one public-facing website.",
                 workTitle: "What I Worked On",
                 work: [
                     "Designed a custom HTML and CSS portfolio.",
                     "Built pages for home, about, and projects.",
                     "Used visual sections, sliders, cards, hexagons, banners, and themed layouts.",
-                    "Connected the site to GitHub Pages and external project links."
+                    "Connected the site to GitHub Pages and external project links.",
+                    "Created a project notebook-style page to organize academic, business, and featured projects."
                 ],
-                approachTitle: "Our Approach",
-                approach: "The site was built as a simple static portfolio using HTML and CSS, with each page designed around a specific purpose.",
-                deepDiveTitle: "Technical Deep Dive",
-                deepDive: "The project uses page-level styling, responsive layout rules, visual cards, image banners, and simple JavaScript on the project page to swap content dynamically.",
-                endingTitle: "How Did It End",
-                ending: "The portfolio is still being built iteratively as more projects and pages are added.",
                 impactTitle: "Why It Matters",
-                impact: "This project matters because it helps me present my work professionally while also practicing front-end structure and design.",
+                impact: "This project matters because it helps me present my work professionally while also practicing front-end structure and design. It gives people a clearer view of who I am, what I build, and where I am trying to go.",
                 tags: ["HTML", "CSS", "GitHub Pages", "Portfolio", "Web Design"],
                 hexes: ["HTML", "CSS", "Design", "GitHub", "Brand"],
                 note: "Notebook note: This website is both a project and a presentation layer for everything else I build.",
-                banner: "train.jpg",
+                banner: "",
+                hideBanner: true,
                 vision: "",
+                expanded: false,
                 primaryUrl: "",
                 primaryText: "",
                 primaryIcon: "",
@@ -1166,15 +1159,21 @@
             document.getElementById("problemTitle").textContent = project.problemTitle;
             document.getElementById("projectProblem").textContent = project.problem;
             document.getElementById("workTitle").textContent = project.workTitle;
-            document.getElementById("approachTitle").textContent = project.approachTitle;
-            document.getElementById("projectApproach").textContent = project.approach;
-            document.getElementById("deepDiveTitle").textContent = project.deepDiveTitle;
-            document.getElementById("projectDeepDive").textContent = project.deepDive;
-            document.getElementById("endingTitle").textContent = project.endingTitle;
-            document.getElementById("projectEnding").textContent = project.ending;
             document.getElementById("impactTitle").textContent = project.impactTitle;
             document.getElementById("projectImpact").textContent = project.impact;
             document.getElementById("projectNote").textContent = project.note;
+
+            const banner = document.getElementById("projectBanner");
+
+            if (project.hideBanner) {
+                banner.classList.add("hide");
+            } else {
+                banner.classList.remove("hide");
+                banner.style.backgroundImage = `
+                    linear-gradient(135deg, rgba(19, 24, 32, 0.25), rgba(19, 24, 32, 0.78)),
+                    url("${project.banner}")
+                `;
+            }
 
             const visionStatement = document.getElementById("visionStatement");
             if (project.vision && project.vision.trim() !== "") {
@@ -1185,10 +1184,30 @@
                 visionStatement.classList.remove("show");
             }
 
-            document.getElementById("projectBanner").style.backgroundImage = `
-                linear-gradient(135deg, rgba(19, 24, 32, 0.25), rgba(19, 24, 32, 0.78)),
-                url("${project.banner}")
-            `;
+            const approachCard = document.getElementById("approachCard");
+            const deepDiveCard = document.getElementById("deepDiveCard");
+            const endingCard = document.getElementById("endingCard");
+
+            if (project.expanded) {
+                approachCard.classList.remove("hidden");
+                deepDiveCard.classList.remove("hidden");
+                endingCard.classList.remove("hidden");
+
+                document.getElementById("approachTitle").textContent = project.approachTitle;
+                document.getElementById("projectApproach").textContent = project.approach;
+                document.getElementById("deepDiveTitle").textContent = project.deepDiveTitle;
+                document.getElementById("projectDeepDive").textContent = project.deepDive;
+                document.getElementById("endingTitle").textContent = project.endingTitle;
+                document.getElementById("projectEnding").textContent = project.ending;
+            } else {
+                approachCard.classList.add("hidden");
+                deepDiveCard.classList.add("hidden");
+                endingCard.classList.add("hidden");
+
+                document.getElementById("projectApproach").textContent = "";
+                document.getElementById("projectDeepDive").textContent = "";
+                document.getElementById("projectEnding").textContent = "";
+            }
 
             updateActionLink(
                 "primaryProjectLink",
