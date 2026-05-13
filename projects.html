@@ -22,9 +22,19 @@
             --text-main: #c9ced6;
             --text-soft: #aeb5c0;
             --text-muted: #8f98a6;
+
+            --accent: #b9a3d8;
+            --accent-soft: rgba(185, 163, 216, 0.14);
+            --accent-border: rgba(185, 163, 216, 0.35);
+
             --purple: #b9a3d8;
             --purple-soft: rgba(185, 163, 216, 0.14);
             --purple-border: rgba(185, 163, 216, 0.35);
+
+            --blue: #8fb8ff;
+            --blue-soft: rgba(143, 184, 255, 0.14);
+            --blue-border: rgba(143, 184, 255, 0.35);
+
             --sidebar-bg: rgba(19, 24, 32, 0.92);
         }
 
@@ -40,6 +50,13 @@
                 var(--background);
             color: var(--text-main);
             line-height: 1.6;
+        }
+
+        body.ryzn-theme {
+            background:
+                radial-gradient(circle at top left, rgba(143, 184, 255, 0.11), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(143, 184, 255, 0.07), transparent 38%),
+                var(--background);
         }
 
         a {
@@ -85,9 +102,9 @@
             width: 32px;
             height: 42px;
             border-radius: 999px;
-            border: 1px solid var(--purple-border);
+            border: 1px solid var(--accent-border);
             background: rgba(24, 30, 40, 0.96);
-            color: var(--purple);
+            color: var(--accent);
             cursor: pointer;
             z-index: 40;
             display: flex;
@@ -99,7 +116,7 @@
         }
 
         .sidebar-toggle:hover {
-            background: var(--purple-soft);
+            background: var(--accent-soft);
             transform: translateX(2px);
         }
 
@@ -140,7 +157,7 @@
         }
 
         .sidebar-title h1 span {
-            color: var(--purple);
+            color: var(--accent);
         }
 
         .page-shell.sidebar-collapsed .sidebar-title {
@@ -169,7 +186,7 @@
         }
 
         .toc-section h3 {
-            color: var(--purple);
+            color: var(--accent);
             font-size: 0.82rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -196,15 +213,15 @@
         }
 
         .project-link:hover {
-            background: var(--purple-soft);
+            background: var(--accent-soft);
             color: #d7dbe2;
-            border-color: var(--purple-border);
+            border-color: var(--accent-border);
         }
 
         .project-link.active {
-            background: rgba(185, 163, 216, 0.18);
-            color: #d9c9ef;
-            border-color: var(--purple-border);
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: var(--accent-border);
         }
 
         .page-shell.sidebar-collapsed .project-link {
@@ -216,8 +233,8 @@
             width: 13px;
             height: 12px;
             min-width: 13px;
-            background: rgba(185, 163, 216, 0.28);
-            border: 1px solid rgba(185, 163, 216, 0.48);
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
             clip-path: polygon(
                 25% 5%,
                 75% 5%,
@@ -230,8 +247,8 @@
         }
 
         .project-link.active .mini-hex {
-            background: var(--purple);
-            border-color: var(--purple);
+            background: var(--accent);
+            border-color: var(--accent);
         }
 
         .project-text {
@@ -257,16 +274,16 @@
         }
 
         .back-link:hover {
-            color: var(--purple);
-            background: var(--purple-soft);
-            border-color: var(--purple-border);
+            color: var(--accent);
+            background: var(--accent-soft);
+            border-color: var(--accent-border);
             transform: translateX(-2px);
         }
 
         .back-arrow {
             font-size: 1.3rem;
             line-height: 1;
-            color: var(--purple);
+            color: var(--accent);
             min-width: 18px;
         }
 
@@ -312,7 +329,7 @@
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at top right, rgba(185, 163, 216, 0.18), transparent 38%),
+                radial-gradient(circle at top right, var(--accent-soft), transparent 38%),
                 linear-gradient(180deg, transparent, rgba(19, 24, 32, 0.45));
             pointer-events: none;
         }
@@ -335,12 +352,12 @@
             align-items: center;
             background:
                 linear-gradient(135deg, rgba(19, 24, 32, 0.94), rgba(31, 38, 50, 0.88)),
-                radial-gradient(circle at top right, rgba(185, 163, 216, 0.18), transparent 38%);
+                radial-gradient(circle at top right, var(--accent-soft), transparent 38%);
             border-bottom: 1px solid var(--border);
         }
 
         .project-kicker {
-            color: var(--purple);
+            color: var(--accent);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -358,6 +375,24 @@
         .project-hero p {
             color: var(--text-soft);
             max-width: 760px;
+        }
+
+        .vision-statement {
+            display: none;
+            margin-top: 20px;
+            padding: 24px;
+            border-radius: 18px;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            color: #dce8ff;
+            font-size: 1.75rem;
+            line-height: 1.18;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .vision-statement.show {
+            display: block;
         }
 
         .hex-cluster {
@@ -379,8 +414,8 @@
                 25% 95%,
                 0% 50%
             );
-            background: rgba(185, 163, 216, 0.13);
-            border: 1px solid var(--purple-border);
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -391,7 +426,7 @@
         }
 
         .hex span {
-            color: #d9c9ef;
+            color: var(--accent);
             font-size: 0.82rem;
             font-weight: bold;
             line-height: 1.25;
@@ -400,7 +435,7 @@
         .hex.hex-main {
             width: 165px;
             height: 145px;
-            background: rgba(185, 163, 216, 0.22);
+            background: var(--accent-soft);
             z-index: 2;
         }
 
@@ -436,7 +471,7 @@
         }
 
         .content-card h3 {
-            color: var(--purple);
+            color: var(--accent);
             margin-bottom: 12px;
             font-size: 1.12rem;
         }
@@ -466,7 +501,7 @@
         }
 
         .side-note h3 {
-            color: var(--purple);
+            color: var(--accent);
             margin-bottom: 14px;
         }
 
@@ -477,9 +512,9 @@
         }
 
         .tag {
-            background: rgba(185, 163, 216, 0.13);
-            color: #d9c9ef;
-            border: 1px solid rgba(185, 163, 216, 0.28);
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid var(--accent-border);
             padding: 6px 10px;
             border-radius: 999px;
             font-size: 0.78rem;
@@ -494,45 +529,48 @@
             font-size: 0.9rem;
         }
 
-        .github-project-link {
+        .project-action-link {
             margin-top: 20px;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 100%;
             padding: 15px 16px;
             border-radius: 14px;
-            background: rgba(185, 163, 216, 0.18);
-            border: 1px solid var(--purple-border);
-            color: #d9c9ef;
+            background: var(--accent-soft);
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
             font-weight: bold;
             transition: 0.25s ease;
             text-align: center;
         }
 
-        .github-project-link:hover {
+        .project-action-link.show {
+            display: flex;
+        }
+
+        .project-action-link:hover {
             background: rgba(185, 163, 216, 0.28);
             transform: translateY(-2px);
         }
 
-        .github-icon {
+        body.ryzn-theme .project-action-link:hover {
+            background: rgba(143, 184, 255, 0.24);
+        }
+
+        .github-icon,
+        .demo-icon {
             width: 24px;
             height: 24px;
             display: inline-block;
         }
 
-        .github-icon svg {
+        .github-icon svg,
+        .demo-icon svg {
             width: 100%;
             height: 100%;
             fill: currentColor;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 18px;
         }
 
         .btn {
@@ -543,24 +581,14 @@
             transition: 0.2s;
         }
 
-        .btn-primary {
-            background: var(--purple);
-            color: rgb(19, 24, 32);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
         .btn-outline {
-            border: 1px solid var(--purple-border);
-            color: var(--purple);
+            border: 1px solid var(--accent-border);
+            color: var(--accent);
             background: rgba(255, 255, 255, 0.02);
         }
 
         .btn-outline:hover {
-            background: var(--purple-soft);
+            background: var(--accent-soft);
             transform: translateY(-2px);
         }
 
@@ -593,7 +621,7 @@
         }
 
         .footer-grid h4 {
-            color: var(--purple);
+            color: var(--accent);
             margin-bottom: 12px;
         }
 
@@ -622,7 +650,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--purple);
+            color: var(--accent);
         }
 
         .resume-btn {
@@ -699,13 +727,16 @@
                 font-size: 2rem;
             }
 
+            .vision-statement {
+                font-size: 1.35rem;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 560px) {
-            .project-banner,
             .project-hero,
             .project-body {
                 padding: 24px;
@@ -785,9 +816,9 @@
                             <span class="project-text">Belsade Tech</span>
                         </button>
 
-                        <button class="project-link" onclick="loadProject('ryznai', this)">
+                        <button class="project-link" onclick="loadProject('ryznaiNew', this)">
                             <span class="mini-hex"></span>
-                            <span class="project-text">ryznAi</span>
+                            <span class="project-text">ryznAI (new)</span>
                         </button>
 
                         <button class="project-link" onclick="loadProject('grim', this)">
@@ -798,6 +829,11 @@
 
                     <div class="toc-section">
                         <h3>Featured</h3>
+
+                        <button class="project-link" onclick="loadProject('ryznaiOld', this)">
+                            <span class="mini-hex"></span>
+                            <span class="project-text">ryznAI (old)</span>
+                        </button>
 
                         <button class="project-link" onclick="loadProject('portfolio', this)">
                             <span class="mini-hex"></span>
@@ -831,6 +867,8 @@
                                 inheritance, polymorphism, collections, searching, sorting, trees, maps,
                                 and graph algorithms.
                             </p>
+
+                            <div class="vision-statement" id="visionStatement"></div>
                         </div>
 
                         <div class="hex-cluster" id="hexCluster">
@@ -845,18 +883,14 @@
                     <div class="project-body">
                         <div>
                             <div class="content-card">
-                                <h3>Overview</h3>
-                                <p id="projectOverview">
-                                    The Hogwarts Train System is a Java simulation that models train cars,
-                                    passengers, cargo, and station routes using object-oriented programming
-                                    and advanced data structures. It was built as a multi-phase academic
-                                    project to show how different programming concepts can work together
-                                    inside one larger system.
+                                <h3 id="problemTitle">Problem</h3>
+                                <p id="projectProblem">
+                                    The Hogwarts Train System was built to solve a learning problem: data structures can feel disconnected when they are only practiced in small isolated examples. I wanted to connect object-oriented programming, collections, searching, sorting, trees, maps, and graph algorithms into one larger system that felt easier to explain and demonstrate.
                                 </p>
                             </div>
 
                             <div class="content-card">
-                                <h3>What I Worked On</h3>
+                                <h3 id="workTitle">What I Worked On</h3>
                                 <ul id="projectWork">
                                     <li>Created multiple train car classes using inheritance and polymorphism.</li>
                                     <li>Used collections such as ArrayList, LinkedList, Queue, and HashMap.</li>
@@ -867,7 +901,7 @@
                             </div>
 
                             <div class="content-card">
-                                <h3>Why It Matters</h3>
+                                <h3 id="impactTitle">Why It Matters</h3>
                                 <p id="projectImpact">
                                     This project helped me connect classroom data structures to a more realistic
                                     software system. Instead of only learning each structure separately, I practiced
@@ -896,12 +930,12 @@
 
                             <a
                                 href="https://github.com/deonharvey0101/Hogwarts-Project"
-                                class="github-project-link"
+                                class="project-action-link show"
                                 id="githubProjectLink"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
-                                <span class="github-icon" aria-hidden="true">
+                                <span class="github-icon" aria-hidden="true" id="actionIcon">
                                     <svg viewBox="0 0 24 24">
                                         <path d="M12 0.5C5.65 0.5 0.5 5.65 0.5 12c0 5.1 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.42.36.78 1.07.78 2.16v3.14c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
                                     </svg>
@@ -960,121 +994,214 @@
     </main>
 
     <script>
+        const githubIcon = `
+            <span class="github-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0.5C5.65 0.5 0.5 5.65 0.5 12c0 5.1 3.29 9.4 7.86 10.93.58.11.79-.25.79-.56v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.42.36.78 1.07.78 2.16v3.14c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+                </svg>
+            </span>
+        `;
+
+        const demoIcon = `
+            <span class="demo-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"/>
+                </svg>
+            </span>
+        `;
+
         const projects = {
             train: {
+                theme: "purple",
                 category: "Academic Project",
                 title: "Hogwarts Train System",
                 summary: "A Java-based data structures project designed around a Hogwarts-inspired train system simulation. The project demonstrates object-oriented programming, inheritance, polymorphism, collections, searching, sorting, trees, maps, and graph algorithms.",
-                overview: "The Hogwarts Train System is a Java simulation that models train cars, passengers, cargo, and station routes using object-oriented programming and advanced data structures. It was built as a multi-phase academic project to show how different programming concepts can work together inside one larger system.",
+                problemTitle: "Problem",
+                problem: "The Hogwarts Train System was built to solve a learning problem: data structures can feel disconnected when they are only practiced in small isolated examples. I wanted to connect object-oriented programming, collections, searching, sorting, trees, maps, and graph algorithms into one larger system that felt easier to explain and demonstrate.",
+                workTitle: "What I Worked On",
                 work: [
                     "Created multiple train car classes using inheritance and polymorphism.",
                     "Used collections such as ArrayList, LinkedList, Queue, and HashMap.",
-                    "Implemented sorting and recursive binary search.",
-                    "Used an AVL tree to index train cars by car ID.",
-                    "Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm."
+                    "Implemented manual sorting demonstrations and recursive binary search.",
+                    "Used an AVL tree to index train cars by car ID for balanced lookup.",
+                    "Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm.",
+                    "Connected the project to a themed simulation so the code felt like a real system instead of disconnected assignments."
                 ],
+                impactTitle: "Why It Matters",
                 impact: "This project helped me connect classroom data structures to a more realistic software system. Instead of only learning each structure separately, I practiced using them together inside one larger simulation with objects, routes, searches, sorting, and system behavior.",
                 tags: ["Java", "OOP", "Data Structures", "AVL Tree", "HashMap", "Dijkstra", "Prim"],
                 hexes: ["Java", "OOP", "AVL Tree", "HashMap", "Graphs"],
                 note: "Notebook note: This is one of my strongest academic projects because it combines multiple data structures into one complete system.",
                 banner: "train.jpg",
-                github: "https://github.com/deonharvey0101/Hogwarts-Project"
+                actionUrl: "https://github.com/deonharvey0101/Hogwarts-Project",
+                actionText: "Visit Project on GitHub",
+                actionIcon: "github",
+                vision: ""
             },
 
             greenhouse: {
+                theme: "purple",
                 category: "Academic Project",
                 title: "Smart Green House",
-                summary: "An Arduino-based engineering project using automated watering, daylight control, sensor readings, pumps, and switches.",
-                overview: "The Smart Green House project focused on using sensors, pumps, switches, and microcontroller logic to create a greenhouse system that could respond to environmental conditions.",
+                summary: "An Arduino-based engineering project using automated watering, daylight control, sensor readings, pumps, switches, water collection, and drainage logic.",
+                problemTitle: "Problem",
+                problem: "The Smart Green House project focused on a real engineering challenge: how can a small system respond to environmental needs without a person constantly controlling it? Plants need consistent water, light, and monitoring, but manual care can be inconsistent. Our project used code and hardware to create a more automated greenhouse environment.",
+                workTitle: "What I Worked On",
                 work: [
-                    "Worked with Arduino-based control logic.",
-                    "Used C++ style programming for microcontroller behavior.",
-                    "Connected sensor readings to automated system responses.",
-                    "Built around water control, daylight control, and greenhouse monitoring."
+                    "Worked with Arduino-based control logic and microcontroller behavior.",
+                    "Used C++ style programming to connect sensors, switches, pumps, and outputs.",
+                    "Built logic around automated watering and daylight control.",
+                    "Connected water collection and drainage concepts into the system design.",
+                    "Used sensor readings to help the greenhouse respond to its environment.",
+                    "Practiced connecting software decisions to physical hardware behavior."
                 ],
-                impact: "This project helped me see how software connects to physical systems, especially when code controls sensors, switches, and hardware behavior.",
-                tags: ["Arduino", "C++", "Sensors", "Pumps", "Engineering"],
+                impactTitle: "Why It Matters",
+                impact: "This project mattered because it showed me how code can move beyond the screen and control real systems. It connected engineering, programming, hardware, sensors, and automation into one project.",
+                tags: ["Arduino", "C++", "Sensors", "Pumps", "Water Control", "Daylight Control", "Engineering"],
                 hexes: ["Arduino", "C++", "Sensors", "Pumps", "Control"],
                 note: "Notebook note: This project connects engineering, code, and hardware into one practical system.",
                 banner: "greenhouse.jpg",
-                github: ""
+                actionUrl: "",
+                actionText: "",
+                actionIcon: "",
+                vision: ""
             },
 
             belsade: {
+                theme: "purple",
                 category: "Business Project",
                 title: "Belsade Tech",
                 summary: "A long-term technology project built around infrastructure, server hardware services, hosting, AI-powered tools, and technology solutions.",
-                overview: "Belsade Tech is my long-term technology project where I connect infrastructure, server hardware, hosting ideas, AI tools, and business planning into one larger direction.",
+                problemTitle: "Problem",
+                problem: "Belsade Tech is built around the problem that many small teams, students, and early builders want access to technology infrastructure, but do not always understand or have access to the hardware, hosting, networking, and systems behind it. I wanted to build a project that connects server hardware, private cloud ideas, hosting, and AI-powered tools into one long-term technology direction.",
+                workTitle: "What I Worked On",
                 work: [
                     "Planned a rack-based infrastructure environment for Belsade Tech.",
                     "Used Proxmox for virtualization and server management.",
                     "Configured pfSense as a firewall and router.",
                     "Designed VLAN-based network segmentation for internal, management, DMZ, storage, and other zones.",
-                    "Worked with enterprise servers, managed switches, and Linux-based systems."
+                    "Worked with enterprise servers, managed switches, Linux-based systems, and rack planning.",
+                    "Connected infrastructure planning to future business services such as hosting, AI tools, and server hardware support.",
+                    "Built the foundation for a private-cloud style environment that can support future projects."
                 ],
-                impact: "This project is important because it connects computer science to real infrastructure and business direction. It gives me experience with the systems that software actually runs on.",
-                tags: ["Belsade Tech", "Proxmox", "pfSense", "Linux", "Networking", "VLANs", "Server Hardware"],
+                impactTitle: "Why It Matters",
+                impact: "Belsade Tech matters because it is where my computer science, business, and infrastructure goals come together. It gives me hands-on experience with the systems that software actually runs on, while also giving me a foundation for building real technology services.",
+                tags: ["Belsade Tech", "Proxmox", "pfSense", "Linux", "Networking", "VLANs", "Server Hardware", "Hosting"],
                 hexes: ["Belsade", "Servers", "VLANs", "Linux", "Hosting"],
                 note: "Notebook note: Belsade Tech is one of my biggest long-term projects because it connects my business, hosting, AI, and infrastructure goals.",
                 banner: "server.jpg",
-                github: ""
+                actionUrl: "",
+                actionText: "",
+                actionIcon: "",
+                vision: ""
             },
 
-            ryznai: {
+            ryznaiNew: {
+                theme: "blue",
                 category: "Business Project",
-                title: "ryznAi",
-                summary: "An early AI-powered student platform concept connected to automation, learning tools, backend systems, and Belsade Tech.",
-                overview: "ryznAi is a student-focused AI platform idea that connects learning support, automation, structured information, and backend systems.",
+                title: "ryznAI (new)",
+                summary: "A new project direction under an old name, rebuilt with different goals, a cleaner vision, and a stronger connection to future AI-powered systems.",
+                problemTitle: "The Vision",
+                problem: "ryznAI is being reimagined as a new project with a sharper direction. Instead of only being tied to the original student-demo concept, the new version is meant to become a cleaner, more intentional AI-powered platform direction connected to useful tools, better workflows, and stronger long-term product goals.",
+                workTitle: "Current Direction",
                 work: [
-                    "Planned AI-powered tools for students and learning workflows.",
-                    "Explored JavaScript, Mermaid JS, and Python scripting ideas.",
-                    "Connected the concept to Belsade Tech infrastructure.",
-                    "Designed the idea around useful student-facing automation."
+                    "Rebuilding the identity of the project around a stronger AI product vision.",
+                    "Separating the new direction from the older student demo version.",
+                    "Planning cleaner goals around AI-powered tools, automation, and practical workflows.",
+                    "Keeping the name while changing the purpose, structure, and future direction."
                 ],
-                impact: "This project matters because it connects my interest in AI with education, software systems, and future product development.",
-                tags: ["LLM AI", "Student Tools", "Automation", "Backend Systems", "JavaScript", "Mermaid JS", "Python Script"],
-                hexes: ["LLM AI", "Students", "Python", "Mermaid", "Backend"],
-                note: "Notebook note: ryznAi is part of my bigger goal of building AI-powered tools that feel useful instead of generic.",
+                impactTitle: "Why It Matters",
+                impact: "This version matters because it gives the ryznAI name a second life. It keeps the original energy of the idea but gives it room to grow into something more focused, more useful, and more aligned with my long-term technology goals.",
+                tags: ["AI Tools", "New Direction", "Product Vision", "Automation", "Belsade Tech"],
+                hexes: ["ryznAI", "New", "Vision", "AI Tools", "Future"],
+                note: "Notebook note: This is the new direction for ryznAI, separate from the older live demo version.",
                 banner: "ai.jpg",
-                github: ""
+                actionUrl: "",
+                actionText: "",
+                actionIcon: "",
+                vision: "A new project with an old name — rebuilt with a different direction, sharper goals, and a bigger vision."
             },
 
             grim: {
+                theme: "purple",
                 category: "Business Project",
                 title: "G.R.I.M Studios",
-                summary: "A game development and creative technology direction connected to Minecraft servers, game systems, backend hosting, and content creation.",
-                overview: "G.R.I.M Studios represents my game development side, including Minecraft server work, game mechanics, scripts, creative systems, and the early experience that pushed me deeper into technology.",
+                summary: "A game development and creative technology direction connected to Minecraft servers, game systems, backend hosting, asset mechanics, and content creation.",
+                problemTitle: "Problem",
+                problem: "G.R.I.M Studios comes from the problem that creative game ideas often need more than just imagination. They need servers, scripts, assets, mechanics, communities, and marketing to actually become playable experiences. This project area represents my game development side and the early work that pushed me deeper into technology.",
+                workTitle: "What I Worked On",
                 work: [
-                    "Worked on Minecraft-related servers, assets, scripts, and systems.",
+                    "Worked on Minecraft-related servers, assets, scripts, and gameplay systems.",
                     "Explored game mechanics, backend logic, and server communities.",
                     "Used JavaScript, Java, Mythic.Lib, and Denizen Script concepts.",
-                    "Connected creative game development with marketing and server hosting."
+                    "Connected creative game development with marketing and server hosting.",
+                    "Learned how game content, player experience, and technical systems work together.",
+                    "Built early experience around managing people, content, servers, and monetized game communities."
                 ],
-                impact: "This project area matters because it is where my computer science journey started. It gave me early experience with coding, assets, servers, marketing, and building for real users.",
-                tags: ["Minecraft", "Game Servers", "Game Dev", "Marketing", "JavaScript", "Mythic.Lib", "Denizen Script"],
+                impactTitle: "Why It Matters",
+                impact: "G.R.I.M Studios matters because it is where my computer science journey really started. It gave me early experience with coding, 3D assets, servers, marketing, hiring, and building for real users before I fully understood how much those skills connected to computer science.",
+                tags: ["Minecraft", "Game Servers", "Game Dev", "Marketing", "JavaScript", "Java", "Mythic.Lib", "Denizen Script"],
                 hexes: ["G.R.I.M", "Minecraft", "Scripts", "Servers", "Marketing"],
                 note: "Notebook note: G.R.I.M Studios is the creative/game-development branch of my long-term technology journey.",
                 banner: "gamedev.jpg",
-                github: ""
+                actionUrl: "",
+                actionText: "",
+                actionIcon: "",
+                vision: ""
+            },
+
+            ryznaiOld: {
+                theme: "blue",
+                category: "Featured Project",
+                title: "ryznAI (old)",
+                summary: "An early AI-powered student platform concept connected to education, responsible AI use, learning tools, backend systems, and a live demo.",
+                problemTitle: "Problem",
+                problem: "The original ryznAI idea came from seeing how unethically AI can be used in educational environments. Students can use AI to skip the learning process, generate work without understanding it, or rely on tools in ways that damage academic honesty. At the same time, AI itself is not the enemy. The real problem is how it is used. We saw a need for an AI learning tool that could support students without encouraging them to cheat, copy, or avoid building real understanding.",
+                workTitle: "What I Worked On",
+                work: [
+                    "Planned an AI-powered student platform focused on learning support instead of replacing student effort.",
+                    "Explored JavaScript, Mermaid JS, and Python scripting ideas.",
+                    "Connected the concept to structured study workflows and educational use cases.",
+                    "Designed the idea around helping students understand concepts, organize information, and learn more responsibly.",
+                    "Built the project as an early live demo to test the direction and presentation of the idea."
+                ],
+                impactTitle: "Why It Matters",
+                impact: "This project matters because it represents one of my first serious attempts to connect AI with education in a responsible way. It helped me think about the difference between AI as a shortcut and AI as a tool that can support real learning.",
+                tags: ["LLM AI", "Student Tools", "Responsible AI", "Education", "JavaScript", "Mermaid JS", "Python Script"],
+                hexes: ["LLM AI", "Students", "Ethics", "Mermaid", "Demo"],
+                note: "Notebook note: ryznAI old is the original student-focused AI demo and concept.",
+                banner: "ai.jpg",
+                actionUrl: "https://www.ryznai.com",
+                actionText: "Check Out the Live Demo",
+                actionIcon: "demo",
+                vision: ""
             },
 
             portfolio: {
+                theme: "purple",
                 category: "Featured Project",
                 title: "Portfolio Website",
                 summary: "A personal website project used to present my computer science journey, projects, business direction, and technical identity.",
-                overview: "This website is a portfolio project that brings together my academic work, infrastructure projects, business ideas, and personal story into one public-facing place.",
+                problemTitle: "Problem",
+                problem: "I needed a central place to present my computer science journey, academic projects, infrastructure work, game development background, and business direction. A normal resume alone does not fully show the range of what I am building, so this portfolio became a way to organize my identity and projects in one public-facing website.",
+                workTitle: "What I Worked On",
                 work: [
                     "Designed a custom HTML and CSS portfolio.",
                     "Built pages for home, about, and projects.",
-                    "Used visual sections, sliders, cards, hexagons, and themed layouts.",
-                    "Connected the site to GitHub Pages and external project links."
+                    "Used visual sections, sliders, cards, hexagons, banners, and themed layouts.",
+                    "Connected the site to GitHub Pages and external project links.",
+                    "Created a project notebook-style page to organize academic, business, and featured projects."
                 ],
-                impact: "This project matters because it helps me present my work professionally while also practicing front-end structure and design.",
+                impactTitle: "Why It Matters",
+                impact: "This project matters because it helps me present my work professionally while also practicing front-end structure and design. It gives people a clearer view of who I am, what I build, and where I am trying to go.",
                 tags: ["HTML", "CSS", "GitHub Pages", "Portfolio", "Web Design"],
                 hexes: ["HTML", "CSS", "Design", "GitHub", "Brand"],
                 note: "Notebook note: This website is both a project and a presentation layer for everything else I build.",
                 banner: "train.jpg",
-                github: ""
+                actionUrl: "",
+                actionText: "",
+                actionIcon: "",
+                vision: ""
             }
         };
 
@@ -1083,15 +1210,43 @@
             shell.classList.toggle("sidebar-collapsed");
         }
 
+        function setTheme(theme) {
+            if (theme === "blue") {
+                document.body.classList.add("ryzn-theme");
+                document.documentElement.style.setProperty("--accent", "var(--blue)");
+                document.documentElement.style.setProperty("--accent-soft", "var(--blue-soft)");
+                document.documentElement.style.setProperty("--accent-border", "var(--blue-border)");
+            } else {
+                document.body.classList.remove("ryzn-theme");
+                document.documentElement.style.setProperty("--accent", "var(--purple)");
+                document.documentElement.style.setProperty("--accent-soft", "var(--purple-soft)");
+                document.documentElement.style.setProperty("--accent-border", "var(--purple-border)");
+            }
+        }
+
         function loadProject(projectKey, clickedButton) {
             const project = projects[projectKey];
+
+            setTheme(project.theme);
 
             document.getElementById("projectCategory").textContent = project.category;
             document.getElementById("projectTitle").textContent = project.title;
             document.getElementById("projectSummary").textContent = project.summary;
-            document.getElementById("projectOverview").textContent = project.overview;
+            document.getElementById("problemTitle").textContent = project.problemTitle;
+            document.getElementById("projectProblem").textContent = project.problem;
+            document.getElementById("workTitle").textContent = project.workTitle;
+            document.getElementById("impactTitle").textContent = project.impactTitle;
             document.getElementById("projectImpact").textContent = project.impact;
             document.getElementById("projectNote").textContent = project.note;
+
+            const visionStatement = document.getElementById("visionStatement");
+            if (project.vision && project.vision.trim() !== "") {
+                visionStatement.textContent = project.vision;
+                visionStatement.classList.add("show");
+            } else {
+                visionStatement.textContent = "";
+                visionStatement.classList.remove("show");
+            }
 
             const banner = document.getElementById("projectBanner");
             banner.style.backgroundImage = `
@@ -1099,13 +1254,28 @@
                 url("${project.banner}")
             `;
 
-            const githubLink = document.getElementById("githubProjectLink");
-            if (project.github && project.github.trim() !== "") {
-                githubLink.href = project.github;
-                githubLink.style.display = "flex";
+            const actionLink = document.getElementById("githubProjectLink");
+            const actionText = document.getElementById("githubProjectText");
+            const actionIcon = document.getElementById("actionIcon");
+
+            if (project.actionUrl && project.actionUrl.trim() !== "") {
+                actionLink.href = project.actionUrl;
+                actionText.textContent = project.actionText;
+
+                if (project.actionIcon === "demo") {
+                    actionIcon.outerHTML = demoIcon;
+                } else {
+                    actionIcon.outerHTML = githubIcon;
+                }
+
+                const newIcon = actionLink.querySelector(".github-icon, .demo-icon");
+                newIcon.id = "actionIcon";
+
+                actionLink.classList.add("show");
             } else {
-                githubLink.href = "#";
-                githubLink.style.display = "none";
+                actionLink.href = "#";
+                actionText.textContent = "";
+                actionLink.classList.remove("show");
             }
 
             const workList = document.getElementById("projectWork");
