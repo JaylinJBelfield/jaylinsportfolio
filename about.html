@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Jaylin Belfield</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: rgb(19, 24, 32);
+            --panel: rgba(31, 38, 50, 0.78);
+            --border: rgba(190, 170, 220, 0.22);
+            --text-main: #c9ced6;
+            --text-soft: #aeb5c0;
+            --purple: #b9a3d8;
+            --purple-soft: rgba(185, 163, 216, 0.16);
+            --purple-border: rgba(185, 163, 216, 0.35);
+            --header-bg: rgba(19, 24, 32, 0.62);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #d2d6dc;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        .page-hero {
+            padding: 90px 0 40px;
+        }
+
+        .page-hero h1 {
+            font-size: 3.2rem;
+            color: #d2d6dc;
+            margin-bottom: 15px;
+        }
+
+        .page-hero h1 span {
+            color: var(--purple);
+        }
+
+        .page-hero p {
+            color: var(--text-soft);
+            max-width: 780px;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        .about-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 32px;
+            border-radius: 18px;
+            margin-bottom: 24px;
+        }
+
+        .about-card h2 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .about-card p {
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+
+        .about-card ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .about-card li {
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+            background: var(--purple);
+            color: rgb(19, 24, 32);
+        }
+
+        .btn:hover {
+            opacity: 0.88;
+        }
+
+        footer {
+            background: rgba(19, 24, 32, 0.78);
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--text-soft);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .footer-grid h4 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .footer-grid p {
+            color: var(--text-soft);
+            max-width: 580px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--text-soft);
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        @media (max-width: 850px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Jaylin Belfield</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>About <span>Jaylin Belfield</span></h1>
+                <p>
+                    My computer science journey is built around combining software, infrastructure,
+                    cybersecurity, business, mathematics, AI systems, and game development.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+
+                <div class="about-card">
+                    <h2>Who I Am</h2>
+                    <p>
+                        I’m Jaylin Belfield, a Computer Science major with minors in Business and Mathematics.
+                        I’m learning how to build useful technology from both the software side and the
+                        infrastructure side.
+                    </p>
+
+                    <p>
+                        My goal is not just to write code, but to understand how complete systems work.
+                        That means learning programming, algorithms, server hardware, networking, cybersecurity,
+                        AI-powered tools, and the business side of turning technical skills into real services.
+                    </p>
+                </div>
+
+                <div class="about-card">
+                    <h2>What I Build</h2>
+                    <p>
+                        A lot of my work is project-based. I’ve worked on Java data structure projects,
+                        cybersecurity labs, networking labs, and a long-term server rack infrastructure project
+                        connected to Belsade Tech.
+                    </p>
+
+                    <ul>
+                        <li>Java applications using object-oriented programming and data structures.</li>
+                        <li>Server infrastructure using Proxmox, Linux, pfSense, VLANs, and enterprise hardware.</li>
+                        <li>Cybersecurity labs involving firewalls, hashing, Wireshark, and traffic analysis.</li>
+                        <li>Game development ideas connected to Minecraft, game servers, and backend systems.</li>
+                        <li>AI system concepts for student tools, automation, and future software products.</li>
+                    </ul>
+                </div>
+
+                <div class="about-card">
+                    <h2>My Direction</h2>
+                    <p>
+                        I’m building toward a future where I can create AI-powered tools, supply server hardware
+                        services, develop game-related systems, and grow Belsade Tech into a serious technology
+                        platform.
+                    </p>
+
+                    <p>
+                        My portfolio represents that journey: learning in class, building outside of class,
+                        and connecting computer science with business, mathematics, infrastructure, and creative
+                        software projects.
+                    </p>
+
+                    <a href="projects.html" class="btn">View My Projects</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Jaylin Belfield</h3>
+                    <p>
+                        Computer Science Major with a minor in both Business and Mathematics learning to build
+                        AI-powered tools and supply server hardware services while performing in game development.
+                    </p>
+                </div>
+
+                <div>
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://github.com/JaylinJBelfield">GitHub</a>
+                        <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                        <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
