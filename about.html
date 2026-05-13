@@ -30,7 +30,10 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
+            background:
+                radial-gradient(circle at top right, rgba(185, 163, 216, 0.08), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(185, 163, 216, 0.06), transparent 35%),
+                var(--background);
             color: var(--text-main);
             line-height: 1.6;
         }
@@ -42,7 +45,7 @@
 
         .container {
             width: 90%;
-            max-width: 1000px;
+            max-width: 1120px;
             margin: auto;
         }
 
@@ -104,12 +107,22 @@
             padding: 40px 0;
         }
 
+        .about-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 260px;
+            gap: 28px;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+
         .about-card {
             background: var(--panel);
             border: 1px solid var(--border);
             padding: 32px;
             border-radius: 18px;
-            margin-bottom: 24px;
+            min-height: 100%;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .about-card h2 {
@@ -131,6 +144,29 @@
             margin-bottom: 8px;
         }
 
+        .about-image-card {
+            width: 100%;
+            height: 260px;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--purple-border);
+            background:
+                linear-gradient(145deg, rgba(185, 163, 216, 0.22), rgba(255, 255, 255, 0.03));
+            padding: 7px;
+            box-shadow:
+                0 0 28px rgba(185, 163, 216, 0.12),
+                0 20px 45px rgba(0, 0, 0, 0.28);
+        }
+
+        .about-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            display: block;
+            border-radius: 16px;
+        }
+
         .btn {
             padding: 12px 20px;
             border-radius: 8px;
@@ -143,6 +179,7 @@
 
         .btn:hover {
             opacity: 0.88;
+            transform: translateY(-2px);
         }
 
         footer {
@@ -189,6 +226,17 @@
             color: var(--purple);
         }
 
+        @media (max-width: 900px) {
+            .about-row {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image-card {
+                max-width: 360px;
+                height: 320px;
+            }
+        }
+
         @media (max-width: 850px) {
             nav {
                 flex-direction: column;
@@ -205,6 +253,16 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .about-card {
+                padding: 24px;
+            }
+
+            .about-image-card {
+                height: 280px;
             }
         }
     </style>
@@ -241,65 +299,83 @@
         <section>
             <div class="container">
 
-                <div class="about-card">
-                    <h2>Who I Am</h2>
-                    <p>
-                        I’m Jaylin Belfield, a Computer Science major with minors in Business and Mathematics.
-                        I’m learning how to build useful technology from both the software side and the
-                        infrastructure side.
-                    </p>
+                <div class="about-row">
+                    <div class="about-card">
+                        <h2>Who I Am</h2>
+                        <p>
+                            I’m Jaylin Belfield, a Computer Science major with minors in Business and Mathematics.
+                            I’m learning how to build useful technology from both the software side and the
+                            infrastructure side.
+                        </p>
 
-                    <p>
-                        My goal is to understand how complete systems work.
-                        That means learning programming, algorithms, server hardware, networking, cybersecurity,
-                        AI-powered tools, and the business side of turning technical skills into real services.
-                    </p>
+                        <p>
+                            My goal is to understand how complete systems work.
+                            That means learning programming, algorithms, server hardware, networking, cybersecurity,
+                            AI-powered tools, and the business side of turning technical skills into real services.
+                        </p>
+                    </div>
+
+                    <div class="about-image-card">
+                        <img src="profilethree.jpg" alt="Photo of Jaylin Belfield">
+                    </div>
                 </div>
 
-                <div class="about-card">
-                    <h2>How I Started</h2>
-                    <p>
-                        At the ripe age of 10, I started learning JavaScript and developing game assets for
-                        Minecraft. Back then, I had to lie to people about my age just to warrant attention
-                        and be taken seriously in online development spaces.
-                    </p>
+                <div class="about-row">
+                    <div class="about-card">
+                        <h2>How I Started</h2>
+                        <p>
+                            At the ripe age of 10, I started learning JavaScript and developing game assets for
+                            Minecraft. Back then, I had to lie to people about my age just to warrant attention
+                            and be taken seriously in online development spaces.
+                        </p>
 
-                    <p>
-                        Over time, I started learning 3D modeling and animation through tools like Blender.
-                        I also learned how to code in both Java and JavaScript for Minecraft plugins, mods,
-                        and scripts. What started as curiosity slowly became a real skillset that connected
-                        creativity, coding, game systems, and server communities.
-                    </p>
+                        <p>
+                            Over time, I started learning 3D modeling and animation through tools like Blender.
+                            I also learned how to code in both Java and JavaScript for Minecraft plugins, mods,
+                            and scripts. What started as curiosity slowly became a real skillset that connected
+                            creativity, coding, game systems, and server communities.
+                        </p>
 
-                    <p>
-                        By the age of 15, I had hired employees and started making money from servers and
-                        the content I created for the game. That also pushed me into marketing, because I
-                        had to learn how to present my work, attract players, and build interest around what
-                        I was creating.
-                    </p>
+                        <p>
+                            By the age of 15, I had hired employees and started making money from servers and
+                            the content I created for the game. That also pushed me into marketing, because I
+                            had to learn how to present my work, attract players, and build interest around what
+                            I was creating.
+                        </p>
 
-                    <p>
-                        That early journey solidified in my mind that I wanted to go further into this field.
-                        It showed me that I was a right fit for technology, game development, infrastructure,
-                        and building systems that other people could actually use.
-                    </p>
+                        <p>
+                            That early journey solidified in my mind that I wanted to go further into this field.
+                            It showed me that I was a right fit for technology, game development, infrastructure,
+                            and building systems that other people could actually use.
+                        </p>
+                    </div>
+
+                    <div class="about-image-card">
+                        <img src="profiletwo.jpg" alt="Photo of Jaylin Belfield">
+                    </div>
                 </div>
 
-                <div class="about-card">
-                    <h2>My Direction</h2>
-                    <p>
-                        I’m building toward a future where I can create AI-powered tools, supply server hardware
-                        services, develop game-related systems, and grow Belsade Tech into a serious technology
-                        platform.
-                    </p>
+                <div class="about-row">
+                    <div class="about-card">
+                        <h2>My Direction</h2>
+                        <p>
+                            I’m building toward a future where I can create AI-powered tools, supply server hardware
+                            services, develop game-related systems, and grow Belsade Tech into a serious technology
+                            platform.
+                        </p>
 
-                    <p>
-                        My portfolio represents that journey: learning in class, building outside of class,
-                        and connecting computer science with business, mathematics, infrastructure, and creative
-                        software projects.
-                    </p>
+                        <p>
+                            My portfolio represents that journey: learning in class, building outside of class,
+                            and connecting computer science with business, mathematics, infrastructure, and creative
+                            software projects.
+                        </p>
 
-                    <a href="projects.html" class="btn">View My Projects</a>
+                        <a href="projects.html" class="btn">View My Projects</a>
+                    </div>
+
+                    <div class="about-image-card">
+                        <img src="profile.jpg" alt="Photo of Jaylin Belfield">
+                    </div>
                 </div>
 
             </div>
