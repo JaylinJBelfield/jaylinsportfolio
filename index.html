@@ -252,37 +252,21 @@
 
         /*
             ORIGINAL-STYLE HEXAGON MAP
-            Simple staggered hexagons without the large constellation box.
+            Simple staggered hexagons without the large constellation box or horizontal line.
         */
 
         .hex-map {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
-            gap: 28px;
+            gap: 18px;
             margin-top: 45px;
             position: relative;
         }
 
-        .hex-map::before {
-            content: "";
-            position: absolute;
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(185, 163, 216, 0.22),
-                transparent
-            );
-            top: 50%;
-            left: 10%;
-            z-index: 0;
-        }
-
         .hex {
-            width: 230px;
-            height: 200px;
+            width: 205px;
+            height: 180px;
             background: var(--panel);
             clip-path: polygon(
                 25% 5%,
@@ -298,7 +282,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 28px;
+            padding: 24px;
             text-align: center;
             transition: 0.25s;
         }
@@ -310,14 +294,14 @@
 
         .hex-inner h3 {
             color: var(--purple);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 8px;
         }
 
         .hex-inner p {
             color: var(--text-soft);
-            font-size: 0.88rem;
-            line-height: 1.45;
+            font-size: 0.82rem;
+            line-height: 1.4;
         }
 
         .hex:nth-child(even) {
@@ -404,12 +388,6 @@
             font-weight: bold;
         }
 
-        .slider-note {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 8px;
-        }
-
         .services-section {
             background: rgba(255, 255, 255, 0.015);
             border-top: 1px solid var(--border);
@@ -429,38 +407,43 @@
             margin-bottom: 20px;
         }
 
+        /*
+            TECHNICAL SKILLS
+            Clean bullet columns with divider lines instead of boxes.
+        */
+
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 30px 0;
         }
 
-        .skill-box {
-            background: var(--panel);
-            border: 1px solid var(--border);
-            padding: 22px;
-            border-radius: 18px;
-            transition: 0.2s;
+        .skill-column {
+            padding: 0 28px;
+            border-right: 1px solid var(--border);
         }
 
-        .skill-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--purple-border);
+        .skill-column:last-child {
+            border-right: none;
         }
 
-        .skill-box h3 {
+        .skill-column h3 {
             color: var(--purple);
-            margin-bottom: 10px;
+            margin-bottom: 14px;
+            font-size: 1.05rem;
         }
 
-        .skill-box ul {
-            list-style: none;
+        .skill-column ul {
             color: var(--text-main);
             font-size: 0.95rem;
+            padding-left: 18px;
         }
 
-        .skill-box li {
-            margin-bottom: 8px;
+        .skill-column li {
+            margin-bottom: 10px;
         }
 
         footer {
@@ -512,6 +495,12 @@
             margin-top: 6px;
         }
 
+        @media (max-width: 1100px) {
+            .hex-map {
+                flex-wrap: wrap;
+            }
+        }
+
         @media (max-width: 1000px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -555,12 +544,18 @@
                 margin-top: 0;
             }
 
-            .hex-map::before {
-                display: none;
-            }
-
             .skills-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .skill-column {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 22px 0;
+            }
+
+            .skill-column:last-child {
+                border-bottom: none;
             }
 
             .footer-grid {
@@ -766,8 +761,6 @@
                         </div>
 
                     </div>
-
-                    <p class="slider-note">Tip: scroll sideways to view more featured work.</p>
                 </div>
             </div>
         </section>
@@ -798,7 +791,7 @@
                 </p>
 
                 <div class="skills-grid">
-                    <div class="skill-box">
+                    <div class="skill-column">
                         <h3>Programming</h3>
                         <ul>
                             <li>Java</li>
@@ -808,7 +801,7 @@
                         </ul>
                     </div>
 
-                    <div class="skill-box">
+                    <div class="skill-column">
                         <h3>Computer Science</h3>
                         <ul>
                             <li>Data Structures</li>
@@ -818,7 +811,7 @@
                         </ul>
                     </div>
 
-                    <div class="skill-box">
+                    <div class="skill-column">
                         <h3>Infrastructure</h3>
                         <ul>
                             <li>Proxmox</li>
@@ -828,7 +821,7 @@
                         </ul>
                     </div>
 
-                    <div class="skill-box">
+                    <div class="skill-column">
                         <h3>Cybersecurity</h3>
                         <ul>
                             <li>Wireshark</li>
