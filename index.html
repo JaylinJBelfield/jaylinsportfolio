@@ -407,45 +407,6 @@
             margin-bottom: 20px;
         }
 
-        /*
-            TECHNICAL SKILLS
-            Clean bullet columns with divider lines instead of boxes.
-        */
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 30px 0;
-        }
-
-        .skill-column {
-            padding: 0 28px;
-            border-right: 1px solid var(--border);
-        }
-
-        .skill-column:last-child {
-            border-right: none;
-        }
-
-        .skill-column h3 {
-            color: var(--purple);
-            margin-bottom: 14px;
-            font-size: 1.05rem;
-        }
-
-        .skill-column ul {
-            color: var(--text-main);
-            font-size: 0.95rem;
-            padding-left: 18px;
-        }
-
-        .skill-column li {
-            margin-bottom: 10px;
-        }
-
         footer {
             background: rgba(19, 24, 32, 0.78);
             border-top: 1px solid var(--border);
@@ -542,20 +503,6 @@
 
             .hex:nth-child(even) {
                 margin-top: 0;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skill-column {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                padding: 22px 0;
-            }
-
-            .skill-column:last-child {
-                border-bottom: none;
             }
 
             .footer-grid {
@@ -779,57 +726,6 @@
                     </p>
 
                     <a href="https://belsade-tech-site.vercel.app/" class="btn btn-primary">Visit Belsade Tech Services</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <div class="container">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">
-                    Skills I am developing through coursework, labs, personal projects, and Belsade Tech.
-                </p>
-
-                <div class="skills-grid">
-                    <div class="skill-column">
-                        <h3>Programming</h3>
-                        <ul>
-                            <li>Java</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Object-Oriented Programming</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-column">
-                        <h3>Computer Science</h3>
-                        <ul>
-                            <li>Data Structures</li>
-                            <li>Algorithms</li>
-                            <li>Recursion</li>
-                            <li>Graph Algorithms</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-column">
-                        <h3>Infrastructure</h3>
-                        <ul>
-                            <li>Proxmox</li>
-                            <li>Linux</li>
-                            <li>pfSense</li>
-                            <li>Managed Switches</li>
-                        </ul>
-                    </div>
-
-                    <div class="skill-column">
-                        <h3>Cybersecurity</h3>
-                        <ul>
-                            <li>Wireshark</li>
-                            <li>Firewall Rules</li>
-                            <li>Hashing</li>
-                            <li>Network Analysis</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </section>
