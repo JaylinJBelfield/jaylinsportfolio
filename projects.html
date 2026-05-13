@@ -55,6 +55,11 @@
             display: grid;
             grid-template-columns: 72px 300px minmax(0, 1fr);
             min-height: 100vh;
+            transition: 0.25s ease;
+        }
+
+        .page-shell.sidebar-collapsed {
+            grid-template-columns: 72px 78px minmax(0, 1fr);
         }
 
         /* ROTATED HEADER STRIP */
@@ -72,7 +77,7 @@
         }
 
         .vertical-header-inner {
-            transform: rotate(-90deg);
+            transform: rotate(90deg);
             display: flex;
             align-items: center;
             gap: 34px;
@@ -115,28 +120,86 @@
             position: sticky;
             top: 0;
             align-self: start;
+            transition: 0.25s ease;
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 24px;
+            right: -16px;
+            width: 32px;
+            height: 42px;
+            border-radius: 999px;
+            border: 1px solid var(--purple-border);
+            background: rgba(24, 30, 40, 0.96);
+            color: var(--purple);
+            cursor: pointer;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: 0.2s;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--purple-soft);
+            transform: translateX(2px);
+        }
+
+        .sidebar-toggle span {
+            display: inline-block;
+            transition: 0.25s ease;
+        }
+
+        .page-shell.sidebar-collapsed .sidebar-toggle span {
+            transform: rotate(180deg);
         }
 
         .sidebar {
             height: 100vh;
             overflow-y: auto;
             padding: 38px 24px 34px 28px;
+            transition: 0.25s ease;
+        }
+
+        .page-shell.sidebar-collapsed .sidebar {
+            padding: 38px 16px 34px 16px;
         }
 
         .sidebar-title {
             margin-bottom: 30px;
             padding-bottom: 18px;
             border-bottom: 1px solid rgba(185, 163, 216, 0.18);
+            transition: 0.25s ease;
         }
 
         .sidebar-title h1 {
             font-size: 1.75rem;
             color: #d2d6dc;
             line-height: 1.2;
+            transition: 0.25s ease;
         }
 
         .sidebar-title h1 span {
             color: var(--purple);
+        }
+
+        .page-shell.sidebar-collapsed .sidebar-title {
+            border-bottom: none;
+            margin-bottom: 18px;
+            padding-bottom: 0;
+        }
+
+        .page-shell.sidebar-collapsed .sidebar-title h1,
+        .page-shell.sidebar-collapsed .toc-section h3,
+        .page-shell.sidebar-collapsed .project-link .project-text {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            pointer-events: none;
         }
 
         .toc-section {
@@ -149,6 +212,7 @@
             text-transform: uppercase;
             letter-spacing: 1.2px;
             margin-bottom: 12px;
+            transition: 0.25s ease;
         }
 
         .project-link {
@@ -164,8 +228,9 @@
             border-radius: 12px;
             margin-bottom: 7px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.25s ease;
             font-size: 0.94rem;
+            overflow: hidden;
         }
 
         .project-link:hover {
@@ -178,6 +243,11 @@
             background: rgba(185, 163, 216, 0.18);
             color: #d9c9ef;
             border-color: var(--purple-border);
+        }
+
+        .page-shell.sidebar-collapsed .project-link {
+            justify-content: center;
+            padding: 12px 0;
         }
 
         .mini-hex {
@@ -200,6 +270,10 @@
         .project-link.active .mini-hex {
             background: var(--purple);
             border-color: var(--purple);
+        }
+
+        .project-text {
+            transition: 0.25s ease;
         }
 
         /* MAIN CONTENT */
@@ -525,7 +599,8 @@
         }
 
         @media (max-width: 1150px) {
-            .page-shell {
+            .page-shell,
+            .page-shell.sidebar-collapsed {
                 grid-template-columns: 1fr;
             }
 
@@ -559,9 +634,27 @@
                 border-bottom: 1px solid var(--border-strong);
             }
 
+            .sidebar-toggle {
+                display: none;
+            }
+
             .sidebar {
                 height: auto;
                 padding: 28px;
+            }
+
+            .page-shell.sidebar-collapsed .sidebar-title h1,
+            .page-shell.sidebar-collapsed .toc-section h3,
+            .page-shell.sidebar-collapsed .project-link .project-text {
+                opacity: 1;
+                width: auto;
+                overflow: visible;
+                pointer-events: auto;
+            }
+
+            .page-shell.sidebar-collapsed .project-link {
+                justify-content: flex-start;
+                padding: 11px 12px;
             }
 
             .project-hero {
@@ -661,6 +754,10 @@
         </header>
 
         <aside class="sidebar-frame">
+            <button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle project navigation">
+                <span>‹</span>
+            </button>
+
             <div class="sidebar">
                 <div class="sidebar-title">
                     <h1>My <span>Projects</span></h1>
@@ -671,12 +768,12 @@
 
                     <button class="project-link active" onclick="loadProject('train', this)">
                         <span class="mini-hex"></span>
-                        <span>Hogwarts Train System</span>
+                        <span class="project-text">Hogwarts Train System</span>
                     </button>
 
                     <button class="project-link" onclick="loadProject('greenhouse', this)">
                         <span class="mini-hex"></span>
-                        <span>Smart Green House</span>
+                        <span class="project-text">Smart Green House</span>
                     </button>
                 </div>
 
@@ -685,17 +782,17 @@
 
                     <button class="project-link" onclick="loadProject('belsade', this)">
                         <span class="mini-hex"></span>
-                        <span>Belsade Tech</span>
+                        <span class="project-text">Belsade Tech</span>
                     </button>
 
                     <button class="project-link" onclick="loadProject('ryznai', this)">
                         <span class="mini-hex"></span>
-                        <span>ryznAi</span>
+                        <span class="project-text">ryznAi</span>
                     </button>
 
                     <button class="project-link" onclick="loadProject('grim', this)">
                         <span class="mini-hex"></span>
-                        <span>G.R.I.M Studios</span>
+                        <span class="project-text">G.R.I.M Studios</span>
                     </button>
                 </div>
 
@@ -704,7 +801,7 @@
 
                     <button class="project-link" onclick="loadProject('portfolio', this)">
                         <span class="mini-hex"></span>
-                        <span>Portfolio Website</span>
+                        <span class="project-text">Portfolio Website</span>
                     </button>
                 </div>
             </div>
@@ -957,6 +1054,11 @@
                 note: "Notebook note: This website is both a project and a presentation layer for everything else I build."
             }
         };
+
+        function toggleSidebar() {
+            const shell = document.querySelector(".page-shell");
+            shell.classList.toggle("sidebar-collapsed");
+        }
 
         function loadProject(projectKey, clickedButton) {
             const project = projects[projectKey];
