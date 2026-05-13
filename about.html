@@ -18,6 +18,7 @@
             --border: rgba(190, 170, 220, 0.22);
             --text-main: #c9ced6;
             --text-soft: #aeb5c0;
+            --text-muted: #8f98a6;
             --purple: #b9a3d8;
             --purple-soft: rgba(185, 163, 216, 0.16);
             --purple-border: rgba(185, 163, 216, 0.35);
@@ -173,12 +174,26 @@
             font-weight: bold;
             display: inline-block;
             transition: 0.2s;
+        }
+
+        .btn-primary {
             background: var(--purple);
             color: rgb(19, 24, 32);
         }
 
-        .btn:hover {
+        .btn-primary:hover {
             opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--purple-border);
+            color: var(--purple);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            background: var(--purple-soft);
             transform: translateY(-2px);
         }
 
@@ -210,6 +225,15 @@
         .footer-grid p {
             color: var(--text-soft);
             max-width: 580px;
+            margin-bottom: 18px;
+        }
+
+        .footer-verse {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 560px;
+            margin-bottom: 18px;
         }
 
         .footer-links {
@@ -224,6 +248,10 @@
 
         .footer-links a:hover {
             color: var(--purple);
+        }
+
+        .resume-btn {
+            margin-top: 6px;
         }
 
         @media (max-width: 900px) {
@@ -370,7 +398,7 @@
                             software projects.
                         </p>
 
-                        <a href="projects.html" class="btn">View My Projects</a>
+                        <a href="projects.html" class="btn btn-primary">View My Projects</a>
                     </div>
 
                     <div class="about-image-card">
@@ -391,6 +419,13 @@
                         Computer Science Major with a minor in both Business and Mathematics learning to build
                         AI-powered tools and supply server hardware services while performing in game development.
                     </p>
+
+                    <p class="footer-verse">
+                        “The harvest truly is great, but the labourers are few: pray ye therefore the Lord of the harvest,
+                        that he would send forth labourers into his harvest.” — Luke 10:2
+                    </p>
+
+                    <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn btn-outline resume-btn">Resume</a>
                 </div>
 
                 <div>
@@ -409,6 +444,7 @@
                     <div class="footer-links">
                         <a href="https://github.com/JaylinJBelfield">GitHub</a>
                         <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                        <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
                         <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
                     </div>
                 </div>
