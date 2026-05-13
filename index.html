@@ -223,6 +223,10 @@
             max-width: 750px;
         }
 
+        .featured-title {
+            text-align: center;
+        }
+
         .about-box {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -394,6 +398,17 @@
             border-bottom: 1px solid var(--border);
         }
 
+        .services-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .services-layout .section-title {
+            margin-bottom: 0;
+        }
+
         .service-box {
             background: var(--panel);
             border: 1px solid var(--border);
@@ -503,6 +518,11 @@
 
             .hex:nth-child(even) {
                 margin-top: 0;
+            }
+
+            .services-layout {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
             .footer-grid {
@@ -619,9 +639,6 @@
         <section id="about">
             <div class="container">
                 <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">
-                    My computer science journey is built around learning by creating real systems.
-                </p>
 
                 <div class="about-box">
                     <p>
@@ -648,11 +665,7 @@
 
         <section>
             <div class="container">
-                <h2 class="section-title">Featured Work</h2>
-                <p class="section-subtitle">
-                    Scroll through a few larger project panels that represent my work across infrastructure,
-                    programming, cybersecurity, game systems, and AI tools.
-                </p>
+                <h2 class="section-title featured-title">Featured Work</h2>
 
                 <div class="featured-slider-wrap">
                     <div class="featured-slider">
@@ -714,18 +727,17 @@
 
         <section class="services-section">
             <div class="container">
-                <h2 class="section-title">Services</h2>
-                <p class="section-subtitle">
-                    My service work connects to Belsade Tech, server hardware, hosting ideas, and AI-powered tools.
-                </p>
+                <div class="services-layout">
+                    <h2 class="section-title">Services</h2>
 
-                <div class="service-box">
-                    <p>
-                        Belsade Tech is where I am developing my long-term work around infrastructure,
-                        server hardware services, hosting, AI-powered tools, and technology solutions.
-                    </p>
+                    <div class="service-box">
+                        <p>
+                            Belsade Tech is where I am developing my long-term work around infrastructure,
+                            server hardware services, hosting, AI-powered tools, and technology solutions.
+                        </p>
 
-                    <a href="https://belsade-tech-site.vercel.app/" class="btn btn-primary">Visit Belsade Tech Services</a>
+                        <a href="https://belsade-tech-site.vercel.app/" class="btn btn-primary">Visit Belsade Tech Services</a>
+                    </div>
                 </div>
             </div>
         </section>
