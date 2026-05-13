@@ -32,7 +32,10 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
+            background:
+                radial-gradient(circle at top right, rgba(185, 163, 216, 0.10), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(185, 163, 216, 0.07), transparent 35%),
+                var(--background);
             color: var(--text-main);
             line-height: 1.6;
         }
@@ -44,7 +47,7 @@
 
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 1120px;
             margin: auto;
         }
 
@@ -86,7 +89,7 @@
             min-height: 85vh;
             display: flex;
             align-items: center;
-            padding: 80px 0;
+            padding: 80px 0 55px;
             position: relative;
             overflow: hidden;
         }
@@ -102,15 +105,22 @@
             z-index: 0;
         }
 
-        .hero-content {
-            max-width: 850px;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 55px;
+            align-items: center;
             position: relative;
             z-index: 1;
         }
 
+        .hero-content {
+            max-width: 720px;
+        }
+
         .hero h1 {
             font-size: 3.7rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             color: #d2d6dc;
             line-height: 1.1;
         }
@@ -124,13 +134,42 @@
             color: var(--text-soft);
             margin-bottom: 25px;
             font-weight: normal;
+            letter-spacing: 0.4px;
         }
 
         .hero p {
             font-size: 1.08rem;
             color: var(--text-soft);
             margin-bottom: 30px;
-            max-width: 780px;
+            max-width: 720px;
+        }
+
+        .hero-photo-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-photo {
+            width: 355px;
+            height: 355px;
+            border-radius: 50%;
+            padding: 7px;
+            background:
+                linear-gradient(145deg, rgba(185, 163, 216, 0.95), rgba(185, 163, 216, 0.12));
+            box-shadow:
+                0 0 35px rgba(185, 163, 216, 0.20),
+                0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            border-radius: 50%;
+            display: block;
+            border: 4px solid rgb(19, 24, 32);
         }
 
         .buttons {
@@ -154,6 +193,18 @@
 
         .btn-primary:hover {
             opacity: 0.88;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--purple-border);
+            color: var(--purple);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            background: var(--purple-soft);
+            transform: translateY(-2px);
         }
 
         section {
@@ -200,8 +251,8 @@
         }
 
         /*
-            HEXAGON MAP SECTION
-            This replaces the regular box/card feeling with a map-like layout.
+            ORIGINAL-STYLE HEXAGON MAP
+            Simple staggered hexagons without the large constellation box.
         */
 
         .hex-map {
@@ -273,6 +324,92 @@
             margin-top: 65px;
         }
 
+        /*
+            FEATURED WORK SLIDER
+            Large light panels/cards with horizontal scrolling.
+        */
+
+        .featured-slider-wrap {
+            position: relative;
+            margin-top: 25px;
+        }
+
+        .featured-slider {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 10px 4px 25px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--purple) rgba(255, 255, 255, 0.08);
+        }
+
+        .featured-slider::-webkit-scrollbar {
+            height: 9px;
+        }
+
+        .featured-slider::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        .featured-slider::-webkit-scrollbar-thumb {
+            background: var(--purple);
+            border-radius: 20px;
+        }
+
+        .project-panel {
+            min-width: 360px;
+            max-width: 360px;
+            background: #eef0f4;
+            color: rgb(19, 24, 32);
+            border-radius: 18px;
+            padding: 28px;
+            scroll-snap-align: start;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+            transition: 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .project-panel:hover {
+            transform: translateY(-6px);
+        }
+
+        .panel-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(185, 163, 216, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+        }
+
+        .project-panel h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+            color: rgb(19, 24, 32);
+        }
+
+        .project-panel p {
+            color: #3f4652;
+            font-size: 0.96rem;
+            margin-bottom: 18px;
+        }
+
+        .project-panel a {
+            color: #7f61a8;
+            font-weight: bold;
+        }
+
+        .slider-note {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
         .services-section {
             background: rgba(255, 255, 255, 0.015);
             border-top: 1px solid var(--border);
@@ -290,6 +427,40 @@
         .service-box p {
             color: var(--text-main);
             margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            padding: 22px;
+            border-radius: 18px;
+            transition: 0.2s;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--purple-border);
+        }
+
+        .skill-box h3 {
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+
+        .skill-box ul {
+            list-style: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        .skill-box li {
+            margin-bottom: 8px;
         }
 
         footer {
@@ -320,6 +491,7 @@
         .footer-grid p {
             color: var(--text-soft);
             max-width: 580px;
+            margin-bottom: 18px;
         }
 
         .footer-links {
@@ -334,6 +506,26 @@
 
         .footer-links a:hover {
             color: var(--purple);
+        }
+
+        .resume-btn {
+            margin-top: 6px;
+        }
+
+        @media (max-width: 1000px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-photo-wrap {
+                justify-content: flex-start;
+            }
+
+            .hero-photo {
+                width: 300px;
+                height: 300px;
+            }
         }
 
         @media (max-width: 850px) {
@@ -367,8 +559,29 @@
                 display: none;
             }
 
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .project-panel {
+                min-width: 290px;
+                max-width: 290px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-photo {
+                width: 245px;
+                height: 245px;
+            }
+
+            .project-panel {
+                min-width: 260px;
+                max-width: 260px;
             }
         }
     </style>
@@ -395,59 +608,69 @@
 
         <section class="hero">
             <div class="container">
-                <div class="hero-content">
+                <div class="hero-grid">
 
-                    <h1>Meet <span>Jaylin Belfield</span></h1>
+                    <div class="hero-content">
+                        <h1>Meet <span>Jaylin Belfield</span></h1>
 
-                    <h2>Computer Science student building software, servers, and real-world tech systems.</h2>
+                        <h2>Computer Science Student</h2>
 
-                    <p>
-                        I’m a Computer Science student focused on software development, data structures,
-                        cybersecurity, networking, and hands-on infrastructure. My work ranges from Java-based
-                        algorithm projects to building a rack-based private cloud environment for Belsade Tech.
-                    </p>
+                        <p>
+                            I’m a Computer Science student focused on software development, data structures,
+                            cybersecurity, networking, and hands-on infrastructure. My work ranges from Java-based
+                            algorithm projects to building a rack-based private cloud environment for Belsade Tech.
+                        </p>
 
-                    <div class="buttons">
-                        <a href="projects.html" class="btn btn-primary">View My Work</a>
+                        <div class="buttons">
+                            <a href="projects.html" class="btn btn-primary">View My Work</a>
+                        </div>
                     </div>
 
-                    <div class="hex-map">
-                        <div class="hex">
-                            <div class="hex-inner">
-                                <h3>Java</h3>
-                                <p>Object-oriented programming, data structures, algorithms, and class projects.</p>
-                            </div>
+                    <div class="hero-photo-wrap">
+                        <div class="hero-photo">
+                            <img src="profile.jpg" alt="Portrait of Jaylin Belfield">
                         </div>
+                    </div>
 
-                        <div class="hex">
-                            <div class="hex-inner">
-                                <h3>Servers</h3>
-                                <p>Hands-on rack infrastructure using Proxmox, pfSense, Linux, and VLAN planning.</p>
-                            </div>
+                </div>
+
+                <div class="hex-map">
+                    <div class="hex">
+                        <div class="hex-inner">
+                            <h3>Java</h3>
+                            <p>Object-oriented programming, data structures, algorithms, and class projects.</p>
                         </div>
+                    </div>
 
-                        <div class="hex">
-                            <div class="hex-inner">
-                                <h3>Startup</h3>
-                                <p>Building Belsade Tech, GRIM Studios, and ryznAi as long-term technology projects.</p>
-                            </div>
+                    <div class="hex">
+                        <div class="hex-inner">
+                            <h3>Servers</h3>
+                            <p>Hands-on rack infrastructure using Proxmox, pfSense, Linux, and VLAN planning.</p>
                         </div>
+                    </div>
 
-                        <div class="hex">
-                            <div class="hex-inner">
-                                <h3>Game Development</h3>
-                                <p>Creating game systems, managing servers, and exploring Minecraft/anime-inspired projects.</p>
-                            </div>
+                    <div class="hex">
+                        <div class="hex-inner">
+                            <h3>Startup</h3>
+                            <p>Building Belsade Tech, GRIM Studios, and ryznAi as long-term technology projects.</p>
                         </div>
+                    </div>
 
-                        <div class="hex">
-                            <div class="hex-inner">
-                                <h3>AI Systems</h3>
-                                <p>Learning to build AI-powered tools, student platforms, and backend systems for future products.</p>
-                            </div>
+                    <div class="hex">
+                        <div class="hex-inner">
+                            <h3>Game Dev</h3>
+                            <p>Creating game systems, managing servers, and exploring Minecraft/anime-inspired projects.</p>
+                        </div>
+                    </div>
+
+                    <div class="hex">
+                        <div class="hex-inner">
+                            <h3>AI Systems</h3>
+                            <p>Learning to build AI-powered tools, student platforms, and backend systems for future products.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -485,34 +708,67 @@
             <div class="container">
                 <h2 class="section-title">Featured Work</h2>
                 <p class="section-subtitle">
-                    A few areas that represent my growth across programming, infrastructure, and cybersecurity.
+                    Scroll through a few larger project panels that represent my work across infrastructure,
+                    programming, cybersecurity, game systems, and AI tools.
                 </p>
 
-                <div class="hex-map">
-                    <div class="hex">
-                        <div class="hex-inner">
+                <div class="featured-slider-wrap">
+                    <div class="featured-slider">
+
+                        <div class="project-panel">
+                            <div class="panel-icon">▦</div>
                             <h3>Belsade Rack</h3>
-                            <p>Private cloud infrastructure using servers, Proxmox, pfSense, VLANs, and Linux.</p>
+                            <p>
+                                Private cloud infrastructure using servers, Proxmox, pfSense,
+                                VLANs, Linux, and managed networking.
+                            </p>
+                            <a href="projects.html">View Project →</a>
                         </div>
-                    </div>
 
-                    <div class="hex">
-                        <div class="hex-inner">
+                        <div class="project-panel">
+                            <div class="panel-icon">&lt;/&gt;</div>
                             <h3>Train System</h3>
-                            <p>Java data structures project using AVL trees, HashMaps, sorting, and graph algorithms.</p>
+                            <p>
+                                Java data structures project using AVL trees, HashMaps,
+                                sorting, searching, and graph algorithms.
+                            </p>
+                            <a href="projects.html">View Project →</a>
                         </div>
-                    </div>
 
-                    <div class="hex">
-                        <div class="hex-inner">
+                        <div class="project-panel">
+                            <div class="panel-icon">◇</div>
                             <h3>Cybersecurity</h3>
-                            <p>Labs involving Wireshark, firewall rules, hashing, VPNs, and traffic analysis.</p>
+                            <p>
+                                Labs involving Wireshark, firewall rules, hashing,
+                                VPNs, port forwarding, and traffic analysis.
+                            </p>
+                            <a href="projects.html">View Project →</a>
                         </div>
-                    </div>
-                </div>
 
-                <br>
-                <a href="projects.html" class="btn btn-primary">See More Projects</a>
+                        <div class="project-panel">
+                            <div class="panel-icon">🎮</div>
+                            <h3>Game Dev</h3>
+                            <p>
+                                Game server hosting, Minecraft-related systems,
+                                backend practice, and creative development ideas.
+                            </p>
+                            <a href="projects.html">View Project →</a>
+                        </div>
+
+                        <div class="project-panel">
+                            <div class="panel-icon">AI</div>
+                            <h3>AI Systems</h3>
+                            <p>
+                                Early AI-powered tool concepts connected to student platforms,
+                                automation, and Belsade Tech.
+                            </p>
+                            <a href="projects.html">View Project →</a>
+                        </div>
+
+                    </div>
+
+                    <p class="slider-note">Tip: scroll sideways to view more featured work.</p>
+                </div>
             </div>
         </section>
 
@@ -534,6 +790,57 @@
             </div>
         </section>
 
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">
+                    Skills I am developing through coursework, labs, personal projects, and Belsade Tech.
+                </p>
+
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <h3>Programming</h3>
+                        <ul>
+                            <li>Java</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Object-Oriented Programming</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Computer Science</h3>
+                        <ul>
+                            <li>Data Structures</li>
+                            <li>Algorithms</li>
+                            <li>Recursion</li>
+                            <li>Graph Algorithms</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Infrastructure</h3>
+                        <ul>
+                            <li>Proxmox</li>
+                            <li>Linux</li>
+                            <li>pfSense</li>
+                            <li>Managed Switches</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Cybersecurity</h3>
+                        <ul>
+                            <li>Wireshark</li>
+                            <li>Firewall Rules</li>
+                            <li>Hashing</li>
+                            <li>Network Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer id="contact">
@@ -545,6 +852,8 @@
                         Computer Science Major with a minor in both Business and Mathematics learning to build
                         AI-powered tools and supply server hardware services while performing in game development.
                     </p>
+
+                    <a href="#" class="btn btn-outline resume-btn">Resume</a>
                 </div>
 
                 <div>
