@@ -1,9 +1,523 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Jaylin's Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaylin Belfield | Computer Science Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b0b10;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        header {
+            background: #11111a;
+            border-bottom: 1px solid #2a2a3d;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #b56cff;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: #d6d6d6;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: #b56cff;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(181, 108, 255, 0.15);
+            color: #c994ff;
+            border: 1px solid rgba(181, 108, 255, 0.4);
+            padding: 8px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #b56cff;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #cfcfcf;
+            margin-bottom: 25px;
+            font-weight: normal;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #bdbdbd;
+            margin-bottom: 30px;
+            max-width: 750px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #b56cff;
+            color: #0b0b10;
+        }
+
+        .btn-secondary {
+            border: 1px solid #b56cff;
+            color: #b56cff;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: #151520;
+            border: 1px solid #2a2a3d;
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .stat-card h3 {
+            color: #b56cff;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            color: #bdbdbd;
+            font-size: 0.95rem;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #bdbdbd;
+            margin-bottom: 35px;
+            max-width: 750px;
+        }
+
+        .about-box {
+            background: #151520;
+            border: 1px solid #2a2a3d;
+            padding: 30px;
+            border-radius: 14px;
+        }
+
+        .about-box p {
+            color: #d0d0d0;
+            margin-bottom: 15px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #151520;
+            border: 1px solid #2a2a3d;
+            padding: 25px;
+            border-radius: 14px;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #b56cff;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #bdbdbd;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tags span {
+            background: rgba(181, 108, 255, 0.12);
+            color: #c994ff;
+            border: 1px solid rgba(181, 108, 255, 0.3);
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .skill-box {
+            background: #151520;
+            border: 1px solid #2a2a3d;
+            padding: 22px;
+            border-radius: 14px;
+        }
+
+        .skill-box h3 {
+            color: #b56cff;
+            margin-bottom: 10px;
+        }
+
+        .skill-box ul {
+            list-style: none;
+            color: #cfcfcf;
+            font-size: 0.95rem;
+        }
+
+        .skill-box li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #11111a;
+            border-top: 1px solid #2a2a3d;
+            padding: 35px 0;
+            color: #bdbdbd;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-content h3 {
+            color: #b56cff;
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            margin-right: 15px;
+            color: #d6d6d6;
+        }
+
+        .footer-links a:hover {
+            color: #b56cff;
+        }
+
+        @media (max-width: 850px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats,
+            .cards,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Hi my name is Jaylin Belfield and this is my website!</h1>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Jaylin Belfield</div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="#about">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="tag">Computer Science Student • Builder • Founder</span>
+
+                    <h1>Hi, I'm <span>Jaylin Belfield</span></h1>
+
+                    <h2>Computer Science student building software, servers, and real-world tech systems.</h2>
+
+                    <p>
+                        I’m a Computer Science student focused on software development, data structures,
+                        cybersecurity, networking, and hands-on infrastructure. My work ranges from Java-based
+                        algorithm projects to building a rack-based private cloud environment for Belsade Tech.
+                    </p>
+
+                    <div class="buttons">
+                        <a href="projects.html" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-card">
+                            <h3>Java</h3>
+                            <p>Object-oriented programming, data structures, algorithms, and class projects.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>Servers</h3>
+                            <p>Hands-on rack infrastructure using Proxmox, pfSense, Linux, and VLAN planning.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <h3>Startup</h3>
+                            <p>Building Belsade Tech, GRIM Studios, and ryznAi as long-term technology projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    My computer science journey is built around learning by creating real systems.
+                </p>
+
+                <div class="about-box">
+                    <p>
+                        I’m Jaylin Belfield, a Computer Science student at Houston Christian University.
+                        I’m interested in the connection between software, infrastructure, cybersecurity,
+                        artificial intelligence, and game server systems.
+                    </p>
+
+                    <p>
+                        I like building projects that feel practical. That includes Java applications for
+                        data structures, cybersecurity labs with firewalls and traffic analysis, and server
+                        infrastructure using enterprise hardware.
+                    </p>
+
+                    <p>
+                        Outside of class, I work on Belsade Tech, a long-term technology project focused on
+                        private cloud infrastructure, hosting, AI tools, and backend systems for future products.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">
+                    A few projects that represent my growth across programming, infrastructure, and cybersecurity.
+                </p>
+
+                <div class="cards">
+                    <div class="card">
+                        <h3>Belsade Tech Rack Infrastructure</h3>
+                        <p>
+                            A private cloud and homelab server rack project using enterprise hardware,
+                            virtualization, firewall routing, VLANs, and managed switching.
+                        </p>
+                        <div class="tags">
+                            <span>Proxmox</span>
+                            <span>pfSense</span>
+                            <span>Linux</span>
+                            <span>VLANs</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Train System Simulation</h3>
+                        <p>
+                            A Java data structures project using object-oriented programming, AVL trees,
+                            HashMaps, sorting, searching, and graph algorithms.
+                        </p>
+                        <div class="tags">
+                            <span>Java</span>
+                            <span>AVL Tree</span>
+                            <span>HashMap</span>
+                            <span>Dijkstra</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Cybersecurity Labs</h3>
+                        <p>
+                            Networking and security labs involving firewall rules, VPN concepts,
+                            Wireshark, hashing, and traffic analysis.
+                        </p>
+                        <div class="tags">
+                            <span>Wireshark</span>
+                            <span>Firewall</span>
+                            <span>Hashing</span>
+                            <span>Networking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <a href="projects.html" class="btn btn-primary">See More Projects</a>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">
+                    Skills I am developing through coursework, labs, and personal projects.
+                </p>
+
+                <div class="skills-grid">
+                    <div class="skill-box">
+                        <h3>Programming</h3>
+                        <ul>
+                            <li>Java</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Object-Oriented Programming</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Computer Science</h3>
+                        <ul>
+                            <li>Data Structures</li>
+                            <li>Algorithms</li>
+                            <li>Recursion</li>
+                            <li>Graph Algorithms</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Infrastructure</h3>
+                        <ul>
+                            <li>Proxmox</li>
+                            <li>Linux</li>
+                            <li>pfSense</li>
+                            <li>Managed Switches</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-box">
+                        <h3>Cybersecurity</h3>
+                        <ul>
+                            <li>Wireshark</li>
+                            <li>Firewall Rules</li>
+                            <li>Hashing</li>
+                            <li>Network Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Jaylin Belfield</h3>
+                    <p>Computer Science Student | Infrastructure Builder | Software Developer</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="projects.html">Projects</a>
+                    <a href="#">GitHub</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="mailto:your-email@example.com">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
