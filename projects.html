@@ -12,10 +12,32 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --background: rgb(19, 24, 32);
+            --panel: rgba(31, 38, 50, 0.82);
+            --panel-solid: rgb(31, 38, 50);
+            --panel-dark: rgb(24, 30, 40);
+            --border: rgba(230, 180, 90, 0.24);
+            --text-main: #c9ced6;
+            --text-soft: #aeb5c0;
+            --text-muted: #8f98a6;
+            --amber: #d6a84f;
+            --amber-soft: rgba(214, 168, 79, 0.14);
+            --amber-border: rgba(214, 168, 79, 0.35);
+            --header-bg: rgba(19, 24, 32, 0.68);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0b0b10;
-            color: #f5f5f5;
+            background:
+                radial-gradient(circle at top left, rgba(214, 168, 79, 0.10), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(214, 168, 79, 0.06), transparent 38%),
+                var(--background);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -24,171 +46,466 @@
             text-decoration: none;
         }
 
+        button {
+            font-family: inherit;
+        }
+
         .container {
-            width: 90%;
-            max-width: 1100px;
+            width: 92%;
+            max-width: 1320px;
             margin: auto;
         }
 
         header {
-            background: #11111a;
-            border-bottom: 1px solid #2a2a3d;
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 20;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
         }
 
         .logo {
             font-size: 1.4rem;
             font-weight: bold;
-            color: #b56cff;
+            color: #d2d6dc;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a {
             margin-left: 25px;
-            color: #d6d6d6;
+            color: var(--text-soft);
             font-size: 0.95rem;
         }
 
         .nav-links a:hover {
-            color: #b56cff;
+            color: var(--amber);
         }
 
-        .page-hero {
-            padding: 80px 0 40px;
+        .projects-shell {
+            display: grid;
+            grid-template-columns: 290px minmax(0, 1fr);
+            gap: 28px;
+            padding: 42px 0 80px;
         }
 
-        .page-hero h1 {
-            font-size: 3rem;
-            margin-bottom: 15px;
+        .sidebar {
+            position: sticky;
+            top: 92px;
+            height: calc(100vh - 115px);
+            overflow-y: auto;
+            background: rgba(24, 30, 40, 0.72);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 22px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
         }
 
-        .page-hero h1 span {
-            color: #b56cff;
+        .sidebar-title {
+            margin-bottom: 22px;
         }
 
-        .page-hero p {
-            color: #bdbdbd;
-            max-width: 750px;
-            font-size: 1.1rem;
+        .sidebar-title h1 {
+            font-size: 1.55rem;
+            color: #d2d6dc;
+            line-height: 1.2;
+            margin-bottom: 8px;
         }
 
-        .projects {
-            padding: 40px 0 80px;
+        .sidebar-title h1 span {
+            color: var(--amber);
         }
 
-        .project-card {
-            background: #151520;
-            border: 1px solid #2a2a3d;
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 25px;
-            transition: 0.2s;
+        .sidebar-title p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
         }
 
-        .project-card:hover {
-            border-color: #b56cff;
-            transform: translateY(-4px);
+        .toc-section {
+            margin-bottom: 24px;
         }
 
-        .project-card h2 {
-            color: #ffffff;
+        .toc-section h3 {
+            color: var(--amber);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
             margin-bottom: 10px;
         }
 
-        .project-card p {
-            color: #cfcfcf;
-            margin-bottom: 15px;
+        .project-link {
+            width: 100%;
+            display: block;
+            text-align: left;
+            background: transparent;
+            color: var(--text-soft);
+            border: 1px solid transparent;
+            padding: 10px 12px;
+            border-radius: 12px;
+            margin-bottom: 7px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.94rem;
         }
 
-        .project-details {
-            margin: 15px 0;
+        .project-link:hover {
+            background: var(--amber-soft);
+            color: #d7dbe2;
+            border-color: var(--amber-border);
         }
 
-        .project-details h3 {
-            color: #b56cff;
-            margin-bottom: 8px;
-            font-size: 1rem;
+        .project-link.active {
+            background: rgba(214, 168, 79, 0.18);
+            color: #f0d39a;
+            border-color: var(--amber-border);
         }
 
-        .project-details ul {
+        .main-panel {
+            min-width: 0;
+        }
+
+        .workspace-header {
+            background: rgba(31, 38, 50, 0.62);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 34px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .workspace-label {
+            color: var(--amber);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .workspace-header h2 {
+            font-size: 2.6rem;
+            color: #d2d6dc;
+            line-height: 1.1;
+            margin-bottom: 14px;
+        }
+
+        .workspace-header p {
+            color: var(--text-soft);
+            max-width: 860px;
+            font-size: 1.05rem;
+        }
+
+        .project-view {
+            background: rgba(31, 38, 50, 0.78);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.26);
+        }
+
+        .project-hero {
+            position: relative;
+            min-height: 260px;
+            padding: 34px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) 0.9fr;
+            gap: 28px;
+            align-items: center;
+            background:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.94), rgba(31, 38, 50, 0.88)),
+                radial-gradient(circle at top right, rgba(214, 168, 79, 0.18), transparent 38%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project-kicker {
+            color: var(--amber);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .project-hero h2 {
+            font-size: 2.4rem;
+            color: #d2d6dc;
+            line-height: 1.12;
+            margin-bottom: 14px;
+        }
+
+        .project-hero p {
+            color: var(--text-soft);
+            max-width: 760px;
+        }
+
+        .hex-cluster {
+            min-height: 210px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hex {
+            width: 132px;
+            height: 116px;
+            clip-path: polygon(
+                25% 5%,
+                75% 5%,
+                100% 50%,
+                75% 95%,
+                25% 95%,
+                0% 50%
+            );
+            background: rgba(214, 168, 79, 0.13);
+            border: 1px solid var(--amber-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 18px;
+            position: absolute;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+        }
+
+        .hex span {
+            color: #f0d39a;
+            font-size: 0.82rem;
+            font-weight: bold;
+            line-height: 1.25;
+        }
+
+        .hex.hex-main {
+            width: 165px;
+            height: 145px;
+            background: rgba(214, 168, 79, 0.22);
+            z-index: 2;
+        }
+
+        .hex-1 {
+            transform: translate(-110px, -55px);
+        }
+
+        .hex-2 {
+            transform: translate(105px, -48px);
+        }
+
+        .hex-3 {
+            transform: translate(-105px, 60px);
+        }
+
+        .hex-4 {
+            transform: translate(110px, 62px);
+        }
+
+        .project-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 28px;
+            padding: 34px;
+        }
+
+        .content-card {
+            background: rgba(24, 30, 40, 0.72);
+            border: 1px solid rgba(214, 168, 79, 0.18);
+            border-radius: 18px;
+            padding: 26px;
+            margin-bottom: 22px;
+        }
+
+        .content-card h3 {
+            color: var(--amber);
+            margin-bottom: 12px;
+            font-size: 1.12rem;
+        }
+
+        .content-card p {
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .content-card ul {
             margin-left: 20px;
-            color: #cfcfcf;
+            color: var(--text-main);
         }
 
-        .project-details li {
-            margin-bottom: 6px;
+        .content-card li {
+            margin-bottom: 8px;
         }
 
-        .tags {
+        .side-note {
+            background: rgba(24, 30, 40, 0.72);
+            border: 1px solid rgba(214, 168, 79, 0.18);
+            border-radius: 18px;
+            padding: 22px;
+            height: fit-content;
+            position: sticky;
+            top: 95px;
+        }
+
+        .side-note h3 {
+            color: var(--amber);
+            margin-bottom: 14px;
+        }
+
+        .tag-list {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 15px;
         }
 
-        .tags span {
-            background: rgba(181, 108, 255, 0.12);
-            color: #c994ff;
-            border: 1px solid rgba(181, 108, 255, 0.3);
-            padding: 5px 9px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+        .tag {
+            background: rgba(214, 168, 79, 0.13);
+            color: #f0d39a;
+            border: 1px solid rgba(214, 168, 79, 0.28);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: bold;
+        }
+
+        .notebook-note {
+            margin-top: 18px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(214, 168, 79, 0.18);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 18px;
         }
 
         .btn {
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 12px 18px;
+            border-radius: 10px;
             font-weight: bold;
             display: inline-block;
-            margin-top: 15px;
+            transition: 0.2s;
         }
 
         .btn-primary {
-            background: #b56cff;
-            color: #0b0b10;
+            background: var(--amber);
+            color: rgb(19, 24, 32);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--amber-border);
+            color: var(--amber);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            background: var(--amber-soft);
+            transform: translateY(-2px);
         }
 
         footer {
-            background: #11111a;
-            border-top: 1px solid #2a2a3d;
-            padding: 35px 0;
-            color: #bdbdbd;
+            background: rgba(19, 24, 32, 0.78);
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--text-soft);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
-        .footer-content {
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .footer-grid h4 {
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+
+        .footer-grid p {
+            color: var(--text-soft);
+            max-width: 580px;
+            margin-bottom: 18px;
+        }
+
+        .footer-verse {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+            max-width: 560px;
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
             display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .footer-content h3 {
-            color: #b56cff;
-            margin-bottom: 8px;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .footer-links a {
-            margin-right: 15px;
-            color: #d6d6d6;
+            color: var(--text-soft);
         }
 
         .footer-links a:hover {
-            color: #b56cff;
+            color: var(--amber);
+        }
+
+        .resume-btn {
+            margin-top: 6px;
+        }
+
+        @media (max-width: 1050px) {
+            .projects-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+                height: auto;
+            }
+
+            .project-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hex-cluster {
+                min-height: 260px;
+            }
+
+            .project-body {
+                grid-template-columns: 1fr;
+            }
+
+            .side-note {
+                position: relative;
+                top: 0;
+            }
         }
 
         @media (max-width: 850px) {
-            .page-hero h1 {
-                font-size: 2.4rem;
-            }
-
             nav {
                 flex-direction: column;
                 gap: 15px;
@@ -196,6 +513,49 @@
 
             .nav-links a {
                 margin: 0 10px;
+            }
+
+            .workspace-header h2,
+            .project-hero h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .workspace-header,
+            .project-hero,
+            .project-body {
+                padding: 24px;
+            }
+
+            .hex {
+                width: 110px;
+                height: 98px;
+            }
+
+            .hex.hex-main {
+                width: 135px;
+                height: 120px;
+            }
+
+            .hex-1 {
+                transform: translate(-78px, -58px);
+            }
+
+            .hex-2 {
+                transform: translate(78px, -50px);
+            }
+
+            .hex-3 {
+                transform: translate(-78px, 58px);
+            }
+
+            .hex-4 {
+                transform: translate(78px, 60px);
             }
         }
     </style>
@@ -209,194 +569,401 @@
                 <div class="logo">Jaylin Belfield</div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
-                    <a href="index.html#about">About</a>
+                    <a href="about.html">About</a>
                     <a href="projects.html">Projects</a>
-                    <a href="index.html#skills">Skills</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
                     <a href="#contact">Contact</a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <main>
+    <main class="container">
+        <div class="projects-shell">
 
-        <section class="page-hero">
-            <div class="container">
-                <h1>My <span>Projects</span></h1>
-                <p>
-                    These projects show my growth as a Computer Science student across software development,
-                    data structures, networking, cybersecurity, and server infrastructure.
-                </p>
-            </div>
-        </section>
-
-        <section class="projects">
-            <div class="container">
-
-                <div class="project-card">
-                    <h2>Belsade Tech Rack Infrastructure</h2>
+            <aside class="sidebar">
+                <div class="sidebar-title">
+                    <h1>Project <span>Notebook</span></h1>
                     <p>
-                        A long-term private cloud and server rack project built around real enterprise-style
-                        infrastructure. This project includes physical servers, virtualization, network segmentation,
-                        firewall routing, and internal services.
+                        A workspace-style view of my academic, business, and featured projects.
                     </p>
-
-                    <div class="project-details">
-                        <h3>What I Worked On</h3>
-                        <ul>
-                            <li>Planned a rack-based private cloud environment for Belsade Tech.</li>
-                            <li>Used Proxmox for virtualization and server management.</li>
-                            <li>Configured pfSense as a firewall and router.</li>
-                            <li>Designed VLAN-based network segmentation for internal, management, DMZ, storage, and other zones.</li>
-                            <li>Worked with enterprise servers, managed switches, and Linux-based systems.</li>
-                        </ul>
-                    </div>
-
-                    <div class="tags">
-                        <span>Proxmox</span>
-                        <span>pfSense</span>
-                        <span>Linux</span>
-                        <span>Networking</span>
-                        <span>VLANs</span>
-                        <span>Server Hardware</span>
-                    </div>
                 </div>
 
-                <div class="project-card">
-                    <h2>Train System Simulation / Cargo Tracker</h2>
-                    <p>
-                        A Java-based data structures project designed around a train system simulation.
-                        The project demonstrates object-oriented programming, inheritance, polymorphism,
-                        collections, searching, sorting, trees, maps, and graph algorithms.
-                    </p>
-
-                    <div class="project-details">
-                        <h3>What I Worked On</h3>
-                        <ul>
-                            <li>Created multiple train car classes using inheritance and polymorphism.</li>
-                            <li>Used collections such as ArrayList, LinkedList, Queue, and HashMap.</li>
-                            <li>Implemented sorting and recursive binary search.</li>
-                            <li>Used an AVL tree to index train cars by car ID.</li>
-                            <li>Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm.</li>
-                        </ul>
-                    </div>
-
-                    <div class="tags">
-                        <span>Java</span>
-                        <span>OOP</span>
-                        <span>Data Structures</span>
-                        <span>AVL Tree</span>
-                        <span>HashMap</span>
-                        <span>Dijkstra</span>
-                        <span>Prim</span>
-                    </div>
+                <div class="toc-section">
+                    <h3>Academic</h3>
+                    <button class="project-link active" onclick="loadProject('train', this)">Train System Simulation</button>
+                    <button class="project-link" onclick="loadProject('hospital', this)">Hospital Queue System</button>
+                    <button class="project-link" onclick="loadProject('cyber', this)">Cybersecurity Labs</button>
+                    <button class="project-link" onclick="loadProject('greenhouse', this)">Smart Green House</button>
                 </div>
 
-                <div class="project-card">
-                    <h2>Hospital Patient Queue Management System</h2>
-                    <p>
-                        A Java project focused on managing patients based on priority. This project helped me
-                        practice how priority queues, maps, and linked lists can be used in a real-world style system.
-                    </p>
-
-                    <div class="project-details">
-                        <h3>What I Worked On</h3>
-                        <ul>
-                            <li>Used a PriorityQueue to organize patients by urgency.</li>
-                            <li>Used HashMap for quick patient lookup.</li>
-                            <li>Used LinkedList concepts to manage ordered patient data.</li>
-                            <li>Practiced writing clean Java classes while following project requirements.</li>
-                        </ul>
-                    </div>
-
-                    <div class="tags">
-                        <span>Java</span>
-                        <span>PriorityQueue</span>
-                        <span>HashMap</span>
-                        <span>LinkedList</span>
-                        <span>Data Structures</span>
-                    </div>
+                <div class="toc-section">
+                    <h3>Business</h3>
+                    <button class="project-link" onclick="loadProject('belsade', this)">Belsade Tech Rack</button>
+                    <button class="project-link" onclick="loadProject('ryznai', this)">ryznAi</button>
+                    <button class="project-link" onclick="loadProject('services', this)">Server Hardware Services</button>
                 </div>
 
-                <div class="project-card">
-                    <h2>Cybersecurity and Networking Labs</h2>
+                <div class="toc-section">
+                    <h3>Featured</h3>
+                    <button class="project-link" onclick="loadProject('gamedev', this)">Game Dev / Minecraft</button>
+                    <button class="project-link" onclick="loadProject('portfolio', this)">Portfolio Website</button>
+                    <button class="project-link" onclick="loadProject('startup', this)">Startup Journey</button>
+                </div>
+            </aside>
+
+            <section class="main-panel">
+                <div class="workspace-header">
+                    <div class="workspace-label">Projects Workspace</div>
+                    <h2>Notebook-style project archive</h2>
                     <p>
-                        A collection of lab work involving network security, firewall rules, traffic analysis,
-                        hashing, VPN concepts, and simulated attacks in controlled lab environments.
+                        Select a project from the left table of contents to view a focused project page.
+                        Each page breaks down what the project is, what I worked on, what tools I used,
+                        and how it connects to my larger computer science journey.
                     </p>
-
-                    <div class="project-details">
-                        <h3>What I Worked On</h3>
-                        <ul>
-                            <li>Configured firewall rules using pfSense.</li>
-                            <li>Analyzed network traffic using Wireshark.</li>
-                            <li>Studied hashing and file integrity comparison.</li>
-                            <li>Worked through VPN, port forwarding, and network topology concepts.</li>
-                            <li>Answered technical lab questions explaining how attacks and defenses work.</li>
-                        </ul>
-                    </div>
-
-                    <div class="tags">
-                        <span>Cybersecurity</span>
-                        <span>Wireshark</span>
-                        <span>pfSense</span>
-                        <span>Hashing</span>
-                        <span>VPN</span>
-                        <span>Firewall Rules</span>
-                    </div>
                 </div>
 
-                <div class="project-card">
-                    <h2>Minecraft and Game Server Projects</h2>
-                    <p>
-                        Personal game server and modding-related work connected to my interest in Minecraft,
-                        anime-inspired ideas, and backend hosting. These projects connect my creative interests
-                        with server administration and software concepts.
-                    </p>
+                <article class="project-view">
+                    <div class="project-hero">
+                        <div>
+                            <div class="project-kicker" id="projectCategory">Academic Project</div>
+                            <h2 id="projectTitle">Train System Simulation / Cargo Tracker</h2>
+                            <p id="projectSummary">
+                                A Java-based data structures project designed around a train system simulation.
+                                The project demonstrates object-oriented programming, inheritance, polymorphism,
+                                collections, searching, sorting, trees, maps, and graph algorithms.
+                            </p>
+                        </div>
 
-                    <div class="project-details">
-                        <h3>What I Worked On</h3>
-                        <ul>
-                            <li>Ran and managed game servers.</li>
-                            <li>Explored Minecraft modding ideas and anime-inspired systems.</li>
-                            <li>Practiced server hosting, configuration, and backend thinking.</li>
-                            <li>Connected creative game concepts with technical infrastructure.</li>
-                        </ul>
+                        <div class="hex-cluster" id="hexCluster">
+                            <div class="hex hex-main"><span>Java</span></div>
+                            <div class="hex hex-1"><span>OOP</span></div>
+                            <div class="hex hex-2"><span>AVL Tree</span></div>
+                            <div class="hex hex-3"><span>HashMap</span></div>
+                            <div class="hex hex-4"><span>Graphs</span></div>
+                        </div>
                     </div>
 
-                    <div class="tags">
-                        <span>Minecraft</span>
-                        <span>Game Servers</span>
-                        <span>Server Hosting</span>
-                        <span>Modding</span>
-                        <span>Backend Systems</span>
+                    <div class="project-body">
+                        <div>
+                            <div class="content-card">
+                                <h3>Overview</h3>
+                                <p id="projectOverview">
+                                    This project was built as a full Java simulation where different train cars,
+                                    passengers, cargo, and routes are modeled using object-oriented design and
+                                    advanced data structures.
+                                </p>
+                            </div>
+
+                            <div class="content-card">
+                                <h3>What I Worked On</h3>
+                                <ul id="projectWork">
+                                    <li>Created multiple train car classes using inheritance and polymorphism.</li>
+                                    <li>Used collections such as ArrayList, LinkedList, Queue, and HashMap.</li>
+                                    <li>Implemented sorting and recursive binary search.</li>
+                                    <li>Used an AVL tree to index train cars by car ID.</li>
+                                    <li>Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm.</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h3>Why It Matters</h3>
+                                <p id="projectImpact">
+                                    This project helped me connect classroom data structures to a more realistic
+                                    software system. Instead of only learning the structures separately, I practiced
+                                    using them together inside one larger simulation.
+                                </p>
+                            </div>
+                        </div>
+
+                        <aside class="side-note">
+                            <h3>Project Tags</h3>
+                            <div class="tag-list" id="projectTags">
+                                <span class="tag">Java</span>
+                                <span class="tag">OOP</span>
+                                <span class="tag">Data Structures</span>
+                                <span class="tag">AVL Tree</span>
+                                <span class="tag">HashMap</span>
+                                <span class="tag">Dijkstra</span>
+                                <span class="tag">Prim</span>
+                            </div>
+
+                            <div class="notebook-note" id="projectNote">
+                                Notebook note: This is one of my strongest academic projects because it combines
+                                multiple data structures into one complete system.
+                            </div>
+
+                            <div class="btn-row">
+                                <a href="index.html" class="btn btn-outline">Back Home</a>
+                            </div>
+                        </aside>
                     </div>
-                </div>
+                </article>
+            </section>
 
-                <a href="index.html" class="btn btn-primary">Back to Home</a>
-
-            </div>
-        </section>
-
+        </div>
     </main>
 
     <footer id="contact">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div>
                     <h3>Jaylin Belfield</h3>
-                    <p>Computer Science Student | Infrastructure Builder | Software Developer</p>
+                    <p>
+                        Computer Science Major with a minor in both Business and Mathematics learning to build
+                        AI-powered tools and supply server hardware services while performing in game development.
+                    </p>
+
+                    <p class="footer-verse">
+                        “The harvest truly is great, but the labourers are few: pray ye therefore the Lord of the harvest,
+                        that he would send forth labourers into his harvest.” — Luke 10:2
+                    </p>
+
+                    <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn btn-outline resume-btn">Resume</a>
                 </div>
 
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="#">GitHub</a>
-                    <a href="#">LinkedIn</a>
-                    <a href="mailto:your-email@example.com">Email</a>
+                <div>
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4>Connect</h4>
+                    <div class="footer-links">
+                        <a href="https://github.com/JaylinJBelfield">GitHub</a>
+                        <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                        <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+                        <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script>
+        const projects = {
+            train: {
+                category: "Academic Project",
+                title: "Train System Simulation / Cargo Tracker",
+                summary: "A Java-based data structures project designed around a train system simulation. The project demonstrates object-oriented programming, inheritance, polymorphism, collections, searching, sorting, trees, maps, and graph algorithms.",
+                overview: "This project was built as a full Java simulation where different train cars, passengers, cargo, and routes are modeled using object-oriented design and advanced data structures.",
+                work: [
+                    "Created multiple train car classes using inheritance and polymorphism.",
+                    "Used collections such as ArrayList, LinkedList, Queue, and HashMap.",
+                    "Implemented sorting and recursive binary search.",
+                    "Used an AVL tree to index train cars by car ID.",
+                    "Built graph-based station routes using Dijkstra’s shortest path algorithm and Prim’s minimum spanning tree algorithm."
+                ],
+                impact: "This project helped me connect classroom data structures to a more realistic software system. Instead of only learning the structures separately, I practiced using them together inside one larger simulation.",
+                tags: ["Java", "OOP", "Data Structures", "AVL Tree", "HashMap", "Dijkstra", "Prim"],
+                hexes: ["Java", "OOP", "AVL Tree", "HashMap", "Graphs"],
+                note: "Notebook note: This is one of my strongest academic projects because it combines multiple data structures into one complete system."
+            },
+
+            hospital: {
+                category: "Academic Project",
+                title: "Hospital Patient Queue Management System",
+                summary: "A Java project focused on managing patients based on priority using queues, maps, and linked list concepts.",
+                overview: "This project models a hospital-style patient queue where patients are organized by urgency and can be looked up or managed through supporting data structures.",
+                work: [
+                    "Used a PriorityQueue to organize patients by urgency.",
+                    "Used HashMap for quick patient lookup.",
+                    "Used LinkedList concepts to manage ordered patient data.",
+                    "Practiced writing clean Java classes while following project requirements."
+                ],
+                impact: "This project helped me understand how data structures can support real-world systems where order, priority, and fast lookup matter.",
+                tags: ["Java", "PriorityQueue", "HashMap", "LinkedList", "Data Structures"],
+                hexes: ["Java", "Priority", "HashMap", "LinkedList", "Patients"],
+                note: "Notebook note: This project is a clean example of how different structures solve different parts of one problem."
+            },
+
+            cyber: {
+                category: "Academic Project",
+                title: "Cybersecurity and Networking Labs",
+                summary: "A collection of lab work involving firewall rules, traffic analysis, hashing, VPN concepts, and controlled network security simulations.",
+                overview: "These labs helped me practice the technical side of networking and cybersecurity by working with tools and scenarios that explain how attacks and defenses operate.",
+                work: [
+                    "Configured firewall rules using pfSense.",
+                    "Analyzed network traffic using Wireshark.",
+                    "Studied hashing and file integrity comparison.",
+                    "Worked through VPN, port forwarding, and network topology concepts.",
+                    "Answered technical lab questions explaining how attacks and defenses work."
+                ],
+                impact: "These labs helped me connect networking concepts to security decisions, especially around visibility, traffic flow, firewall placement, and system protection.",
+                tags: ["Cybersecurity", "Wireshark", "pfSense", "Hashing", "VPN", "Firewall Rules"],
+                hexes: ["Security", "Wireshark", "pfSense", "Hashing", "VPN"],
+                note: "Notebook note: These labs support my infrastructure work because security becomes more important as systems become more real."
+            },
+
+            greenhouse: {
+                category: "Academic Project",
+                title: "Smart Green House",
+                summary: "An Arduino-based engineering project using automated watering, daylight control, soil readings, pumps, and switches.",
+                overview: "This project focused on using sensors, pumps, switches, and microcontroller logic to create a greenhouse system that could respond to environmental conditions.",
+                work: [
+                    "Worked with Arduino-based control logic.",
+                    "Used C++ style programming for microcontroller behavior.",
+                    "Connected sensor readings to automated system responses.",
+                    "Built around water control, daylight control, and greenhouse monitoring."
+                ],
+                impact: "This project helped me see how software connects to physical systems, especially when code controls sensors, switches, and hardware behavior.",
+                tags: ["Arduino", "C++", "Sensors", "Pumps", "Engineering"],
+                hexes: ["Arduino", "C++", "Sensors", "Pumps", "Control"],
+                note: "Notebook note: This project connects engineering, code, and hardware into one practical system."
+            },
+
+            belsade: {
+                category: "Business Project",
+                title: "Belsade Tech Rack Infrastructure",
+                summary: "A long-term private cloud and server rack project built around real enterprise-style infrastructure, virtualization, networking, and internal services.",
+                overview: "Belsade Rack is my hands-on infrastructure project where I work with physical servers, virtualization, firewall routing, managed switching, and segmented networks.",
+                work: [
+                    "Planned a rack-based private cloud environment for Belsade Tech.",
+                    "Used Proxmox for virtualization and server management.",
+                    "Configured pfSense as a firewall and router.",
+                    "Designed VLAN-based network segmentation for internal, management, DMZ, storage, and other zones.",
+                    "Worked with enterprise servers, managed switches, and Linux-based systems."
+                ],
+                impact: "This project is important because it connects computer science to real infrastructure. It gives me experience with the systems that software actually runs on.",
+                tags: ["Proxmox", "pfSense", "Linux", "Networking", "VLANs", "Server Hardware"],
+                hexes: ["Proxmox", "pfSense", "VLANs", "Linux", "Servers"],
+                note: "Notebook note: This is one of my biggest long-term projects because it supports my business, hosting, AI, and game development goals."
+            },
+
+            ryznai: {
+                category: "Business Project",
+                title: "ryznAi",
+                summary: "An early AI-powered student platform concept connected to automation, learning tools, backend systems, and Belsade Tech.",
+                overview: "ryznAi is a student-focused AI platform idea that connects learning support, automation, structured information, and backend systems.",
+                work: [
+                    "Planned AI-powered tools for students and learning workflows.",
+                    "Explored JavaScript, Mermaid JS, and Python scripting ideas.",
+                    "Connected the concept to Belsade Tech infrastructure.",
+                    "Designed the idea around useful student-facing automation."
+                ],
+                impact: "This project matters because it connects my interest in AI with education, software systems, and future product development.",
+                tags: ["LLM AI", "Student Tools", "Automation", "Backend Systems", "JavaScript", "Mermaid JS", "Python Script"],
+                hexes: ["LLM AI", "Students", "Python", "Mermaid", "Backend"],
+                note: "Notebook note: ryznAi is part of my bigger goal of building AI-powered tools that feel useful instead of generic."
+            },
+
+            services: {
+                category: "Business Project",
+                title: "Server Hardware Services",
+                summary: "A business direction focused on supplying server hardware services, hosting support, and infrastructure solutions through Belsade Tech.",
+                overview: "This project direction focuses on turning my infrastructure experience into services around server hardware, hosting, and technical solutions.",
+                work: [
+                    "Studied enterprise server hardware and rack planning.",
+                    "Worked with used servers, storage, networking, and virtualization.",
+                    "Connected infrastructure knowledge to possible customer-facing services.",
+                    "Built the foundation for Belsade Tech service offerings."
+                ],
+                impact: "This project matters because it connects my technical learning with business. It gives my infrastructure work a real-world direction.",
+                tags: ["Server Hardware", "Hosting", "Infrastructure", "Business", "Belsade Tech"],
+                hexes: ["Servers", "Hosting", "Business", "Support", "Hardware"],
+                note: "Notebook note: This is where technical skill starts turning into a service model."
+            },
+
+            gamedev: {
+                category: "Featured Project",
+                title: "Game Dev / Minecraft Projects",
+                summary: "Personal game server and modding-related work connected to Minecraft, anime-inspired ideas, backend hosting, and creative development.",
+                overview: "My game development work started with Minecraft servers, game assets, plugins, scripts, and server communities. It connects creativity with technical systems.",
+                work: [
+                    "Ran and managed game servers.",
+                    "Explored Minecraft modding ideas and anime-inspired systems.",
+                    "Practiced server hosting, configuration, and backend thinking.",
+                    "Worked with JavaScript, Java, Mythic.Lib, and Denizen Script concepts.",
+                    "Connected creative game concepts with technical infrastructure and marketing."
+                ],
+                impact: "This project area matters because it is where my computer science journey started. It gave me early experience with coding, assets, servers, and building for real users.",
+                tags: ["Minecraft", "Game Servers", "Server Hosting", "Modding", "Backend Systems", "Marketing", "JavaScript", "Mythic.Lib", "Denizen Script"],
+                hexes: ["Minecraft", "Servers", "Scripts", "Marketing", "Mods"],
+                note: "Notebook note: Game development is one of the roots of my tech journey."
+            },
+
+            portfolio: {
+                category: "Featured Project",
+                title: "Portfolio Website",
+                summary: "A personal website project used to present my computer science journey, projects, business direction, and technical identity.",
+                overview: "This website is a portfolio project that brings together my academic work, infrastructure projects, business ideas, and personal story into one public-facing place.",
+                work: [
+                    "Designed a custom HTML and CSS portfolio.",
+                    "Built pages for home, about, and projects.",
+                    "Used visual sections, sliders, cards, hexagons, and themed layouts.",
+                    "Connected the site to GitHub Pages and external project links."
+                ],
+                impact: "This project matters because it helps me present my work professionally while also practicing front-end structure and design.",
+                tags: ["HTML", "CSS", "GitHub Pages", "Portfolio", "Web Design"],
+                hexes: ["HTML", "CSS", "Design", "GitHub", "Brand"],
+                note: "Notebook note: This website is both a project and a presentation layer for everything else I build."
+            },
+
+            startup: {
+                category: "Featured Project",
+                title: "Startup Journey",
+                summary: "My long-term path toward building Belsade Tech, GRIM Studios, ryznAi, and technology services around AI, servers, and game development.",
+                overview: "This is the larger journey connecting my computer science degree, business minor, math minor, infrastructure projects, AI ideas, and game development background.",
+                work: [
+                    "Built early ideas around Belsade Tech and related sub-brands.",
+                    "Connected technical projects to possible services and products.",
+                    "Learned through real systems, school projects, and independent builds.",
+                    "Focused on AI tools, server hardware services, and game development."
+                ],
+                impact: "This matters because it gives my projects direction. I am not only building assignments; I am building toward a long-term technology company.",
+                tags: ["Belsade Tech", "GRIM Studios", "ryznAi", "AI Tools", "Servers", "Game Development"],
+                hexes: ["Belsade", "GRIM", "ryznAi", "AI", "Servers"],
+                note: "Notebook note: This is the bigger map that connects the rest of my projects together."
+            }
+        };
+
+        function loadProject(projectKey, clickedButton) {
+            const project = projects[projectKey];
+
+            document.getElementById("projectCategory").textContent = project.category;
+            document.getElementById("projectTitle").textContent = project.title;
+            document.getElementById("projectSummary").textContent = project.summary;
+            document.getElementById("projectOverview").textContent = project.overview;
+            document.getElementById("projectImpact").textContent = project.impact;
+            document.getElementById("projectNote").textContent = project.note;
+
+            const workList = document.getElementById("projectWork");
+            workList.innerHTML = "";
+            project.work.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                workList.appendChild(li);
+            });
+
+            const tags = document.getElementById("projectTags");
+            tags.innerHTML = "";
+            project.tags.forEach(tag => {
+                const span = document.createElement("span");
+                span.className = "tag";
+                span.textContent = tag;
+                tags.appendChild(span);
+            });
+
+            const hexCluster = document.getElementById("hexCluster");
+            hexCluster.innerHTML = `
+                <div class="hex hex-main"><span>${project.hexes[0]}</span></div>
+                <div class="hex hex-1"><span>${project.hexes[1]}</span></div>
+                <div class="hex hex-2"><span>${project.hexes[2]}</span></div>
+                <div class="hex hex-3"><span>${project.hexes[3]}</span></div>
+                <div class="hex hex-4"><span>${project.hexes[4]}</span></div>
+            `;
+
+            const links = document.querySelectorAll(".project-link");
+            links.forEach(link => link.classList.remove("active"));
+            clickedButton.classList.add("active");
+        }
+    </script>
 
 </body>
 </html>
