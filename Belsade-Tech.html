@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belsade Tech | Jaylin Belfield</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: rgb(19, 24, 32);
+            --panel: rgba(31, 38, 50, 0.78);
+            --panel-dark: rgba(24, 30, 40, 0.88);
+            --border: rgba(190, 170, 220, 0.22);
+            --text-main: #c9ced6;
+            --text-soft: #aeb5c0;
+            --text-muted: #8f98a6;
+            --purple: #b9a3d8;
+            --purple-soft: rgba(185, 163, 216, 0.16);
+            --purple-border: rgba(185, 163, 216, 0.35);
+            --header-bg: rgba(19, 24, 32, 0.62);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(185, 163, 216, 0.09), transparent 36%),
+                radial-gradient(circle at bottom left, rgba(185, 163, 216, 0.06), transparent 38%),
+                var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1160px;
+            margin: auto;
+        }
+
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #d2d6dc;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 24px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--purple);
+            color: rgb(19, 24, 32);
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--purple-border);
+            color: var(--purple);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            background: var(--purple-soft);
+            transform: translateY(-2px);
+        }
+
+        .project-hero {
+            padding: 58px 0 34px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        .hero-card {
+            background:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.88), rgba(31, 38, 50, 0.72)),
+                url("belsade-rack-hero.jpg");
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            padding: 38px;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+        }
+
+        .hero-label {
+            color: var(--purple);
+            font-size: 0.84rem;
+            text-transform: uppercase;
+            letter-spacing: 1.35px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .hero-card h1 {
+            font-size: 3.1rem;
+            line-height: 1.05;
+            color: #d2d6dc;
+            margin-bottom: 18px;
+            max-width: 850px;
+        }
+
+        .hero-card h1 span {
+            color: var(--purple);
+        }
+
+        .hero-card p {
+            color: var(--text-soft);
+            max-width: 820px;
+            font-size: 1.06rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 26px;
+        }
+
+        .project-summary-strip {
+            padding: 26px 0 18px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .summary-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+        }
+
+        .summary-card h3 {
+            color: var(--purple);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .summary-card p {
+            color: var(--text-soft);
+            font-size: 0.93rem;
+        }
+
+        section {
+            padding: 52px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 28px;
+        }
+
+        .section-heading h2 {
+            color: #d2d6dc;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--text-soft);
+            max-width: 850px;
+            line-height: 1.8;
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .case-grid.reverse {
+            grid-template-columns: 1.1fr 0.9fr;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.20);
+        }
+
+        .panel-content {
+            padding: 30px;
+        }
+
+        .panel h3 {
+            color: var(--purple);
+            margin-bottom: 14px;
+            font-size: 1.25rem;
+        }
+
+        .panel p {
+            color: var(--text-main);
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+
+        .panel ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .panel li {
+            margin-bottom: 9px;
+        }
+
+        .image-panel {
+            min-height: 360px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .image-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at top right, rgba(185, 163, 216, 0.12), transparent 38%),
+                linear-gradient(180deg, transparent, rgba(19, 24, 32, 0.68));
+        }
+
+        .rack-image {
+            background-image:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.15), rgba(19, 24, 32, 0.62)),
+                url("belsade-rack-main.jpg");
+        }
+
+        .network-image {
+            background-image:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.15), rgba(19, 24, 32, 0.62)),
+                url("belsade-network.jpg");
+        }
+
+        .business-image {
+            background-image:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.15), rgba(19, 24, 32, 0.62)),
+                url("belsade-business.jpg");
+        }
+
+        .research-image {
+            background-image:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.15), rgba(19, 24, 32, 0.62)),
+                url("belsade-research.jpg");
+        }
+
+        .topic-stack {
+            display: grid;
+            gap: 24px;
+        }
+
+        .wide-panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.20);
+        }
+
+        .wide-panel h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .wide-panel p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .wide-panel ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .wide-panel li {
+            margin-bottom: 8px;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .mini-card {
+            background: rgba(24, 30, 40, 0.78);
+            border: 1px solid rgba(190, 170, 220, 0.18);
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .mini-card h4 {
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+
+        .mini-card p {
+            color: var(--text-soft);
+            line-height: 1.75;
+        }
+
+        .service-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 28px;
+            min-height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "";
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--purple-soft);
+            position: absolute;
+            top: -80px;
+            right: -80px;
+        }
+
+        .service-card h3,
+        .service-card p,
+        .service-card ul {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-soft);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .service-card ul {
+            margin-left: 18px;
+            color: var(--text-main);
+        }
+
+        .service-card li {
+            margin-bottom: 7px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 22px;
+            position: relative;
+        }
+
+        .timeline-item {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            display: grid;
+            grid-template-columns: 160px 1fr;
+            gap: 24px;
+        }
+
+        .timeline-label {
+            color: var(--purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.86rem;
+        }
+
+        .timeline-content h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-soft);
+            line-height: 1.8;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: var(--purple-soft);
+            color: var(--purple);
+            border: 1px solid var(--purple-border);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .media-card {
+            background: rgba(24, 30, 40, 0.78);
+            border: 1px dashed var(--purple-border);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .media-card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .media-card p {
+            color: var(--text-soft);
+            margin-bottom: 12px;
+            line-height: 1.75;
+        }
+
+        .media-card ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .media-card li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: rgba(19, 24, 32, 0.78);
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--text-soft);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .footer-grid h4 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .footer-grid p {
+            color: var(--text-soft);
+            max-width: 580px;
+            margin-bottom: 18px;
+        }
+
+        .footer-verse {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        @media (max-width: 1000px) {
+            .summary-grid,
+            .service-map,
+            .case-grid,
+            .case-grid.reverse,
+            .two-column,
+            .media-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card h1 {
+                font-size: 2.45rem;
+            }
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+
+            .hero-card {
+                padding: 28px;
+            }
+
+            .section-heading h2 {
+                font-size: 1.8rem;
+            }
+
+            .image-panel {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Belsade Tech</div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="project-hero">
+    <div class="container">
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <div class="hero-card">
+            <div class="hero-label">Company Project • Infrastructure Lab • Private Cloud Vision</div>
+
+            <h1>
+                Belsade Tech: <span>building infrastructure before the company is fully grown.</span>
+            </h1>
+
+            <p>
+                Belsade Tech is my long-term technology company project centered around servers, hosting,
+                AI infrastructure, cybersecurity, virtualization, documentation, and business leadership.
+                The project is not just a website or a single server rack. It is my attempt to build the
+                foundation of a real technology company from the ground up while learning every layer:
+                legal structure, operations, networking, hardware, Linux, virtualization, storage, services,
+                and how to lead people around a technical vision.
+            </p>
+
+            <div class="hero-actions">
+                <a href="https://belsade-tech-site.vercel.app/" class="btn btn-primary">View Website</a>
+                <a href="#business" class="btn btn-outline">View Business Side</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="project-summary-strip">
+    <div class="container">
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h3>Role</h3>
+                <p>Founder, builder, infrastructure planner, documentation lead, and technical learner.</p>
+            </div>
+
+            <div class="summary-card">
+                <h3>Core Stack</h3>
+                <p>Proxmox, pfSense, Linux, Ubuntu, managed switches, VLANs, RAID, Docker, DNS, and virtual machines.</p>
+            </div>
+
+            <div class="summary-card">
+                <h3>Business Focus</h3>
+                <p>Hosting, server hardware services, AI tools, infrastructure support, onboarding, and operations.</p>
+            </div>
+
+            <div class="summary-card">
+                <h3>Long-Term Goal</h3>
+                <p>A private-cloud style platform that supports Belsade Tech, ryznAI, GRIM Studios, and future clients.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="infrastructure">
+    <div class="container">
+        <div class="section-heading">
+            <h2>The Infrastructure Foundation</h2>
+            <p>
+                The technical core of Belsade Tech is a rack-based infrastructure environment. I wanted to
+                learn what it actually means to operate technology at a systems level, not just write code
+                and deploy it somewhere I do not understand.
+            </p>
+        </div>
+
+        <div class="case-grid">
+            <div class="panel image-panel rack-image"></div>
+
+            <div class="panel">
+                <div class="panel-content">
+                    <h3>Rack-Based Private Cloud Direction</h3>
+
+                    <p>
+                        The rack is being designed like a small, portable datacenter. Instead of treating each
+                        server as a random machine, I started organizing the environment by roles: internal compute,
+                        operations/control, public-facing gateway services, storage, management, and future GPU compute.
+                    </p>
+
+                    <p>
+                        This taught me that infrastructure is not just about owning servers. The real work is deciding
+                        what each machine is responsible for, how traffic should move, what should be isolated, what
+                        should be exposed, what should be backed up, and how the environment should grow without
+                        becoming messy.
+                    </p>
+
+                    <ul>
+                        <li>Dell PowerEdge and HP ProLiant rack servers used for compute and infrastructure roles.</li>
+                        <li>Proxmox used as the virtualization layer for running virtual machines and services.</li>
+                        <li>Rack planning around power, cooling, cable routing, storage, and future expansion.</li>
+                        <li>Server role planning for internal workloads, DMZ services, control systems, and future GPU nodes.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>Networking, Firewalling, and Segmentation</h2>
+            <p>
+                One of the biggest parts of Belsade Tech has been learning how to build a network that acts more
+                like an enterprise environment than a normal home setup.
+            </p>
+        </div>
+
+        <div class="case-grid reverse">
+            <div class="panel">
+                <div class="panel-content">
+                    <h3>From “internet connection” to network architecture</h3>
+
+                    <p>
+                        I learned that a real infrastructure environment needs much more than basic Wi-Fi or a
+                        single flat network. Belsade Tech uses a firewall-first mindset where traffic should be
+                        routed, separated, and controlled based on what type of device or service is involved.
+                    </p>
+
+                    <p>
+                        The network plan includes multiple segmented zones such as internal systems, management,
+                        DMZ, storage, GPU/AI workloads, learning devices, tenant services, backup systems, and
+                        observability. The purpose is to make the environment safer, easier to reason about, and
+                        closer to how production infrastructure is planned.
+                    </p>
+
+                    <ul>
+                        <li>pfSense used as the firewall and router for the rack environment.</li>
+                        <li>VLAN segmentation designed around a structured 10.79.x.x addressing plan.</li>
+                        <li>Managed switch configuration for trunks, access ports, and network separation.</li>
+                        <li>DMZ planning for services that may eventually face the public internet.</li>
+                        <li>DHCP reservations used for centralized address management and portability.</li>
+                        <li>DNS and routing concepts studied for future internal services and hosting goals.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel image-panel network-image"></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>Virtualization, Linux, and Service Deployment</h2>
+            <p>
+                Belsade Tech is also where I started connecting hardware to actual software services.
+                The goal is not just to collect machines, but to run useful systems on them.
+            </p>
+        </div>
+
+        <div class="topic-stack">
+            <div class="wide-panel">
+                <h3>Proxmox and Virtual Machines</h3>
+                <p>
+                    Proxmox is the main virtualization platform I am using to turn physical servers into flexible
+                    compute resources. Instead of installing one operating system and one service per server, Proxmox
+                    lets the hardware become a host for multiple virtual machines and containers.
+                </p>
+
+                <p>
+                    This gives Belsade Tech a foundation for hosting internal tools, test environments, development
+                    servers, monitoring systems, AI experiments, web services, and future customer-facing workloads.
+                    It also helps me understand snapshots, storage pools, virtual networking, bridges, resource
+                    allocation, and the difference between physical and virtual infrastructure.
+                </p>
+
+                <div class="two-column">
+                    <div class="mini-card">
+                        <h4>Linux Administration</h4>
+                        <p>
+                            I use Linux and Ubuntu systems to practice server administration, package management,
+                            terminal workflows, service configuration, remote access, and the kind of command-line
+                            work that supports real infrastructure.
+                        </p>
+                    </div>
+
+                    <div class="mini-card">
+                        <h4>Containers and Docker</h4>
+                        <p>
+                            Docker fits into the long-term plan because many modern services are deployed as containers.
+                            Learning Docker helps me think about repeatable deployments, service isolation, and hosting
+                            applications more cleanly.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wide-panel">
+                <h3>Storage, RAID, and Reliability</h3>
+                <p>
+                    Storage planning became a major part of the project because servers are only useful if data is
+                    organized, protected, and available. I worked with enterprise storage concepts such as RAID,
+                    mirrored drives, server drive bays, controller configuration, and the difference between boot
+                    drives, data drives, and shared storage.
+                </p>
+
+                <p>
+                    This helped me think about failure. If a drive fails, what happens? If a server needs a clean
+                    reinstall, what must be preserved? If a service becomes important, where should its data live?
+                    These questions pushed the project toward a more serious infrastructure mindset.
+                </p>
+
+                <ul>
+                    <li>RAID mirror concepts and drive failure testing in a lab environment.</li>
+                    <li>Enterprise SATA SSD research for Proxmox boot and workload storage.</li>
+                    <li>Planning around storage servers, backup systems, and future JBOD expansion.</li>
+                    <li>Separating operating system drives from data/workload drives.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>Cybersecurity and Infrastructure Safety</h2>
+            <p>
+                Since Belsade Tech is meant to eventually support real services, security has to be part of
+                the foundation instead of something added later.
+            </p>
+        </div>
+
+        <div class="service-map">
+            <div class="service-card">
+                <h3>Firewall Rules</h3>
+                <p>
+                    The firewall is treated as the main control point for traffic between networks.
+                    This includes deciding which VLANs can talk to each other, what services should be exposed,
+                    and what should stay locked down.
+                </p>
+
+                <ul>
+                    <li>Internal network restrictions</li>
+                    <li>Management access control</li>
+                    <li>DMZ exposure planning</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>DMZ Planning</h3>
+                <p>
+                    Public-facing services should not live directly beside internal systems. The DMZ concept
+                    helps separate services that may face the internet from private infrastructure that needs
+                    stronger protection.
+                </p>
+
+                <ul>
+                    <li>Gateway/API entry planning</li>
+                    <li>Public service isolation</li>
+                    <li>Future reverse proxy or firewall service nodes</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h3>Remote Access</h3>
+                <p>
+                    Remote access matters because infrastructure should be manageable without constantly being
+                    physically next to the rack. Tools like Tailscale fit into the long-term plan for secure
+                    remote management.
+                </p>
+
+                <ul>
+                    <li>Private remote access</li>
+                    <li>Administrative network separation</li>
+                    <li>Controlled management paths</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="business">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Business, Leadership, and Company Building</h2>
+            <p>
+                Belsade Tech is not only a hardware project. A major part of it has been learning how to think
+                like a founder and build the structure around a company, not just the technology inside it.
+            </p>
+        </div>
+
+        <div class="case-grid">
+            <div class="panel image-panel business-image"></div>
+
+            <div class="panel">
+                <div class="panel-content">
+                    <h3>Founder Responsibilities</h3>
+
+                    <p>
+                        Building Belsade Tech forced me to think about what it means to lead a technical project
+                        as a company. That includes setting direction, explaining the vision to others, organizing
+                        work, planning documentation, thinking about roles, and making decisions before everything
+                        is fully figured out.
+                    </p>
+
+                    <p>
+                        I worked on the business foundation by thinking through LLC setup, internal documentation,
+                        onboarding systems, consultants, meetings, presentations, brand direction, employee roles,
+                        and how future contributors could understand what Belsade Tech is trying to become.
+                    </p>
+
+                    <ul>
+                        <li>Company structure and LLC planning.</li>
+                        <li>Employee onboarding documentation and early contributor expectations.</li>
+                        <li>Consultant conversations and technical presentation practice.</li>
+                        <li>Founder decision-making around direction, branding, and service focus.</li>
+                        <li>Marketing and website planning for Belsade Tech’s public identity.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="wide-panel" style="margin-top: 28px;">
+            <h3>Documentation and Internal Systems</h3>
+
+            <p>
+                One of the less flashy but most important parts of Belsade Tech has been documentation.
+                I started building governance-style documents, onboarding guides, role descriptions, expectations,
+                and internal structures because I realized that a company cannot depend only on ideas in one person’s head.
+            </p>
+
+            <p>
+                Documentation turns a personal project into something other people can understand. It creates a place
+                where expectations, responsibilities, project direction, and technical decisions can be written down.
+                That matters if Belsade Tech eventually grows into a team with employees, partners, consultants, or clients.
+            </p>
+
+            <div class="tag-list">
+                <span class="tag">Governance</span>
+                <span class="tag">Onboarding</span>
+                <span class="tag">Role Planning</span>
+                <span class="tag">Operations</span>
+                <span class="tag">Consultants</span>
+                <span class="tag">Presentations</span>
+                <span class="tag">Marketing</span>
+                <span class="tag">Leadership</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>AI, GPU Compute, and Future Hosting Goals</h2>
+            <p>
+                Belsade Tech is also connected to my long-term goals around AI systems, GPU compute,
+                student tools, and hosting services.
+            </p>
+        </div>
+
+        <div class="case-grid reverse">
+            <div class="panel">
+                <div class="panel-content">
+                    <h3>From Server Rack to AI Platform</h3>
+
+                    <p>
+                        The long-term vision for Belsade Tech is to provide the infrastructure layer for projects
+                        like ryznAI, GRIM Studios, and future hosting or compute services. This includes AI inference,
+                        batch processing, GPU-backed workloads, private services, and backend systems that can run
+                        on infrastructure I actually understand.
+                    </p>
+
+                    <p>
+                        I have researched GPU servers, AI compute planning, dataset preparation, virtual machines,
+                        Linux-based workloads, OpenCL-style compute concepts, and the possibility of building a
+                        GPU farm that supports both internal projects and future customer-facing services.
+                    </p>
+
+                    <ul>
+                        <li>GPU compute research for AI inference and batch workloads.</li>
+                        <li>Hosting goals for websites, game backends, APIs, and internal platforms.</li>
+                        <li>Future support for ryznAI-style educational AI tooling.</li>
+                        <li>Infrastructure planning for GRIM Studios game servers and backend services.</li>
+                        <li>Research into rentable compute and private cloud-style service models.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel image-panel research-image"></div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>How the Project Has Evolved</h2>
+            <p>
+                Belsade Tech has grown in stages. Each stage taught me a different part of running and building
+                a technology company.
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 1</div>
+
+                <div class="timeline-content">
+                    <h3>Hardware Research and Server Collection</h3>
+                    <p>
+                        The project began with researching enterprise servers, used hardware value, storage options,
+                        power needs, and how to get the most out of affordable equipment. This stage was about learning
+                        what server hardware is, what different models can do, and how to think about performance,
+                        memory, storage, and expansion.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 2</div>
+
+                <div class="timeline-content">
+                    <h3>Rack Planning and Network Bring-Up</h3>
+                    <p>
+                        After the hardware side started taking shape, the focus shifted toward building the rack as
+                        a real environment. That included pfSense, managed switching, VLANs, firewall rules, IP planning,
+                        management networks, and getting the servers to communicate in a structured way.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 3</div>
+
+                <div class="timeline-content">
+                    <h3>Virtualization and Services</h3>
+                    <p>
+                        The next stage focused on using Proxmox, Linux, Ubuntu, virtual machines, containers, storage,
+                        DNS concepts, and service deployment. This is where the rack started becoming less about
+                        hardware ownership and more about running actual systems.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-label">Stage 4</div>
+
+                <div class="timeline-content">
+                    <h3>Company Structure and Long-Term Platform Vision</h3>
+                    <p>
+                        As the technical side grew, the business side became more important. Belsade Tech expanded
+                        into documentation, onboarding, service planning, leadership, marketing, and the long-term
+                        idea of becoming an infrastructure and AI platform supporting multiple projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>Jaylin Belfield</h3>
+
+                <p>
+                    Computer Science Major with a minor in both Business and Mathematics learning to build
+                    AI-powered tools and supply server hardware services while performing in game development.
+                </p>
+
+                <p class="footer-verse">
+                    “The harvest truly is great, but the labourers are few: pray ye therefore the Lord of the harvest,
+                    that he would send forth labourers into his harvest.” — Luke 10:2
+                </p>
+
+                <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn btn-outline">Resume</a>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Connect</h4>
+
+                <div class="footer-links">
+                    <a href="https://github.com/JaylinJBelfield">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                    <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+                    <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
