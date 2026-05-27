@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Green House | Jaylin Belfield</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --background: rgb(19, 24, 32);
+            --panel: rgba(31, 38, 50, 0.78);
+            --border: rgba(190, 170, 220, 0.22);
+            --text-main: #c9ced6;
+            --text-soft: #aeb5c0;
+            --text-muted: #8f98a6;
+            --purple: #b9a3d8;
+            --purple-soft: rgba(185, 163, 216, 0.16);
+            --purple-border: rgba(185, 163, 216, 0.35);
+            --header-bg: rgba(19, 24, 32, 0.62);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(185, 163, 216, 0.10), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(185, 163, 216, 0.07), transparent 35%),
+                var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1120px;
+            margin: auto;
+        }
+
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #d2d6dc;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--purple);
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+            border: 1px solid var(--purple-border);
+            color: var(--purple);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn:hover {
+            background: var(--purple-soft);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 80px 0 45px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        .hero-card {
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            overflow: hidden;
+            background:
+                linear-gradient(135deg, rgba(19, 24, 32, 0.22), rgba(19, 24, 32, 0.82)),
+                url("greenhouse.jpg");
+            background-size: cover;
+            background-position: center;
+            min-height: 420px;
+            display: flex;
+            align-items: flex-end;
+            box-shadow: 0 22px 55px rgba(0, 0, 0, 0.26);
+        }
+
+        .hero-content {
+            width: 100%;
+            padding: 44px;
+            background: linear-gradient(180deg, transparent, rgba(19, 24, 32, 0.92));
+        }
+
+        .project-label {
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.4rem;
+            color: #d2d6dc;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--purple);
+        }
+
+        .hero p {
+            color: var(--text-soft);
+            max-width: 780px;
+            font-size: 1.08rem;
+        }
+
+        section {
+            padding: 42px 0;
+        }
+
+        .section-intro {
+            max-width: 850px;
+            margin-bottom: 35px;
+        }
+
+        .section-intro h2 {
+            color: #d2d6dc;
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .section-intro p {
+            color: var(--text-soft);
+        }
+
+        .stagger {
+            display: grid;
+            gap: 34px;
+        }
+
+        .stagger-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .stagger-row.reverse .media-card {
+            order: 2;
+        }
+
+        .stagger-row.reverse .text-card {
+            order: 1;
+        }
+
+        .media-card,
+        .text-card,
+        .side-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.20);
+        }
+
+        .text-card {
+            padding: 30px;
+        }
+
+        .text-card h2,
+        .text-card h3,
+        .side-card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .text-card p {
+            color: var(--text-main);
+            margin-bottom: 14px;
+        }
+
+        .text-card ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .text-card li {
+            margin-bottom: 8px;
+        }
+
+        .media-card {
+            min-height: 310px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: rgba(24, 30, 40, 0.72);
+        }
+
+        .media-card img,
+        .media-card video {
+            width: 100%;
+            height: 100%;
+            min-height: 310px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .placeholder {
+            padding: 30px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .placeholder strong {
+            display: block;
+            color: var(--purple);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .code-block {
+            background: rgba(10, 14, 20, 0.78);
+            border: 1px solid var(--purple-border);
+            border-radius: 14px;
+            padding: 18px;
+            overflow-x: auto;
+            color: #d8dce5;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin: 16px 0;
+        }
+
+        .tag-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .side-card {
+            padding: 28px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tag {
+            background: var(--purple-soft);
+            color: var(--purple);
+            border: 1px solid var(--purple-border);
+            padding: 7px 11px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .hex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .hex {
+            width: 118px;
+            height: 104px;
+            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+            background: var(--purple-soft);
+            border: 1px solid var(--purple-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 14px;
+            color: var(--purple);
+            font-weight: bold;
+            font-size: 0.82rem;
+        }
+
+        footer {
+            background: rgba(19, 24, 32, 0.78);
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--text-soft);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .footer-grid h4 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .footer-grid p {
+            color: var(--text-soft);
+            max-width: 580px;
+            margin-bottom: 18px;
+        }
+
+        .footer-verse {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--purple);
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 2.45rem;
+            }
+
+            .hero-content {
+                padding: 30px;
+            }
+
+            .stagger-row,
+            .stagger-row.reverse,
+            .tag-panel,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stagger-row.reverse .media-card,
+            .stagger-row.reverse .text-card {
+                order: initial;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Jaylin Belfield</div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <div class="hero-card">
+            <div class="hero-content">
+
+                <div class="project-label">
+                    Freshman Engineering Project
+                </div>
+
+                <h1>
+                    Smart <span>Green House</span>
+                </h1>
+
+                <p>
+                    A half-semester engineering project where our team built an Arduino-powered greenhouse
+                    system capable of monitoring soil conditions, managing automatic watering, controlling
+                    growth lights, circulating air, and recycling water while supporting the successful
+                    growth of multiple flower species.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="section-intro">
+            <h2>Project Story</h2>
+
+            <p>
+                This project was developed during freshman year and required both technical engineering
+                and public presentation. We had to design the greenhouse, build the hardware systems,
+                wire and solder components, program the Arduino logic, and successfully grow flowers
+                over time to prove the system actually worked.
+            </p>
+        </div>
+
+        <div class="stagger">
+
+            <div class="stagger-row">
+
+                <div class="media-card">
+                    <img src="greenhouse-presentation.jpg" alt="Greenhouse Presentation">
+                </div>
+
+                <div class="text-card">
+
+                    <h2>The Goal</h2>
+
+                    <p>
+                        The main objective was to create a greenhouse system capable of intelligently
+                        supporting plant growth with minimal manual intervention. The greenhouse needed
+                        to monitor soil moisture, read reservoir levels, automatically water the flowers,
+                        control growth lights, and circulate air to help prevent scorching.
+                    </p>
+
+                    <p>
+                        The project was not simply a visual prototype. We had to successfully grow
+                        multiple flower types according to their seed-specific needs, which required
+                        long-term testing and environmental consistency.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row reverse">
+
+                <div class="media-card">
+                    <video controls poster="greenhouse-command-box-thumb.jpg">
+                        <source src="greenhouse-command-box.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Command Box and Wiring</h2>
+
+                    <p>
+                        The wooden command box functioned as the control station for the greenhouse.
+                        It housed the Arduino hardware, relay switches, LCD screen, and internal wiring
+                        used to manage the system.
+                    </p>
+
+                    <p>
+                        Building this section required more than programming. We practiced soldering,
+                        carpentry, hardware organization, and presentation design while ensuring the
+                        system remained functional and visually clean for public demonstration.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row">
+
+                <div class="media-card">
+                    <video controls poster="greenhouse-rainfall-thumb.jpg">
+                        <source src="greenhouse-rainfall-system.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Rainfall Watering System</h2>
+
+                    <p>
+                        One of the more unique design decisions was the rainfall-style watering system.
+                        Water tubing from the pump was routed across the top of the greenhouse so the
+                        water would fall down naturally like rain instead of being dumped directly into
+                        the soil.
+                    </p>
+
+                    <p>
+                        The system intelligently watered plants based on soil moisture readings while
+                        also monitoring the reservoir to prevent the pump from activating if water
+                        levels became too low.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row reverse">
+
+                <div class="media-card">
+                    <div class="placeholder">
+                        <strong>Sensor / Reservoir Placeholder</strong>
+                        Add a close-up photo of the reservoir system, moisture sensor,
+                        relay switches, or internal tubing setup here.
+                    </div>
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Automation and Sensors</h2>
+
+                    <p>
+                        The greenhouse relied on sensors and automation logic to make environmental
+                        decisions. Soil moisture values and reservoir levels were continuously monitored
+                        so the greenhouse could respond automatically instead of relying entirely on
+                        manual interaction.
+                    </p>
+
+                    <ul>
+                        <li>Soil moisture readings</li>
+                        <li>Reservoir level monitoring</li>
+                        <li>Automatic water pump activation</li>
+                        <li>Relay-controlled outputs</li>
+                        <li>LCD display feedback</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row reverse">
+
+                <div class="media-card">
+
+                    <div class="placeholder">
+                        <strong>Code / LCD Placeholder</strong>
+                        Add a screenshot of the Arduino code, LCD screen,
+                        serial monitor output, or relay logic here.
+                    </div>
+
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Embedded System Logic</h2>
+
+                    <p>
+                        The greenhouse used Arduino-based control logic to continuously read sensor
+                        values and determine when the system should activate the watering pump.
+                        Moisture readings and reservoir levels were compared against threshold values
+                        to automate plant care.
+                    </p>
+
+                    <p>
+                        One important engineering feature was the protection logic. The system only
+                        activated the pump if the soil was dry AND the reservoir contained enough
+                        water, preventing the pump from running dry.
+                    </p>
+
+<pre class="code-block"><code>if (moistureVal > MOISTURE_DRY_THRESHOLD &&
+    waterLevelVal > RESERVOIR_LOW_LEVEL) {
+
+    digitalWrite(PUMP_PIN, HIGH);
+    isPumpOn = true;
+
+    delay(4000);
+
+    digitalWrite(PUMP_PIN, LOW);
+}</code></pre>
+
+                    <p>
+                        The LCD screen rotated between system states including soil condition,
+                        reservoir warnings, and live pump status, turning the wooden control box
+                        into a functioning greenhouse control panel.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row">
+
+                <div class="media-card">
+
+                    <div class="placeholder">
+                        <strong>Grow Light / Fan Placeholder</strong>
+                        Add a photo or video showing the LED grow lights,
+                        fans, or full greenhouse enclosure.
+                    </div>
+
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Lighting and Climate Control</h2>
+
+                    <p>
+                        The greenhouse also controlled plant growth LED lights and used fans to
+                        continuously circulate air throughout the enclosure. This helped regulate
+                        heat buildup from the grow lights and reduced the risk of scorching the flowers.
+                    </p>
+
+                    <p>
+                        We successfully grew multiple flower types including magnolias and poppies
+                        while adapting the greenhouse environment to match their seed-specific needs.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="stagger-row reverse">
+
+                <div class="media-card">
+
+                    <div class="placeholder">
+                        <strong>Presentation Placeholder</strong>
+                        Add a presentation-day image, team photo,
+                        or public demonstration clip here.
+                    </div>
+
+                </div>
+
+                <div class="text-card">
+
+                    <h2>Presentation and Engineering Experience</h2>
+
+                    <p>
+                        Since this was a freshman engineering project, we had to publicly present the
+                        greenhouse system in front of a large audience. The project took roughly half
+                        a semester to complete because we not only had to build the system, but also
+                        prove that it could sustain living flowers over time.
+                    </p>
+
+                    <p>
+                        This project became one of my earliest experiences connecting software,
+                        embedded systems, hardware engineering, wiring, carpentry, and presentation
+                        skills into a single working system.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+        <div class="tag-panel">
+
+            <div class="side-card">
+
+                <h3>Skills Used</h3>
+
+                <div class="tag-list">
+                    <span class="tag">Arduino</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Relay Switches</span>
+                    <span class="tag">LCD Screen</span>
+                    <span class="tag">Sensors</span>
+                    <span class="tag">Water Pump</span>
+                    <span class="tag">Soldering</span>
+                    <span class="tag">Carpentry</span>
+                    <span class="tag">Presentation</span>
+                    <span class="tag">Embedded Systems</span>
+                </div>
+
+            </div>
+
+            <div class="side-card">
+
+                <h3>Core Systems</h3>
+
+                <div class="hex-row">
+                    <div class="hex">Soil Moisture</div>
+                    <div class="hex">Water Recycling</div>
+                    <div class="hex">Grow Lights</div>
+                    <div class="hex">Cooling Fan</div>
+                    <div class="hex">LCD Control</div>
+                    <div class="hex">Rainfall Tubes</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="text-card">
+
+            <h2>What This Project Taught Me</h2>
+
+            <p>
+                This greenhouse project taught me how software can directly interact with physical
+                systems. Instead of simply writing code that displayed information on a screen,
+                the logic controlled pumps, fans, sensors, relay switches, and environmental behavior
+                inside a real enclosure.
+            </p>
+
+            <p>
+                It also taught me debugging, hardware integration, sensor calibration, teamwork,
+                wiring organization, and how much patience is required when engineering systems
+                that must reliably operate over long periods of time.
+            </p>
+
+        </div>
+
+        <br>
+
+    </div>
+</section>
+
+</main>
+
+<footer id="contact">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>Jaylin Belfield</h3>
+
+                <p>
+                    Computer Science Major with a minor in both Business and Mathematics
+                    learning to build AI-powered tools and supply server hardware services
+                    while performing in game development.
+                </p>
+
+                <p class="footer-verse">
+                    “The harvest truly is great, but the labourers are few:
+                    pray ye therefore the Lord of the harvest, that he would
+                    send forth labourers into his harvest.” — Luke 10:2
+                </p>
+
+                <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn">
+                    Resume
+                </a>
+
+            </div>
+
+            <div>
+
+                <h4>Quick Links</h4>
+
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+            </div>
+
+            <div>
+
+                <h4>Connect</h4>
+
+                <div class="footer-links">
+                    <a href="https://github.com/JaylinJBelfield">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                    <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+                    <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+</body>
+</html>
