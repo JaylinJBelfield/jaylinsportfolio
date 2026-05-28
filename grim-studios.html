@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G.R.I.M Studios | Jaylin Belfield</title>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --background: rgb(19, 24, 32);
+            --panel: rgba(31, 38, 50, 0.78);
+            --panel-dark: rgba(24, 30, 40, 0.9);
+            --border: rgba(190, 170, 220, 0.22);
+            --text-main: #c9ced6;
+            --text-soft: #aeb5c0;
+            --text-muted: #8f98a6;
+            --purple: #b9a3d8;
+            --purple-soft: rgba(185, 163, 216, 0.16);
+            --purple-border: rgba(185, 163, 216, 0.35);
+            --header-bg: rgba(19, 24, 32, 0.62);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(185, 163, 216, 0.12), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(120, 85, 160, 0.13), transparent 38%),
+                var(--background);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        header {
+            background: var(--header-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #d2d6dc;
+        }
+
+        .nav-links a {
+            margin-left: 24px;
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover { color: var(--purple); }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+            border: 1px solid var(--purple-border);
+            color: var(--purple);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .btn:hover {
+            background: var(--purple-soft);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            padding: 60px 0 35px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: var(--purple);
+            font-weight: bold;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .hero-copy {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            padding: 38px;
+            box-shadow: 0 22px 55px rgba(0,0,0,0.24);
+        }
+
+        .hero-label {
+            color: var(--purple);
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            font-size: 0.84rem;
+            font-weight: bold;
+            margin-bottom: 14px;
+        }
+
+        .hero-copy h1 {
+            font-size: 3.15rem;
+            line-height: 1.05;
+            color: #d2d6dc;
+            margin-bottom: 18px;
+        }
+
+        .hero-copy h1 span { color: var(--purple); }
+
+        .hero-copy p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .hero-media {
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            overflow: hidden;
+            min-height: 460px;
+            background:
+                linear-gradient(135deg, rgba(19,24,32,0.15), rgba(19,24,32,0.78)),
+                url("grim-hero.jpg");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            box-shadow: 0 22px 55px rgba(0,0,0,0.28);
+        }
+
+        .hero-media::after {
+            content: "Minecraft Servers • Anime Systems • Game Dev • Digital Media";
+            position: absolute;
+            left: 22px;
+            bottom: 22px;
+            color: #d2d6dc;
+            background: rgba(19,24,32,0.78);
+            border: 1px solid var(--purple-border);
+            border-radius: 999px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+        }
+
+        section { padding: 52px 0; }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading h2 {
+            color: #d2d6dc;
+            font-size: 2.25rem;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--text-soft);
+            max-width: 900px;
+            line-height: 1.8;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 26px;
+        }
+
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 22px;
+        }
+
+        .stat-card h3 {
+            color: var(--purple);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .stat-card p {
+            color: var(--text-soft);
+            font-size: 0.94rem;
+        }
+
+        .media-wall {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 18px;
+        }
+
+        .media-large,
+        .media-small {
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--panel-dark);
+            min-height: 240px;
+        }
+
+        .media-large { min-height: 520px; }
+
+        .media-large img,
+        .media-small img,
+        .media-large video,
+        .media-small video {
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-stack {
+            display: grid;
+            gap: 18px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 18px 45px rgba(0,0,0,0.20);
+        }
+
+        .card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-main);
+            line-height: 1.8;
+            margin-bottom: 14px;
+        }
+
+        .card ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .card li { margin-bottom: 8px; }
+
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .system-card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 28px;
+            min-height: 290px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-card::before {
+            content: "";
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: var(--purple-soft);
+            top: -75px;
+            right: -75px;
+        }
+
+        .system-card h3,
+        .system-card p,
+        .system-card ul {
+            position: relative;
+            z-index: 2;
+        }
+
+        .system-card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .system-card p {
+            color: var(--text-soft);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .system-card ul {
+            margin-left: 18px;
+            color: var(--text-main);
+        }
+
+        .system-card li { margin-bottom: 7px; }
+
+        .timeline {
+            display: grid;
+            gap: 20px;
+        }
+
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 24px;
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 26px;
+        }
+
+        .timeline-label {
+            color: var(--purple);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .timeline-content h3 {
+            color: #d2d6dc;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content p {
+            color: var(--text-soft);
+            line-height: 1.8;
+        }
+
+        .future-panel {
+            background:
+                linear-gradient(135deg, rgba(19,24,32,0.84), rgba(31,38,50,0.78)),
+                url("grim-future.jpg");
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 42px;
+            box-shadow: 0 22px 60px rgba(0,0,0,0.30);
+        }
+
+        .future-panel h2 {
+            color: #d2d6dc;
+            font-size: 2.45rem;
+            margin-bottom: 14px;
+        }
+
+        .future-panel h2 span { color: var(--purple); }
+
+        .future-panel p {
+            color: var(--text-soft);
+            max-width: 920px;
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            background: var(--purple-soft);
+            color: var(--purple);
+            border: 1px solid var(--purple-border);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .demo-card {
+            background: rgba(24,30,40,0.78);
+            border: 1px dashed var(--purple-border);
+            border-radius: 20px;
+            padding: 28px;
+        }
+
+        .demo-card h3 {
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .demo-card p {
+            color: var(--text-soft);
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .demo-card ul {
+            margin-left: 20px;
+            color: var(--text-main);
+        }
+
+        .demo-card li { margin-bottom: 8px; }
+
+        footer {
+            background: rgba(19,24,32,0.78);
+            border-top: 1px solid var(--border);
+            padding: 45px 0;
+            color: var(--text-soft);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+        }
+
+        .footer-grid h3 { color: #d2d6dc; margin-bottom: 10px; }
+        .footer-grid h4 { color: var(--purple); margin-bottom: 12px; }
+        .footer-grid p { color: var(--text-soft); max-width: 580px; margin-bottom: 18px; }
+
+        .footer-verse {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a:hover { color: var(--purple); }
+
+        @media (max-width: 1000px) {
+            .hero-grid,
+            .content-grid,
+            .systems-grid,
+            .media-wall,
+            .demo-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy h1 {
+                font-size: 2.45rem;
+            }
+
+            .media-large {
+                min-height: 340px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a { margin: 0 10px; }
+
+            .hero-copy,
+            .future-panel {
+                padding: 28px;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading h2,
+            .future-panel h2 {
+                font-size: 1.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">G.R.I.M Studios</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="container">
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="hero-label">Game Development • Minecraft Servers • Digital Media • Online Communities</div>
+
+                <h1>G.R.I.M Studios: <span>my largest and most developed project.</span></h1>
+
+                <p>
+                    G.R.I.M Studios is where my technology journey became real. Through Minecraft servers,
+                    custom anime-themed game systems, digital media, scripting, asset development, server hosting,
+                    and community building, I learned what it means to build interactive systems for actual players.
+                </p>
+
+                <p>
+                    This project gave me hands-on experience across nearly every layer of game development:
+                    mechanics, balance, performance, scripting, server management, hosting, DDoS protection,
+                    marketing, 3D assets, animation, and player experience.
+                </p>
+
+                <div class="tag-list">
+                    <span class="tag">Minecraft Servers</span>
+                    <span class="tag">Game Design</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Denizen Script</span>
+                    <span class="tag">Mythic.Lib</span>
+                    <span class="tag">3D Modeling</span>
+                    <span class="tag">Marketing</span>
+                </div>
+            </div>
+
+            <div class="hero-media"></div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <h3>Player Base</h3>
+                <p>Built and managed servers that attracted a real community of players.</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Revenue</h3>
+                <p>Made real money from servers, content, and player-facing experiences.</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Development</h3>
+                <p>Worked across scripting, configuration, balancing, assets, and server systems.</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Future</h3>
+                <p>Continuing under Belsade Tech with Minecraft and future indie game concepts.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>Why GRIM Studios Matters</h2>
+            <p>
+                This project should stand as one of the strongest proof points on my portfolio because it
+                shows that I can build, operate, update, market, and improve a game experience used by real people.
+            </p>
+        </div>
+
+        <div class="content-grid">
+            <div class="card">
+                <h3>From Player to Developer</h3>
+                <p>
+                    GRIM Studios started from my love for Minecraft and anime, but it grew into something much more
+                    technical. I worked on custom Naruto-themed and My Hero Academia-inspired servers, building
+                    experiences where players could interact with abilities, stats, progression, and themed gameplay.
+                </p>
+                <p>
+                    Instead of just using existing systems, I learned how to customize, extend, and balance them.
+                    I had to think like a designer, developer, server owner, marketer, and community manager at once.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Real Game Development Experience</h3>
+                <p>
+                    A major part of GRIM Studios was balancing abilities and player systems the same way a game
+                    developer would. I had to update stats, adjust ability specs, test features, respond to player
+                    feedback, and optimize systems so they were fun without being unfair or too heavy on the server.
+                </p>
+                <p>
+                    This taught me that game development is not only about cool ideas. It is about iteration,
+                    balance, testing, performance, and making sure the player experience feels good.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="showcase">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Showcase Media</h2>
+            <p>
+                Use this section for your strongest gameplay demos, trailers, server walkthroughs, ability showcases,
+                custom models, and marketing visuals.
+            </p>
+        </div>
+
+        <div class="media-wall">
+            <div class="media-large">
+                <video controls poster="grim-demo-thumb.jpg">
+                    <source src="grim-gameplay-demo.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <div class="media-stack">
+                <div class="media-small">
+                    <img src="grim-server-lobby.jpg" alt="GRIM Studios server lobby">
+                </div>
+
+                <div class="media-small">
+                    <img src="grim-ability-showcase.jpg" alt="GRIM Studios ability showcase">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="systems">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Systems I Built and Managed</h2>
+            <p>
+                GRIM Studios covered far more than visuals. It required a full stack of creative, technical,
+                operational, and business skills.
+            </p>
+        </div>
+
+        <div class="systems-grid">
+            <div class="system-card">
+                <h3>Gameplay Mechanics</h3>
+                <p>
+                    Built around custom anime-inspired systems, ability concepts, stats, specs, progression,
+                    and player-facing mechanics.
+                </p>
+                <ul>
+                    <li>Naruto-themed gameplay systems</li>
+                    <li>My Hero Academia-inspired concepts</li>
+                    <li>Ability balancing and stat updates</li>
+                    <li>Progression and player experience design</li>
+                </ul>
+            </div>
+
+            <div class="system-card">
+                <h3>Scripting and Server Logic</h3>
+                <p>
+                    Worked with scripting and configuration tools to create custom behaviors, commands,
+                    abilities, and game-server interactions.
+                </p>
+                <ul>
+                    <li>Java and JavaScript concepts</li>
+                    <li>Denizen Script</li>
+                    <li>Mythic.Lib</li>
+                    <li>Plugin and server configuration</li>
+                </ul>
+            </div>
+
+            <div class="system-card">
+                <h3>Server Management</h3>
+                <p>
+                    Managed hosting, uptime, performance, player load, optimization, and server-side stability.
+                </p>
+                <ul>
+                    <li>Hosting and deployment</li>
+                    <li>DDoS protection awareness</li>
+                    <li>Performance optimization</li>
+                    <li>Client and server usage balancing</li>
+                </ul>
+            </div>
+
+            <div class="system-card">
+                <h3>3D Assets and Animation</h3>
+                <p>
+                    Developed creative assets and presentation materials to make the game worlds feel more custom.
+                </p>
+                <ul>
+                    <li>3D modeling</li>
+                    <li>Animation workflows</li>
+                    <li>Asset development</li>
+                    <li>Implementation into gameplay systems</li>
+                </ul>
+            </div>
+
+            <div class="system-card">
+                <h3>Digital Media Design</h3>
+                <p>
+                    Created graphics, visuals, promotional content, and server-facing design materials.
+                </p>
+                <ul>
+                    <li>Icons and banners</li>
+                    <li>Marketing graphics</li>
+                    <li>Server branding</li>
+                    <li>Player-facing visuals</li>
+                </ul>
+            </div>
+
+            <div class="system-card">
+                <h3>Marketing and Community</h3>
+                <p>
+                    Used online marketing, YouTube content, community management, and player engagement
+                    to grow awareness and activity.
+                </p>
+                <ul>
+                    <li>YouTube marketing</li>
+                    <li>Player community growth</li>
+                    <li>Server monetization</li>
+                    <li>Launch and update promotion</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>What This Proves to Game Development Employers</h2>
+            <p>
+                GRIM Studios is valuable because it shows experience across the entire game development pipeline,
+                not just one isolated skill.
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-row">
+                <div class="timeline-label">Design</div>
+                <div class="timeline-content">
+                    <h3>Systems and Gameplay Thinking</h3>
+                    <p>
+                        I learned how to think about mechanics, balance, progression, player motivation,
+                        themes, and how abilities should feel during actual gameplay.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">Development</div>
+                <div class="timeline-content">
+                    <h3>Scripting, Configuration, and Implementation</h3>
+                    <p>
+                        I worked with scripts, plugins, server tools, custom logic, and implementation details
+                        to bring ideas into a playable environment.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">Operations</div>
+                <div class="timeline-content">
+                    <h3>Hosting, Server Management, and Optimization</h3>
+                    <p>
+                        I handled the operational side of game servers, including hosting concerns, player load,
+                        DDoS protection awareness, updates, uptime, and performance optimization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">Business</div>
+                <div class="timeline-content">
+                    <h3>Marketing, Revenue, and Player Communities</h3>
+                    <p>
+                        I learned how to attract players, market servers, manage community expectations,
+                        monetize content, and treat a game project like a real product.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-row">
+                <div class="timeline-label">Creative</div>
+                <div class="timeline-content">
+                    <h3>Assets, Animation, and Digital Presentation</h3>
+                    <p>
+                        I developed 3D assets, animations, visual media, graphics, and branding pieces that helped
+                        the servers feel more unique and professionally presented.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="future-panel">
+            <h2>The Future of <span>GRIM Studios</span></h2>
+
+            <p>
+                GRIM Studios is becoming part of the larger Belsade Tech ecosystem. The next stage is not only
+                continuing Minecraft development, but also expanding toward planned indie games and AI-assisted
+                game worlds.
+            </p>
+
+            <p>
+                My future direction is to explore AI world-building, intelligent NPC systems, adaptive quests,
+                and gameplay experiences that feel different every time a player enters the world. The goal is
+                to create adventures that do not feel fully repeatable, where AI-driven characters, world logic,
+                and procedural systems can create more dynamic player experiences.
+            </p>
+
+            <p>
+                This makes GRIM Studios the creative branch of Belsade Tech: the place where game systems,
+                AI infrastructure, storytelling, player interaction, and server technology come together.
+            </p>
+
+            <div class="tag-list">
+                <span class="tag">Indie Games</span>
+                <span class="tag">AI NPCs</span>
+                <span class="tag">AI World Building</span>
+                <span class="tag">Minecraft Development</span>
+                <span class="tag">Procedural Adventure</span>
+                <span class="tag">Belsade Tech</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading">
+            <h2>Media to Gather</h2>
+            <p>
+                To make this page feel as strong as it should, gather your best proof that GRIM Studios was real,
+                active, technical, and player-facing.
+            </p>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-card">
+                <h3>Gameplay Proof</h3>
+                <ul>
+                    <li>Ability showcases</li>
+                    <li>Combat demos</li>
+                    <li>Naruto/MHA themed server footage</li>
+                    <li>Player events or server activity clips</li>
+                    <li>Before/after update videos</li>
+                </ul>
+            </div>
+
+            <div class="demo-card">
+                <h3>Technical Proof</h3>
+                <ul>
+                    <li>Script snippets with private info removed</li>
+                    <li>Plugin configuration screenshots</li>
+                    <li>Server console screenshots</li>
+                    <li>Hosting panel or performance screenshots</li>
+                    <li>Optimization or update logs</li>
+                </ul>
+            </div>
+
+            <div class="demo-card">
+                <h3>Creative Proof</h3>
+                <ul>
+                    <li>3D model renders</li>
+                    <li>Animation clips</li>
+                    <li>Custom item or ability icons</li>
+                    <li>Marketing banners</li>
+                    <li>Server lobby screenshots</li>
+                </ul>
+            </div>
+
+            <div class="demo-card">
+                <h3>Business Proof</h3>
+                <ul>
+                    <li>YouTube marketing screenshots</li>
+                    <li>Community screenshots with names hidden</li>
+                    <li>Revenue/shop proof with sensitive data hidden</li>
+                    <li>Staff/team planning screenshots</li>
+                    <li>Player count or launch graphics</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>Jaylin Belfield</h3>
+                <p>
+                    Computer Science Major with a minor in both Business and Mathematics learning to build
+                    AI-powered tools and supply server hardware services while performing in game development.
+                </p>
+                <p class="footer-verse">
+                    “The harvest truly is great, but the labourers are few: pray ye therefore the Lord of the harvest,
+                    that he would send forth labourers into his harvest.” — Luke 10:2
+                </p>
+                <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn">Resume</a>
+            </div>
+
+            <div>
+                <h4>Quick Links</h4>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="https://belsade-tech-site.vercel.app/">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div>
+                <h4>Connect</h4>
+                <div class="footer-links">
+                    <a href="https://github.com/JaylinJBelfield">GitHub</a>
+                    <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+                    <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+                    <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
