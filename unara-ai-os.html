@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unara AI OS | Jaylin Belfield</title>
+  <style>
+
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --background: rgb(19,24,32);
+  --panel: rgba(31,38,50,.78);
+  --border: rgba(190,170,220,.22);
+  --text-main:#c9ced6; --text-soft:#aeb5c0; --text-muted:#8f98a6;
+  --purple:#b9a3d8; --purple-soft:rgba(185,163,216,.16);
+  --purple-border:rgba(185,163,216,.35); --header-bg:rgba(19,24,32,.62);
+}
+html { scroll-behavior:smooth; }
+body {
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at top right,rgba(185,163,216,.10),transparent 35%),
+    radial-gradient(circle at bottom left,rgba(185,163,216,.07),transparent 35%),
+    var(--background);
+  color:var(--text-main); line-height:1.6;
+}
+a { color:inherit; text-decoration:none; }
+.container { width:90%; max-width:1120px; margin:auto; }
+header {
+  background:var(--header-bg); border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
+.logo { font-size:1.4rem; font-weight:bold; color:#d2d6dc; letter-spacing:.5px; }
+.nav-links a { margin-left:25px; color:var(--text-soft); font-size:.95rem; }
+.nav-links a:hover { color:var(--purple); }
+.btn {
+  padding:12px 18px; border-radius:10px; font-weight:bold; display:inline-block; transition:.2s;
+  border:1px solid var(--purple-border); color:var(--purple); background:rgba(255,255,255,.02);
+}
+.btn:hover { background:var(--purple-soft); transform:translateY(-2px); }
+.hero { padding:80px 0 45px; }
+.back-link { display:inline-block; margin-bottom:25px; color:var(--purple); font-weight:bold; }
+.hero-card {
+  border:1px solid var(--border); border-radius:26px; overflow:hidden;
+  background:linear-gradient(135deg,rgba(19,24,32,.32),rgba(19,24,32,.86)),var(--hero-image,none);
+  background-size:cover; background-position:center; min-height:420px;
+  display:flex; align-items:flex-end; box-shadow:0 22px 55px rgba(0,0,0,.26); position:relative;
+}
+.hero-card::before {
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at top right,rgba(185,163,216,.14),transparent 38%);
+}
+.hero-content {
+  width:100%; padding:44px; background:linear-gradient(180deg,transparent,rgba(19,24,32,.94));
+  position:relative; z-index:1;
+}
+.project-label {
+  color:var(--purple); text-transform:uppercase; letter-spacing:1.3px;
+  font-size:.85rem; font-weight:bold; margin-bottom:10px;
+}
+.hero h1 { font-size:3.4rem; color:#d2d6dc; line-height:1.1; margin-bottom:15px; }
+.hero h1 span { color:var(--purple); }
+.hero p { color:var(--text-soft); max-width:820px; font-size:1.08rem; }
+section { padding:42px 0; }
+.section-intro { max-width:850px; margin-bottom:35px; }
+.section-intro h2 { color:#d2d6dc; font-size:2rem; margin-bottom:12px; }
+.section-intro p { color:var(--text-soft); }
+.stagger { display:grid; gap:34px; }
+.stagger-row { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+.stagger-row.reverse .media-card { order:2; }
+.stagger-row.reverse .text-card { order:1; }
+.media-card,.text-card,.side-card {
+  background:var(--panel); border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 18px 45px rgba(0,0,0,.20);
+}
+.text-card { padding:30px; }
+.text-card h2,.text-card h3,.side-card h3 { color:var(--purple); margin-bottom:12px; }
+.text-card p { color:var(--text-main); margin-bottom:14px; }
+.text-card ul { margin-left:20px; color:var(--text-main); }
+.text-card li { margin-bottom:8px; }
+.media-card {
+  min-height:310px; display:flex; align-items:center; justify-content:center;
+  position:relative; background:rgba(24,30,40,.72);
+}
+.media-card img,.media-card video {
+  width:100%; height:100%; min-height:310px; object-fit:cover; display:block;
+}
+.placeholder { padding:30px; text-align:center; color:var(--text-muted); }
+.placeholder strong { display:block; color:var(--purple); margin-bottom:8px; font-size:1.05rem; }
+.placeholder code {
+  display:inline-block; margin-top:10px; color:#d8dce5; background:rgba(10,14,20,.78);
+  border:1px solid var(--purple-border); border-radius:8px; padding:4px 8px; font-size:.82rem;
+}
+.tag-panel { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.side-card { padding:28px; }
+.tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.tag {
+  background:var(--purple-soft); color:var(--purple); border:1px solid var(--purple-border);
+  padding:7px 11px; border-radius:999px; font-size:.8rem; font-weight:bold;
+}
+.hex-row { display:flex; flex-wrap:wrap; gap:14px; margin-top:18px; }
+.hex {
+  width:118px; height:104px; clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0% 50%);
+  background:var(--purple-soft); border:1px solid var(--purple-border); display:flex;
+  align-items:center; justify-content:center; text-align:center; padding:14px;
+  color:var(--purple); font-weight:bold; font-size:.82rem;
+}
+.callout {
+  border-left:3px solid var(--purple); padding:18px 20px; background:rgba(185,163,216,.08);
+  border-radius:0 14px 14px 0; margin-top:16px; color:#d8dce5;
+}
+footer {
+  background:rgba(19,24,32,.78); border-top:1px solid var(--border); padding:45px 0;
+  color:var(--text-soft); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:35px; }
+.footer-grid h3 { color:#d2d6dc; margin-bottom:10px; }
+.footer-grid h4 { color:var(--purple); margin-bottom:12px; }
+.footer-grid p { color:var(--text-soft); max-width:580px; margin-bottom:18px; }
+.footer-verse { font-size:.9rem; color:var(--text-muted); font-style:italic; }
+.footer-links { display:flex; flex-direction:column; gap:8px; }
+.footer-links a:hover { color:var(--purple); }
+@media (max-width:900px) {
+  nav { flex-direction:column; gap:15px; }
+  .nav-links a { margin:0 10px; }
+  .hero h1 { font-size:2.45rem; }
+  .hero-content { padding:30px; }
+  .stagger-row,.stagger-row.reverse,.tag-panel,.footer-grid { grid-template-columns:1fr; }
+  .stagger-row.reverse .media-card,.stagger-row.reverse .text-card { order:initial; }
+}
+
+  </style>
+</head>
+<body style='--hero-image:url("unara-hero.jpg")'>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Jaylin Belfield</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="https://belsade-tech-site.vercel.app/">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container">
+    <a href="projects.html" class="back-link">← Back to Projects</a>
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="project-label">AI Systems Project</div>
+        <h1>Unara <span>AI OS</span></h1>
+        <p>A local-first AI assistant and orchestration platform built to coordinate models, agents, tools, files, voice interaction, workflows, and infrastructure through one system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-intro">
+      <h2>Project Story</h2>
+      <p>Unara is my primary AI systems project and the place where I have been learning what it takes to build an AI product beyond a simple model wrapper. It combines software engineering, local model deployment, orchestration, voice interaction, automation, and infrastructure into one growing platform.</p>
+    </div>
+    <div class="stagger">
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Architecture Diagram Placeholder</strong>
+    Add a diagram showing the dashboard, API, task workers, database, local models, tools, and connected services.
+    <br><code>unara-architecture.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Building an AI Operating Layer</h2>
+  <p>Unara started as a local assistant experiment and grew into a larger AI operating system built around orchestration. The goal is not to place a new skin over one chatbot, but to create a system that can coordinate models, tools, workflows, files, and infrastructure through one interface.</p>
+  <p>The current architecture uses a web dashboard and API layer around local AI services, background task processing, persistent data, and integrations that can be expanded as the system grows.</p>
+  <ul>
+    <li>FastAPI backend</li>
+    <li>Next.js dashboard</li>
+    <li>Redis and Celery task processing</li>
+    <li>PostgreSQL persistence</li>
+    <li>Docker-based deployment</li>
+    <li>Ollama for local model inference</li>
+  </ul>
+</div>
+</div>
+<div class="stagger-row reverse">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Unara Interface Placeholder</strong>
+    Send a screenshot or short screen recording of the current Unara dashboard, Live Room, or Hands Mode.
+    <br><code>unara-interface.mp4</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>From Chatbot to Orchestrator</h2>
+  <p>The project is designed around the idea that different jobs should not always be handled by one general model. Unara can route work toward specialized models or agent roles depending on the task, then bring those pieces back into one user experience.</p>
+  <p>This makes Unara a test bed for the same ideas I want to use in larger AI products: model routing, specialist behavior, tool use, structured responses, long-running tasks, and local-first control.</p>
+  <div class="callout">The design goal is a system that can decide which model, tool, or worker should handle a task instead of forcing every request through one generic assistant.</div>
+</div>
+</div>
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Voice Pipeline Placeholder</strong>
+    Add a clip showing wake/listen/think/speak states, live transcription, or verbal stop behavior.
+    <br><code>unara-voice-demo.mp4</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Voice and Live Interaction</h2>
+  <p>A major part of Unara has been making AI interaction feel less like submitting prompts and more like communicating with a persistent system. I have worked on live partial transcription, verbal stop behavior, wake/listen states, and visual feedback for listening, thinking, and speaking.</p>
+  <p>Voice work also forced me to think about latency, interruption handling, UI state, and how the backend and frontend stay synchronized while the model is generating.</p>
+</div>
+</div>
+<div class="stagger-row reverse">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Tools / Vault Placeholder</strong>
+    Add a screenshot of a tool call, Vault file access, service integration, or local resource being used by Unara.
+    <br><code>unara-tools.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Tools, Files, and Real Work</h2>
+  <p>Unara is being built to reach beyond conversation. The system is designed to work with files, local services, scheduled workflows, infrastructure, and external tools rather than only returning text.</p>
+  <p>One important direction is direct access to my NAS-backed Vault and project resources so the assistant can work from live local information instead of relying only on a chat context window.</p>
+  <ul>
+    <li>Filesystem and NAS integration</li>
+    <li>Tool and API calls</li>
+    <li>Scheduled workflows</li>
+    <li>Local and cloud model access</li>
+    <li>Infrastructure-aware actions</li>
+  </ul>
+</div>
+</div>
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Testing / Development Placeholder</strong>
+    Add a screenshot of the project repository, automated tests, Docker services, or a development milestone.
+    <br><code>unara-development.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Engineering the System</h2>
+  <p>Unara has also become the project where I practice building larger software deliberately. I use separate services, automated backend and frontend testing, isolated experiments, and role-based development workflows so new features can be tested without destabilizing the working system.</p>
+  <p>That process has changed the project from a collection of experiments into an actively maintained software platform with clear components and repeatable development practices.</p>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tag-panel">
+      <div class="side-card">
+        <h3>Skills Used</h3>
+        <div class="tag-list"><span class="tag">FastAPI</span>
+<span class="tag">Next.js</span>
+<span class="tag">Python</span>
+<span class="tag">Docker</span>
+<span class="tag">PostgreSQL</span>
+<span class="tag">Redis</span>
+<span class="tag">Celery</span>
+<span class="tag">Ollama</span>
+<span class="tag">Local LLMs</span>
+<span class="tag">Agent Orchestration</span>
+<span class="tag">Tool Calling</span>
+<span class="tag">Voice AI</span>
+<span class="tag">Testing</span>
+<span class="tag">API Integration</span></div>
+      </div>
+      <div class="side-card">
+        <h3>Core Systems</h3>
+        <div class="hex-row"><div class="hex">FastAPI</div>
+<div class="hex">Next.js</div>
+<div class="hex">Ollama</div>
+<div class="hex">Redis / Celery</div>
+<div class="hex">PostgreSQL</div>
+<div class="hex">Docker</div></div>
+      </div>
+    </div>
+    <br>
+    <div class="text-card">
+      <h2>What This Project Is Teaching Me</h2>
+      <p>Unara has taught me that building an AI product is mostly about the systems around the model: context, tools, routing, state, interfaces, validation, infrastructure, and reliable software behavior.</p>
+<p>It is also the project connecting many of my other interests. My local AI experiments help improve the model layer, while the Grim Grid provides the networked infrastructure and storage that let the system stay available and useful outside a single computer.</p>
+    </div>
+    <br>
+  </div>
+</section>
+</main>
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Jaylin Belfield</h3>
+        <p>Computer Science Major with a minor in both Business and Mathematics learning to build
+        AI-powered tools and supply server hardware services while performing in game development.</p>
+        <p class="footer-verse">“The harvest truly is great, but the labourers are few:
+        pray ye therefore the Lord of the harvest, that he would send forth labourers into his harvest.” — Luke 10:2</p>
+        <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn">Resume</a>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="https://belsade-tech-site.vercel.app/">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="footer-links">
+          <a href="https://github.com/JaylinJBelfield">GitHub</a>
+          <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+          <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+          <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

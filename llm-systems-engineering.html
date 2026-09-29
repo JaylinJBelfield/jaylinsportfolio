@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Systems Engineering Lab | Jaylin Belfield</title>
+  <style>
+
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --background: rgb(19,24,32);
+  --panel: rgba(31,38,50,.78);
+  --border: rgba(190,170,220,.22);
+  --text-main:#c9ced6; --text-soft:#aeb5c0; --text-muted:#8f98a6;
+  --purple:#b9a3d8; --purple-soft:rgba(185,163,216,.16);
+  --purple-border:rgba(185,163,216,.35); --header-bg:rgba(19,24,32,.62);
+}
+html { scroll-behavior:smooth; }
+body {
+  font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at top right,rgba(185,163,216,.10),transparent 35%),
+    radial-gradient(circle at bottom left,rgba(185,163,216,.07),transparent 35%),
+    var(--background);
+  color:var(--text-main); line-height:1.6;
+}
+a { color:inherit; text-decoration:none; }
+.container { width:90%; max-width:1120px; margin:auto; }
+header {
+  background:var(--header-bg); border-bottom:1px solid var(--border);
+  position:sticky; top:0; z-index:10; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+}
+nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
+.logo { font-size:1.4rem; font-weight:bold; color:#d2d6dc; letter-spacing:.5px; }
+.nav-links a { margin-left:25px; color:var(--text-soft); font-size:.95rem; }
+.nav-links a:hover { color:var(--purple); }
+.btn {
+  padding:12px 18px; border-radius:10px; font-weight:bold; display:inline-block; transition:.2s;
+  border:1px solid var(--purple-border); color:var(--purple); background:rgba(255,255,255,.02);
+}
+.btn:hover { background:var(--purple-soft); transform:translateY(-2px); }
+.hero { padding:80px 0 45px; }
+.back-link { display:inline-block; margin-bottom:25px; color:var(--purple); font-weight:bold; }
+.hero-card {
+  border:1px solid var(--border); border-radius:26px; overflow:hidden;
+  background:linear-gradient(135deg,rgba(19,24,32,.32),rgba(19,24,32,.86)),var(--hero-image,none);
+  background-size:cover; background-position:center; min-height:420px;
+  display:flex; align-items:flex-end; box-shadow:0 22px 55px rgba(0,0,0,.26); position:relative;
+}
+.hero-card::before {
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(circle at top right,rgba(185,163,216,.14),transparent 38%);
+}
+.hero-content {
+  width:100%; padding:44px; background:linear-gradient(180deg,transparent,rgba(19,24,32,.94));
+  position:relative; z-index:1;
+}
+.project-label {
+  color:var(--purple); text-transform:uppercase; letter-spacing:1.3px;
+  font-size:.85rem; font-weight:bold; margin-bottom:10px;
+}
+.hero h1 { font-size:3.4rem; color:#d2d6dc; line-height:1.1; margin-bottom:15px; }
+.hero h1 span { color:var(--purple); }
+.hero p { color:var(--text-soft); max-width:820px; font-size:1.08rem; }
+section { padding:42px 0; }
+.section-intro { max-width:850px; margin-bottom:35px; }
+.section-intro h2 { color:#d2d6dc; font-size:2rem; margin-bottom:12px; }
+.section-intro p { color:var(--text-soft); }
+.stagger { display:grid; gap:34px; }
+.stagger-row { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:center; }
+.stagger-row.reverse .media-card { order:2; }
+.stagger-row.reverse .text-card { order:1; }
+.media-card,.text-card,.side-card {
+  background:var(--panel); border:1px solid var(--border); border-radius:20px; overflow:hidden;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); box-shadow:0 18px 45px rgba(0,0,0,.20);
+}
+.text-card { padding:30px; }
+.text-card h2,.text-card h3,.side-card h3 { color:var(--purple); margin-bottom:12px; }
+.text-card p { color:var(--text-main); margin-bottom:14px; }
+.text-card ul { margin-left:20px; color:var(--text-main); }
+.text-card li { margin-bottom:8px; }
+.media-card {
+  min-height:310px; display:flex; align-items:center; justify-content:center;
+  position:relative; background:rgba(24,30,40,.72);
+}
+.media-card img,.media-card video {
+  width:100%; height:100%; min-height:310px; object-fit:cover; display:block;
+}
+.placeholder { padding:30px; text-align:center; color:var(--text-muted); }
+.placeholder strong { display:block; color:var(--purple); margin-bottom:8px; font-size:1.05rem; }
+.placeholder code {
+  display:inline-block; margin-top:10px; color:#d8dce5; background:rgba(10,14,20,.78);
+  border:1px solid var(--purple-border); border-radius:8px; padding:4px 8px; font-size:.82rem;
+}
+.tag-panel { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
+.side-card { padding:28px; }
+.tag-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+.tag {
+  background:var(--purple-soft); color:var(--purple); border:1px solid var(--purple-border);
+  padding:7px 11px; border-radius:999px; font-size:.8rem; font-weight:bold;
+}
+.hex-row { display:flex; flex-wrap:wrap; gap:14px; margin-top:18px; }
+.hex {
+  width:118px; height:104px; clip-path:polygon(25% 5%,75% 5%,100% 50%,75% 95%,25% 95%,0% 50%);
+  background:var(--purple-soft); border:1px solid var(--purple-border); display:flex;
+  align-items:center; justify-content:center; text-align:center; padding:14px;
+  color:var(--purple); font-weight:bold; font-size:.82rem;
+}
+.callout {
+  border-left:3px solid var(--purple); padding:18px 20px; background:rgba(185,163,216,.08);
+  border-radius:0 14px 14px 0; margin-top:16px; color:#d8dce5;
+}
+footer {
+  background:rgba(19,24,32,.78); border-top:1px solid var(--border); padding:45px 0;
+  color:var(--text-soft); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+}
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:35px; }
+.footer-grid h3 { color:#d2d6dc; margin-bottom:10px; }
+.footer-grid h4 { color:var(--purple); margin-bottom:12px; }
+.footer-grid p { color:var(--text-soft); max-width:580px; margin-bottom:18px; }
+.footer-verse { font-size:.9rem; color:var(--text-muted); font-style:italic; }
+.footer-links { display:flex; flex-direction:column; gap:8px; }
+.footer-links a:hover { color:var(--purple); }
+@media (max-width:900px) {
+  nav { flex-direction:column; gap:15px; }
+  .nav-links a { margin:0 10px; }
+  .hero h1 { font-size:2.45rem; }
+  .hero-content { padding:30px; }
+  .stagger-row,.stagger-row.reverse,.tag-panel,.footer-grid { grid-template-columns:1fr; }
+  .stagger-row.reverse .media-card,.stagger-row.reverse .text-card { order:initial; }
+}
+
+  </style>
+</head>
+<body style='--hero-image:url("llm-systems-hero.jpg")'>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Jaylin Belfield</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="https://belsade-tech-site.vercel.app/">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="container">
+    <a href="projects.html" class="back-link">← Back to Projects</a>
+    <div class="hero-card">
+      <div class="hero-content">
+        <div class="project-label">AI Research & Engineering</div>
+        <h1>LLM Systems <span>Engineering Lab</span></h1>
+        <p>An ongoing lab focused on model behavior, inference tuning, context engineering, embeddings, structured outputs, tool use, specialist routing, and the network of components required to turn local LLMs into working systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-intro">
+      <h2>Project Story</h2>
+      <p>This project documents the part of local AI that happens between launching a model and shipping an application. I use it to test how models behave under different configurations and how multiple specialized AI components can work together as one larger system.</p>
+    </div>
+    <div class="stagger">
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Model Lab Placeholder</strong>
+    Send a screenshot of Ollama/Open WebUI, a terminal model session, or your model roster.
+    <br><code>llm-model-lab.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Beyond Running a Local Model</h2>
+  <p>Getting a model to answer a prompt locally is the easy part. This lab focuses on everything that happens after that: controlling behavior, selecting the right model for a task, shaping context, connecting tools, enforcing outputs, and combining multiple components into a dependable AI system.</p>
+  <p>The goal is to understand how a generic model becomes a useful specialized component instead of treating the model itself as the finished product.</p>
+</div>
+</div>
+<div class="stagger-row reverse">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Parameter Tuning Placeholder</strong>
+    Add a screenshot comparing model settings, reasoning controls, context settings, or response behavior.
+    <br><code>llm-parameter-testing.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Inference Tuning and Behavior Control</h2>
+  <p>I experiment with model and inference settings to understand how behavior changes under different configurations. This includes reasoning controls, context limits, sampling parameters, system instructions, and API-specific options.</p>
+  <p>I also compare native model APIs against OpenAI-compatible interfaces because the same model can expose different controls depending on how it is served.</p>
+  <ul>
+    <li>Reasoning / think controls</li>
+    <li>Context-window configuration</li>
+    <li>Sampling and generation settings</li>
+    <li>System prompt behavior</li>
+    <li>Native vs compatibility APIs</li>
+  </ul>
+</div>
+</div>
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Specialist Model Network Placeholder</strong>
+    Add a diagram showing general, reasoning, coding, embedding, and other specialist models connected through a router.
+    <br><code>llm-specialist-network.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>A Network of Specialist Parts</h2>
+  <p>Instead of expecting one model to be excellent at every task, I am building toward a network of specialized components. A reasoning model, coding model, general assistant, embedding model, and tool-capable agent can each be used where they perform best.</p>
+  <p>This same approach feeds directly into Unara: the application can route work toward the right model or subsystem instead of tying the entire product to one model.</p>
+  <div class="callout">The model is one component. The real system is the network that surrounds it.</div>
+</div>
+</div>
+<div class="stagger-row reverse">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Embeddings / RAG Placeholder</strong>
+    Add a screenshot of an embedding index, Obsidian/Vault search, retrieval result, or architecture diagram.
+    <br><code>llm-rag-embeddings.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Context, Embeddings, and Retrieval</h2>
+  <p>I have been experimenting with embedding models and retrieval workflows so local AI can work from project notes, documentation, and files without stuffing everything into the prompt.</p>
+  <p>This work includes BGE-M3 embeddings and experiments around connecting my local knowledge Vault to AI systems. The larger goal is persistent, searchable context that can be shared across specialized agents.</p>
+  <ul>
+    <li>Embeddings</li>
+    <li>Retrieval workflows</li>
+    <li>Local knowledge sources</li>
+    <li>Context engineering</li>
+    <li>RAG architecture</li>
+  </ul>
+</div>
+</div>
+<div class="stagger-row">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>Structured Output / Tool Call Placeholder</strong>
+    Send an example of a JSON response, schema validation, tool call, or agent action.
+    <br><code>llm-structured-tools.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Tools and Structured Outputs</h2>
+  <p>A useful AI system has to return predictable information and interact with software safely. I have been learning how to constrain outputs into schemas, validate responses, expose tools, and design prompts so model behavior can be consumed by another program.</p>
+  <p>This is one of the biggest differences between chatting with a model and engineering with one: the response must become dependable enough to participate in a larger workflow.</p>
+</div>
+</div>
+<div class="stagger-row reverse">
+<div class="media-card">
+  <div class="placeholder">
+    <strong>GPU / Model Comparison Placeholder</strong>
+    Add a photo of the RTX 3060/P100 test hardware or a simple benchmark/model comparison screenshot.
+    <br><code>llm-compute-testing.jpg</code>
+  </div>
+</div>
+<div class="text-card">
+  <h2>Hardware-Aware Model Selection</h2>
+  <p>Hardware still matters because model choices are limited by VRAM, memory bandwidth, architecture support, context length, and quantization. I use local GPU experiments to understand which models are practical on different machines rather than choosing models only from benchmark charts.</p>
+  <p>The compute side supports the larger goal: matching the right model configuration to the hardware and role it will actually serve.</p>
+</div>
+</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="tag-panel">
+      <div class="side-card">
+        <h3>Skills Used</h3>
+        <div class="tag-list"><span class="tag">Ollama</span>
+<span class="tag">Local LLMs</span>
+<span class="tag">Inference Tuning</span>
+<span class="tag">Context Engineering</span>
+<span class="tag">Embeddings</span>
+<span class="tag">BGE-M3</span>
+<span class="tag">RAG</span>
+<span class="tag">Tool Calling</span>
+<span class="tag">JSON Schema</span>
+<span class="tag">Model Routing</span>
+<span class="tag">Prompt Engineering</span>
+<span class="tag">Quantization</span>
+<span class="tag">GPU Compute</span>
+<span class="tag">API Testing</span></div>
+      </div>
+      <div class="side-card">
+        <h3>Core Systems</h3>
+        <div class="hex-row"><div class="hex">Model</div>
+<div class="hex">Context</div>
+<div class="hex">Tools</div>
+<div class="hex">Outputs</div>
+<div class="hex">Router</div>
+<div class="hex">Evaluation</div></div>
+      </div>
+    </div>
+    <br>
+    <div class="text-card">
+      <h2>What This Lab Is Teaching Me</h2>
+      <p>The most important lesson has been that model quality alone does not determine product quality. A useful system depends on how the model is configured, what context it receives, which tools it can access, how its output is validated, and when another specialized model should take over.</p>
+<p>This lab gives me a place to understand those pieces independently before I integrate them into larger products such as Unara and ryznAI.</p>
+    </div>
+    <br>
+  </div>
+</section>
+</main>
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Jaylin Belfield</h3>
+        <p>Computer Science Major with a minor in both Business and Mathematics learning to build
+        AI-powered tools and supply server hardware services while performing in game development.</p>
+        <p class="footer-verse">“The harvest truly is great, but the labourers are few:
+        pray ye therefore the Lord of the harvest, that he would send forth labourers into his harvest.” — Luke 10:2</p>
+        <a href="Jaylin%20Belfield%27s%20Resume%202025.pdf" class="btn">Resume</a>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="projects.html">Projects</a>
+          <a href="https://belsade-tech-site.vercel.app/">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <div class="footer-links">
+          <a href="https://github.com/JaylinJBelfield">GitHub</a>
+          <a href="https://www.linkedin.com/in/jaylin-belfield-6abb72360/">LinkedIn</a>
+          <a href="https://www.youtube.com/@grim_r3861">YouTube</a>
+          <a href="mailto:Jbelfieldj@hc.edu">Jbelfieldj@hc.edu</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
